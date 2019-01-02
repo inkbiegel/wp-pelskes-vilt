@@ -50,7 +50,7 @@ class Pelske_Event_Meta_Box {
 			'pelske_event',
 			'advanced',
 			'default',
-			array('__block_editor_compatible_meta_box' => false) // Disable Gutenberg
+			array('__block_editor_compatible_meta_box' => true) // Hide Gutenberg incompatibility error
 		);
 
 	}
