@@ -81,7 +81,7 @@ function clear_out_crap(){
 add_action('after_setup_theme', 'clear_out_crap');
 
 // Completely disable Gutenberg
-add_filter('gutenberg_can_edit_post_type', '__return_false');
+add_filter('use_block_editor_for_post', '__return_false', 10);
 
 
 /***************************************************************************
@@ -195,14 +195,14 @@ function recaptcha_is_valid(){
 function pelske_custom_post_type_event() {
 
 	$labels = array(
-		'name'               => __( 'Events', 'pelske' ),
-		'singular_name'      => __( 'Event', 'pelske' ),
-		'add_new'            => __( 'Add New Event', 'pelske', 'pelske' ),
-		'add_new_item'       => __( 'Add New Event', 'pelske' ),
-		'edit_item'          => __( 'Edit Event', 'pelske' ),
-		'new_item'           => __( 'New Event', 'pelske' ),
-		'view_item'          => __( 'View Event', 'pelske' ),
-		'menu_name'          => __( 'Events', 'pelske' ),
+		'name'               => __( 'Evenementen', 'pelske' ),
+		'singular_name'      => __( 'Evenement', 'pelske' ),
+		'add_new'            => __( 'Voeg nieuw Evenement toe', 'pelske', 'pelske' ),
+		'add_new_item'       => __( 'Voeg nieuw Evenement toe', 'pelske' ),
+		'edit_item'          => __( 'Bewerk Evenement', 'pelske' ),
+		'new_item'           => __( 'Nieuw Evenement', 'pelske' ),
+		'view_item'          => __( 'Bekijk Evenement', 'pelske' ),
+		'menu_name'          => __( 'Evenement', 'pelske' ),
 	);
 
 	$args = array(
@@ -236,7 +236,7 @@ require_once PELSKE__PLUGIN_DIR . 'admin/class-pelske-event.php';
 // Initialize pelske_event metabox in the backend
 function run_pelske_event() {
 
-  $pelske_event = new Pelske_Event_Admin( 'pelske-event' );
+  $pelske_event = new Pelske_Event_Admin( 'pelske_event' );
   $pelske_event->initialize_hooks();
 
 }
@@ -258,14 +258,14 @@ add_action( 'admin_init', 'run_pelske_event' );
 function pelske_custom_post_type_gb_entry() {
 
 	$labels = array(
-		'name'               => __( 'Guestbook Entries', 'pelske' ),
-		'singular_name'      => __( 'Guestbook Entry', 'pelske' ),
-		'add_new'            => __( 'Add New Guestbook Entry', 'pelske', 'pelske' ),
-		'add_new_item'       => __( 'Add New Guestbook Entry', 'pelske' ),
-		'edit_item'          => __( 'Edit Guestbook Entry', 'pelske' ),
-		'new_item'           => __( 'New Guestbook Entry', 'pelske' ),
-		'view_item'          => __( 'View Guestbook Entry', 'pelske' ),
-		'menu_name'          => __( 'Guestbook Entries', 'pelske' ),
+		'name'               => __( 'Gastenboek Berichten', 'pelske' ),
+		'singular_name'      => __( 'Gastenboek Bericht', 'pelske' ),
+		'add_new'            => __( 'Voeg nieuw Gastenboek Bericht toe', 'pelske', 'pelske' ),
+		'add_new_item'       => __( 'Voeg nieuw Gastenboek Bericht toe', 'pelske' ),
+		'edit_item'          => __( 'Bewerk Gastenboek Bericht', 'pelske' ),
+		'new_item'           => __( 'Nieuw Gastenboek Bericht', 'pelske' ),
+		'view_item'          => __( 'Bekijk Gastenboek Bericht', 'pelske' ),
+		'menu_name'          => __( 'Gastenboek Berichten', 'pelske' ),
 	);
 
 	$args = array(
@@ -289,5 +289,103 @@ function pelske_custom_post_type_gb_entry() {
 	register_post_type( 'pelske_gb_entry', $args );
 }
 add_action( 'init', 'pelske_custom_post_type_gb_entry' );
+
+
+/***************************************************************************
+ * GALLERY
+ **************************************************************************/
+/**
+ * Registers a new taxonomy 'gallery_img_tax' for post type 'gallery_img'
+ */
+add_action( 'init', 'create_gallery_img_taxonomy' );
+function create_gallery_img_taxonomy() {
+    register_taxonomy(
+        'gallery_img_tax',
+        'gallery_img',
+        array(
+            'label' => 'Foto Categorieën',
+            'public' => false,
+            'rewrite' => false,
+						'hierarchical' => false,
+        )
+    );
+}
+/**
+ * Insert terms into the newly created taxonomy
+ */
+add_action( 'init', 'add_terms_to_gallery_img_taxonomy' );
+function add_terms_to_gallery_img_taxonomy() {
+
+	$terms = [ 'sjaal', 'hoed', 'tas', 'varia' ];
+
+	foreach( $terms as $term ) {
+
+		if( ! term_exists( $term ) ) {
+			wp_insert_term( $term, 'gallery_img_tax' );
+		}
+
+	}
+
+}
+
+/**
+ * Registers a new post type 'gallery_img'
+ * @uses $wp_post_types Inserts new post type object into the list
+ *
+ * @param 		string  				Post type key, must not exceed 20 characters
+ * @param 		array|string 		See optional args description above.
+ * @return 		object|WP_Error The registered post type object, or an error object
+ */
+add_action( 'init', 'pelske_custom_post_type_gallery_img' );
+function pelske_custom_post_type_gallery_img() {
+
+	$labels = array(
+		'name'               => __( 'Foto\'s', 'pelske' ),
+		'singular_name'      => __( 'Foto', 'pelske' ),
+		'add_new'            => __( 'Voeg nieuwe Foto toe', 'pelske', 'pelske' ),
+		'add_new_item'       => __( 'Voeg nieuwe Foto toe', 'pelske' ),
+		'edit_item'          => __( 'Bewerk Foto', 'pelske' ),
+		'new_item'           => __( 'Nieuwe Foto', 'pelske' ),
+		'view_item'          => __( 'Bekijk Foto', 'pelske' ),
+		'menu_name'          => __( 'Foto\'s', 'pelske' ),
+	);
+
+	$args = array(
+		'labels'              => $labels,
+		'hierarchical'        => false,
+		'public'              => true,
+		'menu_position'       => 2,
+		'menu_icon'           => 'dashicons-format-gallery',
+		'show_in_nav_menus'   => false,
+		'show_in_admin_bar'   => false,
+		'publicly_queryable'  => false,
+		'query_var'           => false,
+		'rewrite'             => false,
+		'supports'            => array(
+			'post-formats',
+			'thumbnail',
+		),
+	);
+
+	register_post_type( 'gallery_img', $args );
+
+}
+
+register_taxonomy_for_object_type( 'gallery_img_tax', 'gallery_img' );
+
+/**
+ * The core plugin class (and dependencies) that is used to define the meta boxes and their content.
+ */
+require_once PELSKE__PLUGIN_DIR . 'admin/class-pelske-gallery-meta-box.php';
+require_once PELSKE__PLUGIN_DIR . 'admin/class-pelske-gallery.php';
+
+// Initialize pelske_gallery metabox in the backend
+function run_pelske_gallery() {
+
+  $pelske_gallery = new Pelske_Gallery_Admin( 'gallery_img' );
+  $pelske_gallery->initialize_hooks();
+
+}
+add_action( 'admin_init', 'run_pelske_gallery' );
 
 ?>
