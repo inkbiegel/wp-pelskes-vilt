@@ -46,7 +46,7 @@
 					<ol>
 						<li>
 							<label for="event-day-0-date">Date</label>
-							<input type="date" name="event-dates[0]" id="event-day-0-date">
+							<input type="date" name="event-dates[0]" id="event-day-0-date" required>
 						</li>
 						<li>
 							<label for="event-day-0-time-start">Start Time</label>
