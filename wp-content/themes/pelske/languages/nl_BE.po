@@ -1,0 +1,273 @@
+# Copyright (C) 2017 Automattic
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: _s 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
+"POT-Creation-Date: 2018-07-12 15:35+0200\n"
+"PO-Revision-Date: 2018-07-12 15:36+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl_BE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;_n_noop;_nx_noop;"
+"translate_nooped_plural;number_format_i18n;date_i18n;esc_html__;esc_html_x;"
+"esc_attr__;esc_attr_e;esc_attr_x\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 404.php:46
+#, php-format
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "Probeer in de maandelijkse archieven. %1$s"
+
+#: comments.php:35
+#, php-format
+msgid "One thought on &ldquo;%1$s&rdquo;"
+msgstr "&Eacute;&eacute;en commentaar op &ldquo;%1$s&rdquo;"
+
+#: comments.php:41
+#, php-format
+msgid "%1$s thought on &ldquo;%2$s&rdquo;"
+msgstr "%1$s commentaar op &ldquo;%2$s&rdquo;"
+
+#: contact-form.php:11 guestbook.php:12
+msgid "Human verification incorrect."
+msgstr "Test van menselijkheid gefaald."
+
+#: contact-form.php:12 guestbook.php:13
+msgid "Please supply all information."
+msgstr "Gelieve alle velden in te vullen."
+
+#: contact-form.php:13
+msgid "Email address invalid."
+msgstr "E-mailadres is ongeldig."
+
+#: contact-form.php:14
+msgid "Message was not sent. Please try again."
+msgstr "Uw bericht kon niet verzonden worden. Gelieve opnieuw te proberen."
+
+#: contact-form.php:15
+msgid "Thanks! Your message has been sent."
+msgstr "Bedankt! Jouw bericht is verzonden."
+
+#: contact-form.php:28
+msgid "Someone sent a message from "
+msgstr "Iemand heeft een bericht gestuurd via"
+
+#: contact-form.php:39 guestbook.php:33
+msgid "No bots please!"
+msgstr "Geen bots a.u.b.!"
+
+#: contact-form.php:87 guestbook.php:92
+msgid "Name"
+msgstr "Naam"
+
+#: contact-form.php:91
+msgid "Email address"
+msgstr "E-mailadres"
+
+#: contact-form.php:92
+msgid ""
+"The domain portion of the email address is invalid (the portion after the @)."
+msgstr "De domeinnaam van het e-mailadres is onjuist (het deel achter de @)."
+
+#: contact-form.php:95 guestbook.php:100
+msgid "Message"
+msgstr "Bericht"
+
+#: contact-form.php:100 guestbook.php:105
+msgid "Submit"
+msgstr "Verzenden"
+
+#: functions.php:32
+msgid "Primary"
+msgstr "Hoofd"
+
+#: functions.php:64
+msgid "Sidebar"
+msgstr "Zijbalk"
+
+#: functions.php:66
+msgid "Add widgets here."
+msgstr "Voeg hier widgets toe."
+
+#: functions.php:111
+msgid "Please fill out this field."
+msgstr "Gelieve dit veld in te vullen."
+
+#: functions.php:112
+msgid "Please use the correct input type."
+msgstr "Gelieve het juiste soort data in te vullen."
+
+#: functions.php:113
+msgid "Please enter an email address."
+msgstr "Gelieve een e-mailadres in te vullen."
+
+#: functions.php:114
+msgid "Please match the requested format."
+msgstr "Gelieve het gevraagde formaat te hanteren."
+
+#: functions.php:115
+msgid "The value you entered for this field is invalid."
+msgstr "De waarde die je voor dit veld hebt ingevuld, is ongeldig."
+
+#: guestbook.php:11
+#, fuzzy
+#| msgid "Sorry, your nonce did not verify. Please try again"
+msgid "Sorry, your nonce did not verify. Please try again."
+msgstr "Sorry, jouw nonce is ongeldig. Gelieve opnieuw te proberen."
+
+#: guestbook.php:14
+msgid "Thanks! Your entry was added to the Guestbook."
+msgstr "Bedankt! Jouw bericht is toegevoegd aan het Gastenboek."
+
+#: guestbook.php:15
+msgid "Something went wrong with your entry. Please try again."
+msgstr "Er is iets misgelopen met jouw bericht. Gelieve opnieuw te proberen."
+
+#: guestbook.php:55
+#, php-format
+msgid "Guestbook entry of %1$s from %2$s."
+msgstr "Gastenboek bericht van %1$s uit %2$s."
+
+#: guestbook.php:96
+msgid "Location"
+msgstr "Plaats"
+
+#: inc/template-tags.php:29
+#, php-format
+msgid "Posted on %s"
+msgstr "Gepost op %s"
+
+#: inc/template-tags.php:45
+#, php-format
+msgid "by %s"
+msgstr "door %s"
+
+#: inc/template-tags.php:62 inc/template-tags.php:69
+msgid ", "
+msgstr ", "
+
+#: inc/template-tags.php:65
+#, php-format
+msgid "Posted in %1$s"
+msgstr "Gepost in %1$s"
+
+#: inc/template-tags.php:72
+#, php-format
+msgid "Tagged %1$s"
+msgstr "Getagged %1$s"
+
+#: inc/template-tags.php:82
+#, php-format
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+"Laat een bericht achter<span class=\"screen-reader-text\"> op %s</span>"
+
+#: inc/template-tags.php:99
+#, php-format
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr "Bewerk <span class=\"screen-reader-text\">%s</span>"
+
+#: template-parts/content-guestbook-entry.php:22
+msgid "m/d/Y"
+msgstr "d/m/'y"
+
+#: template-parts/content-none.php:24
+#, php-format
+msgid ""
+"Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+"Klaar om je eerste post te publiceren? <a href=\"%1$s\">Start hier</a>."
+
+#: template-parts/content.php:39
+#, php-format
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr "Lees verder<span class=\"screen-reader-text\"> \"%s\"</span>"
+
+#: template-parts/content.php:50
+msgid "Pages:"
+msgstr "Pagina&rsquo;s:"
+
+#~ msgid "Oops! That page can&rsquo;t be found."
+#~ msgstr "Oeps! Die pagina kan niet gevonden worden."
+
+#~ msgid ""
+#~ "It looks like nothing was found at this location. Maybe try one of the "
+#~ "links below or a search?"
+#~ msgstr ""
+#~ "Er is niks gevonden op deze locatie. Probeer misschien &eacute;&eacute;n "
+#~ "van de onderstaande links of een zoekopdracht?"
+
+#~ msgid "Most Used Categories"
+#~ msgstr "Meest gebruikte categorieën"
+
+#~ msgid "Comments are closed."
+#~ msgstr "Reacties zijn uitgeschakeld."
+
+#~ msgid "https://wordpress.org/"
+#~ msgstr "https://wordpress.org/"
+
+#~ msgid "Proudly powered by %s"
+#~ msgstr "Ondersteund door %s"
+
+#~ msgid "Theme: %1$s by %2$s."
+#~ msgstr "Thema: %1$ s %2$ s."
+
+#~ msgid "Skip to content"
+#~ msgstr "Door naar inhoud"
+
+#~ msgid "Primary Menu"
+#~ msgstr "Hoofdmenu"
+
+#~ msgid "Search Results for: %s"
+#~ msgstr "Zoekresultaten voor: %s"
+
+#~ msgid "Nothing Found"
+#~ msgstr "Niks gevonden"
+
+#~ msgid ""
+#~ "Sorry, but nothing matched your search terms. Please try again with some "
+#~ "different keywords."
+#~ msgstr ""
+#~ "Sorry, er voldoet niks aan jouw zoektermen. Gelieve opnieuw te proberen "
+#~ "met andere termen."
+
+#~ msgid ""
+#~ "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+#~ "searching can help."
+#~ msgstr ""
+#~ "We lijken niet te kunnen vinden wat je zoekt. Misschien kan een "
+#~ "zoekopdracht helpen."
+
+#~ msgid "_s"
+#~ msgstr "_s"
+
+#~ msgid "https://underscores.me/"
+#~ msgstr "https://underscores.me/"
+
+#~ msgid ""
+#~ "Hi. I'm a starter theme called <code>_s</code>, or <em>underscores</em>, "
+#~ "if you like. I'm a theme meant for hacking so don't use me as a "
+#~ "<em>Parent Theme</em>. Instead try turning me into the next, most "
+#~ "awesome, WordPress theme out there. That's what I'm here for."
+#~ msgstr ""
+#~ "Hi. I'm a starter theme called <code>_s</code>, or <em>underscores</em>, "
+#~ "if you like. I'm a theme meant for hacking so don't use me as a "
+#~ "<em>Parent Theme</em>. Instead try turning me into the next, most "
+#~ "awesome, WordPress theme out there. That's what I'm here for."
+
+#~ msgid "Automattic"
+#~ msgstr "Automattic"
+
+#~ msgid "https://automattic.com/"
+#~ msgstr "https://automattic.com/"
+
+#~ msgctxt "list item separator"
+#~ msgid ", "
+#~ msgstr ", "

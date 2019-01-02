@@ -1,0 +1,70 @@
+.pelske-event-meta {
+  font-size: 1.1rem;
+}
+
+.pelske-event-location, .pelske-event-datetime {
+  margin: 1.5rem 0 0;
+}
+
+.pelske-event-meta legend {
+  margin: 0 0 0.5rem;
+  font-weight: bold;
+}
+
+.pelske-event-meta > fieldset > legend {
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+}
+
+.pelske-event-meta ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pelske-event-meta ol li {
+  float: left;
+  margin: 0 1.5rem 1rem 0;
+}
+
+.pelske-event-meta label {
+  margin: 0 0.5rem 0 0;
+}
+
+.pelske-event-meta input[type=text] {
+  width: 200px;
+}
+.pelske-event-meta input[type=number] {
+  width: 85px;
+}
+.pelske-event-meta input[type=date] {
+  width: 150px;
+}
+.pelske-event-meta input[type=time] {
+  width: 110px;
+}
+
+#pelske-event-date-list > li {
+  display: block;
+  float: none;
+}
+
+.pelske-event-flyer {
+  float: left;
+  width: 375px;
+  margin: 1.5rem 3rem 0 0;
+}
+#event-flyer-preview {
+  float: left;
+}
+#event-flyer-preview-img {
+  max-width: 250px;
+}
+
+.pelske-event-meta ol:before, .pelske-event-meta:before, .pelske-event-meta ol:after, .pelske-event-meta:after {
+  display: table;
+  content: " ";
+}
+.pelske-event-meta ol:after, .pelske-event-meta:after {
+  clear: both;
+}
