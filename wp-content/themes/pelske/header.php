@@ -28,9 +28,6 @@
 <body <?php body_class(); ?>>
 	<div class="site-wrapper">
 		<a class="skip-link screen-reader-text focusable" href="#main"><?php esc_html_e( 'Skip to content', 'pelske' ); ?></a>
-		<!--[if lte IE 9]>
-    	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-  	<![endif]-->
 		<header id="masthead" class="site-header">
 			<nav id="site-nav" class="main-navigation">
 				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'pelske' ); ?></button>

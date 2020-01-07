@@ -219,7 +219,7 @@ class Pelske_Event_Meta_Box {
 
         // If there is an existing post thumbnail, delete it from uploads folder
         if( has_post_thumbnail( $post_id ) ){
-        	wp_delete_attachment( get_post_thumbnail_id( $post_id ), true);
+					wp_delete_attachment( get_post_thumbnail_id( $post_id ), true);
         }
 
         // Attach the uploaded image to the post

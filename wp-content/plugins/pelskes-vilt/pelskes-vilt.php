@@ -183,7 +183,6 @@ function recaptcha_is_valid(){
 /***************************************************************************
  * EVENTS
  **************************************************************************/
-
 /**
  * Registers a new post type 'pelske_event'
  * @uses $wp_post_types Inserts new post type object into the list
@@ -230,14 +229,14 @@ add_action( 'init', 'pelske_custom_post_type_event' );
 /**
  * The core plugin class (and dependencies) that is used to define the meta boxes and their content.
  */
-require_once PELSKE__PLUGIN_DIR . 'admin/class-pelske-event-meta-box.php';
 require_once PELSKE__PLUGIN_DIR . 'admin/class-pelske-event.php';
+require_once PELSKE__PLUGIN_DIR . 'admin/class-pelske-event-meta-box.php';
 
 // Initialize pelske_event metabox in the backend
 function run_pelske_event() {
 
-  $pelske_event = new Pelske_Event_Admin( 'pelske_event' );
-  $pelske_event->initialize_hooks();
+	$pelske_event = new Pelske_Event_Admin( 'pelske_event' );
+	$pelske_event->initialize_hooks();
 
 }
 add_action( 'admin_init', 'run_pelske_event' );
@@ -382,8 +381,12 @@ require_once PELSKE__PLUGIN_DIR . 'admin/class-pelske-gallery.php';
 // Initialize pelske_gallery metabox in the backend
 function run_pelske_gallery() {
 
-  $pelske_gallery = new Pelske_Gallery_Admin( 'gallery_img' );
-  $pelske_gallery->initialize_hooks();
+	// if( get_current_screen()->post_type === 'gallery_img' ) {
+
+		$pelske_gallery = new Pelske_Gallery_Admin( 'gallery_img' );
+		$pelske_gallery->initialize_hooks();
+
+	// }
 
 }
 add_action( 'admin_init', 'run_pelske_gallery' );

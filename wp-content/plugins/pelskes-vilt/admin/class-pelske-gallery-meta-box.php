@@ -21,7 +21,6 @@ class Pelske_Gallery_Meta_Box {
 		add_action( 'post_edit_form_tag', array( $this, 'update_edit_form' ) );
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
 		add_action( 'save_post_gallery_img', array( $this, 'save_meta_box' ) );
-		// add_action( 'load-post.php', array( $this, 'get_date_time_post_meta' ) );
 		add_action( 'wp_ajax_image_submission', array( $this, 'pelske_image_submission_cb') );
 	}
 
@@ -119,7 +118,9 @@ class Pelske_Gallery_Meta_Box {
 	 */
 	public function pelske_image_submission_cb() {
 
-		check_ajax_referer( 'media-form' );
+		check_ajax_referer( 'gallery_img-submission' );
+
+		error_log( 'test submission cb' );
 
 		// Get attachment info from ajax
 	  $ajax_attachment_id = $_POST['id'];
@@ -140,6 +141,7 @@ class Pelske_Gallery_Meta_Box {
 
         // If there is an existing post thumbnail, delete it from uploads folder
         if( has_post_thumbnail( $post_id ) ){
+					error_log( 'test has thumb' );
         	wp_delete_attachment( get_post_thumbnail_id( $post_id ), true);
         }
 

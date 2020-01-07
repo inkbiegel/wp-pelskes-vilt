@@ -50,6 +50,7 @@ class Pelske_Event_Admin {
 	public function initialize_hooks(){
 
 		$this->meta_box->initialize_hooks();
+		// error_log( 'event init' );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );

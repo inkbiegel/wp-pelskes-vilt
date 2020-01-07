@@ -15,9 +15,9 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 # Typography
 # Structure
 # Navigation
-# Content modules
-# Pages
+# Components
 # Helper classes
+# Pages
 # Media queries
 # Print styles
 --------------------------------------------------------------*/
@@ -160,7 +160,7 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
-# Content modules
+# Components
 --------------------------------------------------------------*/
 /* FORMS */
 /* hide honey pots when js can't */
@@ -174,10 +174,6 @@ a:hover, a:active {
   color: #000;
   background: #ccc;
 }
-
-/*--------------------------------------------------------------
-# Pages
---------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
 # Helper classes
@@ -217,10 +213,13 @@ a:hover, a:active {
 }
 
 /*--------------------------------------------------------------
+# Pages
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
 # Media queries
 --------------------------------------------------------------*/
 @media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
   .menu-toggle {
     display: none;
   }

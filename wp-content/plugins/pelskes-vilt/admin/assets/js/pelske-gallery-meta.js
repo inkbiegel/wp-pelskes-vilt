@@ -13,14 +13,14 @@
 
 			e.preventDefault();
 
-	    var $imgPreview 	= $('#gallery-img-preview');
-	    var $imgNotice  	= $('#gallery-img-notice');
-	    var $imgFile    	= $('#gallery-img-file');
-	    var $imgId      	= $('.pelske-gallery-img [name="image_id"]');
-	    var fileExtension = ['jpeg', 'jpg'];
+	    var $imgPreview 	= $('#gallery-img-preview'),
+	    		$imgNotice  	= $('#gallery-img-notice'),
+	    		$imgFile    	= $('#gallery-img-file'),
+	    		$imgId      	= $('.pelske-gallery-img [name="image_id"]'),
+	    		fileExtension = ['jpeg', 'jpg'];
 
 	    if ( $.inArray( $(this).val().split('.').pop().toLowerCase(), fileExtension ) == -1) {
-	      $imgNotice.html( "Only formats are allowed : " + fileExtension.join(', ') );
+	      $imgNotice.html( "Only formats are allowed: " + fileExtension.join(', ') );
 	      return;
 	    }
 
@@ -85,7 +85,7 @@
 				    galleryImgData.append( 'action', 'image_submission' );
 				    galleryImgData.append( 'id', resp.data.id );
 				    galleryImgData.append( 'filename', resp.data.filename );
-				    galleryImgData.append( 'post_id', $('#post_ID').val() );
+						galleryImgData.append( 'post_id', $('#post_ID').val() );
 
 				    $.ajax({
 				      url: gallery_img_ajax_config.ajax_url,
