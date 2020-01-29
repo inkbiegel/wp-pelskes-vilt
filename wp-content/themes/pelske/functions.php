@@ -123,7 +123,7 @@ function pelske_scripts() {
 
 		wp_enqueue_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js', array( 'contact' ), false, false );
 		wp_script_add_data( 'recaptcha', 'defer', true );
-		// wp_script_add_data( 'recaptcha', 'async', true );
+		wp_script_add_data( 'recaptcha', 'async', true );
 
 	}
 
