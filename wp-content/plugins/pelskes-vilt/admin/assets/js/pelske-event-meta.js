@@ -13,8 +13,6 @@
 
 		$('input[name=post_title]').prop('required',true);
 
-		fileUploadPreviewHandler();
-
 	});
 
 	function createNewDay(){
@@ -45,112 +43,6 @@
 							'</li>';
 
 		return $newDay;
-
-	}
-
-	function fileUploadPreviewHandler(){
-
-		$('#event-flyer-file').on('change', function(e){
-
-			e.preventDefault();
-
-	    var $imgPreview 	= $('#event-flyer-preview');
-	    var $imgNotice  	= $('#event-flyer-notice');
-	    var $imgFile    	= $('#event-flyer-file');
-	    var $imgId      	= $('.pelske-event-flyer [name="image_id"]');
-	    var fileExtension = ['jpeg', 'jpg'];
-
-	    if ( $.inArray( $(this).val().split('.').pop().toLowerCase(), fileExtension ) == -1) {
-	      $imgNotice.html( "Only formats are allowed : " + fileExtension.join(', ') );
-	      return;
-	    }
-
-	    var formData = new FormData();
-
-	    formData.append( 'action', 'upload-attachment' );
-	    formData.append( 'async-upload', $imgFile[0].files[0] );
-	    formData.append( 'name', $imgFile[0].files[0].name );
-	    formData.append( '_wpnonce', flyer_ajax_config.nonce );
-
-	    $.ajax({
-	      url: flyer_ajax_config.upload_url,
-	      data: formData,
-	      processData: false,
-	      contentType: false,
-	      dataType: 'json',
-	      type: 'POST',
-	      beforeSend: function() {
-			    $imgFile.hide();
-			    $imgNotice.html('Uploading&hellip;').show();
-				},
-				xhr: function() {
-			    var myXhr = $.ajaxSettings.xhr();
-
-			    if ( myXhr.upload ) {
-		        myXhr.upload.addEventListener( 'progress', function(e) {
-	            if ( e.lengthComputable ) {
-	              var perc = ( e.loaded / e.total ) * 100;
-	              perc = perc.toFixed(2);
-	              $imgNotice.html('Uploading&hellip;(' + perc + '%)');
-	            }
-		        }, false );
-			    }
-
-			    return myXhr;
-				},
-	      success: function(resp) {
-	    		if ( resp.success ) {
-
-		        $imgNotice.html('Successfully uploaded.');
-
-		        if( $('#event-flyer-preview-img').length > 0 ){
-
-		        	$('#event-flyer-preview-img').attr('src', resp.data.url);
-
-		        } else {
-
-			        var img = $('<img>', {
-			          src: resp.data.url,
-			          id: 'event-flyer-preview-img',
-			          alt: 'Event flyer'
-			        });
-		        	$imgPreview.html( img ).show();
-
-		        }
-
-		        $imgId.val( resp.data.id );
-
-				    var flyerData = new FormData();
-
-				    flyerData.append( '_wpnonce', flyer_ajax_config.nonce );
-				    flyerData.append( 'action', 'image_submission' );
-				    flyerData.append( 'id', resp.data.id );
-				    flyerData.append( 'filename', resp.data.filename );
-				    flyerData.append( 'post_id', $('#post_ID').val() );
-
-				    $.ajax({
-				      url: flyer_ajax_config.ajax_url,
-				      data: flyerData,
-							processData: false,
-	      			contentType: false,
-				      dataType: 'json',
-				      type: 'POST'
-				    });
-
-			    } else {
-		        $imgNotice.html('Failed to upload image. Please try again.');
-		        $imgId.val('');
-			    }
-
-		      $imgFile.show();
-
-				},
-	      error: function(resp) {
-	      	$imgNotice.html('Failed to upload image. Please try again.');
-	      }
-	    });
-
-		});
 
 	}
 

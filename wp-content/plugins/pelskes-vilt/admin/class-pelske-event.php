@@ -96,15 +96,6 @@ class Pelske_Event_Admin {
 			array( 'jquery' )
 		);
 
-		// Localize to set up ajax call for updating flyer preview img on upload
-		$media_form_nonce = wp_create_nonce('media-form');
-		$data = array(
-			'upload_url' => admin_url('async-upload.php'),
-			'ajax_url'   => admin_url('admin-ajax.php'),
-			'nonce'      => $media_form_nonce
-		);
-		wp_localize_script( $this->name . '-meta', 'flyer_ajax_config', $data );
-
 		// Localize, if we're editing a pelske_event, to pass the date/time post meta to the script
 		if ( empty( $_GET['post'] ) ) {
 			return;

@@ -62,19 +62,4 @@
 		</ol>
 		<input type="submit" id="pelske-event-add-day" value="Add another day" class="button button-large">
 	</fieldset>
-	<fieldset class="pelske-event-flyer">
-		<legend>Upload flyer</legend>
-		<label for="async-upload">Upload .jpg</label>
-		<input type="file" id="event-flyer-file" name="async-upload" size="25" />
-    <input type="hidden" name="image_id">
-	</fieldset>
-	<p id="event-flyer-notice"></p>
-	<div id="event-flyer-preview">
-		<?php
-			if( has_post_thumbnail( $post->id ) ){
-				$url = esc_url( get_the_post_thumbnail_url( $post, 'medium' ) );
-				echo '<img src="' . $url . '" alt="Event Flyer" id="event-flyer-preview-img" >';
-			}
-		?>
-	</div>
 </div>

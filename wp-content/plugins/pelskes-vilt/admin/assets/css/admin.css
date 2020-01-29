@@ -52,18 +52,6 @@
   float: none;
 }
 
-.pelske-event-flyer {
-  float: left;
-  width: 375px;
-  margin: 1.5rem 3rem 0 0;
-}
-#event-flyer-preview {
-  float: left;
-}
-#event-flyer-preview-img {
-  max-width: 250px;
-}
-
 .pelske-event-meta ol:before,
 .pelske-event-meta:before,
 .pelske-event-meta ol:after,
@@ -106,7 +94,4 @@
 .pelske-gallery-meta input[type="checkbox"] {
   vertical-align: middle;
   margin: 0 5px 0 0;
-}
-#gallery-img-preview > img {
-  max-width: 100%;
 }

@@ -22,7 +22,6 @@ class Pelske_Event_Meta_Box {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
 		add_action( 'save_post_pelske_event', array( $this, 'save_meta_box' ) );
 		add_action( 'load-post.php', array( $this, 'get_date_time_post_meta' ) );
-		add_action( 'wp_ajax_image_submission', array( $this, 'pelske_image_submission_cb') );
 	}
 
 	/**
@@ -185,75 +184,6 @@ class Pelske_Event_Meta_Box {
 
 		$post = get_post( $_GET['post'] );
 		return esc_attr( count( get_post_meta( $post->ID, 'event-dates', true ) ) );
-
-	}
-
-	/**
-	 * Ajax callback of an async-upload.php image submission.
-	 * Gets the id and filename of the attachment from the ajax image upload in pelske-event-meta.js and
-	 * attaches it to the post as post-thumbnail. If a post-thumbnail already exists, unattach and delete
-	 * from media library.
-	 *
-	 * @access      public
-	 */
-	public function pelske_image_submission_cb() {
-
-		check_ajax_referer( 'media-form' );
-
-		// Get attachment info from ajax
-	  $ajax_attachment_id = $_POST['id'];
-	  $ajax_attachment_name = $_POST['filename'];
-	  $post_id = $_POST['post_id'];
-
-    if ( ! $post_id ) {
-      error_log( 'Unable to get post_id' );
-    } else {
-
-      global $post;
-
-      // Make sure we have a post
-      if ( $post = get_post( $post_id ) ) {
-
-        // Prep the post data
-        setup_postdata( $post );
-
-        // If there is an existing post thumbnail, delete it from uploads folder
-        if( has_post_thumbnail( $post_id ) ){
-					wp_delete_attachment( get_post_thumbnail_id( $post_id ), true);
-        }
-
-        // Attach the uploaded image to the post
-      	$upload_dir = wp_upload_dir();
-      	$file_name = trailingslashit( $upload_dir['basedir'] ) . $ajax_attachment_name;
-      	$file_type = wp_check_filetype( $ajax_attachment_name, null );
-
-				$attachment = array(
-					'ID'						 => $ajax_attachment_id,
-			    'guid'           => $upload_dir['url'] . '/' . $ajax_attachment_name,
-			    'post_mime_type' => $file_type['type'],
-			    'post_title'     => preg_replace( '/\.[^.]+$/', '', $ajax_attachment_name ),
-			    'post_content'   => '',
-			    'post_status'    => 'inherit'
-				);
-
-				$attachment_id = wp_insert_attachment( $attachment, $file_name, $post_id );
-
-				// Make sure that this file is included, as wp_generate_attachment_metadata() depends on it.
-				require_once( ABSPATH . 'wp-admin/includes/image.php' );
-
-				// Generate the metadata for the attachment, and update the database record.
-				$attachment_data = wp_generate_attachment_metadata( $attachment_id, $file_name );
-				wp_update_attachment_metadata( $attachment_id, $attachment_data );
-
-				set_post_thumbnail( $post_id, $attachment_id );
-
-      } else {
-        error_log( 'Unable to get post' );
-      }
-
-    }
-
-	  wp_die();
 
 	}
 

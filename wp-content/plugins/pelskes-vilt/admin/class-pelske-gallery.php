@@ -49,13 +49,10 @@ class Pelske_Gallery_Admin {
 	public function initialize_hooks(){
 
 		$this->meta_box->initialize_hooks();
-		// error_log('gallery init');
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 		add_filter( 'manage_gallery_img_posts_columns', array( $this, 'customize_backend_columns' ) );
 		add_action( 'manage_gallery_img_posts_custom_column' , array( $this, 'customize_backend_columns_data' ), 10, 2 );
-		add_action( 'before_delete_post', array( $this, 'remove_thumbnail_on_post_deletion' ) );
 
 	}
 
@@ -75,35 +72,6 @@ class Pelske_Gallery_Admin {
 			plugins_url( 'pelskes-vilt/admin/assets/css/admin.css' ),
 			false
 		);
-
-	}
-
-	/**
-	 * Enqueues all js files for the gallery-img metabox in the backend.
-	 * Localizes pelske-event-meta.js to receive data from the metabox.
-	 *
-	 * @access 				public
-	 */
-	public function enqueue_admin_scripts() {
-
-    if ( ! get_current_screen()->id === 'gallery-img' ) {
-			return;
-		}
-
-		wp_enqueue_script(
-			$this->name . '-meta',
-			plugins_url( 'pelskes-vilt/admin/assets/js/pelske-gallery-meta.js' ),
-			array( 'jquery' )
-		);
-
-		// Localize to set up ajax call for updating gallery img preview on upload
-		$media_form_nonce = wp_create_nonce('gallery_img-submission');
-		$data = array(
-			'upload_url' => admin_url('async-upload.php'),
-			'ajax_url'   => admin_url('admin-ajax.php'),
-			'nonce'      => $media_form_nonce
-		);
-		wp_localize_script( $this->name . '-meta', 'gallery_img_ajax_config', $data );
 
 	}
 
