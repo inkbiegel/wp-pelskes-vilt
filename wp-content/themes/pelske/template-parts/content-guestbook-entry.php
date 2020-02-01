@@ -10,6 +10,10 @@
 	$post_id = get_the_ID();
 	$gb_name = get_post_meta( $post_id, 'gb_author', true );
 	$gb_location = get_post_meta( $post_id, 'gb_location', true );
+	$comment = get_comments( array(
+		'number' => 1,
+		'post_id' => $post_id
+	) );
 
 ?>
 
@@ -23,7 +27,12 @@
 				</p>
 			</header>
 			<div class="gb-entry-msg">
-				<?php the_content() ?>
+				<?php esc_textarea( the_content() ); ?>
 			</div>
+			<?php if( ! empty( $comment ) ) : ?>
+			<div class="gb-entry-comment">
+				<?php echo $comment[0]->comment_content; ?>
+			</div>
+			<?php endif; ?>
 		</article>
 	</li>
