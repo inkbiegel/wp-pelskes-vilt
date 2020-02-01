@@ -50,10 +50,13 @@ class Pelske_Event_Admin {
 	public function initialize_hooks(){
 
 		$this->meta_box->initialize_hooks();
-		// error_log( 'event init' );
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
+
+		add_filter( 'manage_pelske_event_posts_columns', array( $this, 'customize_backend_columns' ) );
+		add_action( 'manage_pelske_event_posts_custom_column' , array( $this, 'customize_backend_columns_data' ), 10, 2 );
+		add_filter( 'manage_edit-pelske_event_sortable_columns', array( $this, 'customize_backend_sortable_columns' ), 10, 2 );
 
 	}
 
@@ -104,5 +107,46 @@ class Pelske_Event_Admin {
 		wp_localize_script( $this->name . '-meta', 'date_time_post_meta', $this->meta_box->get_date_time_post_meta() );
 
 	}
+
+	/**
+	 * Adds Event Date to the post list in the backend
+	 *
+	 * @access				public
+	 */
+	public function customize_backend_columns( $columns ) {
+
+		$columns = array(
+			'cb' => '<input type="checkbox" />',
+			'title' => 'Titel',
+			'event_date' => 'Datum Evenement',
+			'date' => 'Datum'
+		);
+		return $columns;
+
+	}
+
+	/**
+	 * Insert content into newly created columns for the post list in the backend
+	 *
+	 * @access 					public
+	 */
+	public function customize_backend_columns_data( $column, $post_id ) {
+
+		switch ( $column ) {
+
+			case 'event_date':
+				$event_dates = maybe_unserialize( get_post_meta( $post_id, '', true )['event-dates'][0] );
+				echo date_i18n( 'd-m-yy', strtotime( $event_dates[0] ) );
+				break;
+
+		}
+
+	}
+
+	public function customize_backend_sortable_columns( $columns ) {
+		$columns['event_date'] = 'event_date';
+		return $columns;
+	}
+
 
 }

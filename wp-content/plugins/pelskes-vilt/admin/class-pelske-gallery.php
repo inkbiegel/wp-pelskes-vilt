@@ -20,14 +20,6 @@ class Pelske_Gallery_Admin {
 	private $name;
 
 	/**
-	 * A reference to the meta box.
-	 *
-	 * @access   private
-	 * @var      Pelske_Gallery_Meta_Box    $meta_box    A reference to the meta box for the plugin.
-	 */
-	private $meta_box;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @access 	 public
@@ -37,41 +29,17 @@ class Pelske_Gallery_Admin {
 
 		$this->name = $name;
 
-		$this->meta_box = new Pelske_Gallery_Meta_Box();
-
 	}
 
 	/**
-	 * Sets up all hooks for the gallery-img metabox, including child classes'
+	 * Sets up all hooks for the gallery-img, including child classes'
 	 *
 	 * @access 	 public
 	 */
 	public function initialize_hooks(){
 
-		$this->meta_box->initialize_hooks();
-
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
 		add_filter( 'manage_gallery_img_posts_columns', array( $this, 'customize_backend_columns' ) );
 		add_action( 'manage_gallery_img_posts_custom_column' , array( $this, 'customize_backend_columns_data' ), 10, 2 );
-
-	}
-
-	/**
-	 * Enqueues all css files for the gallery-img metabox in the backend.
-	 *
-	 * @access 				public
-	 */
-	public function enqueue_admin_styles() {
-
-    if ( ! get_current_screen()->id === 'gallery-img' ) {
-			return;
-		}
-
-		wp_enqueue_style(
-			$this->name . '-admin',
-			plugins_url( 'pelskes-vilt/admin/assets/css/admin.css' ),
-			false
-		);
 
 	}
 
@@ -102,7 +70,7 @@ class Pelske_Gallery_Admin {
 		switch ( $column ) {
 
 			case 'featured_image':
-				the_post_thumbnail( 'thumbnail' );
+				echo wp_get_attachment_image( get_field( 'gallery_img', $post_id ), 'medium' );
 				break;
 
 			case 'img_category':
@@ -136,14 +104,14 @@ class Pelske_Gallery_Admin {
 	private function get_post_terms_list_by_id( $post_id ) {
 
 		$categories = '';
-		$terms = wp_get_post_terms( $post_id, 'gallery_img_tax' );
+		$terms = get_field( 'gallery_img_cat', $post_id );
 
 		for ( $i = 0; $i < count( $terms ); $i++) {
 
 			if( $i == 0 ){
-				$categories .= ucfirst( $terms[$i]->name );
+				$categories .= ucfirst( $terms[$i] );
 			} else {
-				$categories .= ', ' . ucfirst( $terms[$i]->name );
+				$categories .= ', ' . ucfirst( $terms[$i] );
 			}
 
 		}

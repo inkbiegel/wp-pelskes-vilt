@@ -375,7 +375,6 @@ register_taxonomy_for_object_type( 'gallery_img_tax', 'gallery_img' );
 /**
  * The core plugin class (and dependencies) that is used to define the meta boxes and their content.
  */
-require_once PELSKE__PLUGIN_DIR . 'admin/class-pelske-gallery-meta-box.php';
 require_once PELSKE__PLUGIN_DIR . 'admin/class-pelske-gallery.php';
 
 // Initialize pelske_gallery metabox in the backend
