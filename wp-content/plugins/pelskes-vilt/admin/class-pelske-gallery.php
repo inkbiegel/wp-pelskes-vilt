@@ -54,6 +54,7 @@ class Pelske_Gallery_Admin {
 			'cb' => '<input type="checkbox" />',
 			'featured_image' => 'Foto',
 			'img_category' => 'Categorie',
+			'img_color' => 'Kleur',
 			'date' => 'Date'
 		);
 		return $columns;
@@ -74,7 +75,11 @@ class Pelske_Gallery_Admin {
 				break;
 
 			case 'img_category':
-				echo $this->get_post_terms_list_by_id( $post_id );
+				echo $this->get_post_terms_list_by_id( $post_id, 'gallery_img_cat' );
+				break;
+
+			case 'img_color':
+				echo get_field( 'gallery_img_color', $post_id )['label'];
 				break;
 
 		}
@@ -101,10 +106,10 @@ class Pelske_Gallery_Admin {
 	 * @access				private
 	 * @return				string 					Comma separated list of tax terms
 	*/
-	private function get_post_terms_list_by_id( $post_id ) {
+	private function get_post_terms_list_by_id( $post_id, $field_name ) {
 
 		$categories = '';
-		$terms = get_field( 'gallery_img_cat', $post_id );
+		$terms = get_field( $field_name, $post_id );
 
 		for ( $i = 0; $i < count( $terms ); $i++) {
 
