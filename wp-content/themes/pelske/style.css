@@ -162,6 +162,31 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
+#siteLogo {
+  display: block;
+  height: 20em;
+  width: 20em;
+}
+#siteLogo path {
+  stroke: url(#Gradient);
+}
+#siteLogo .vines {
+  stroke: #0e2879;
+}
+#siteLogo .shape {
+  fill: #D076FF;
+  fill-opacity: 0;
+  transition: fill-opacity 1s 2.7s;
+}
+#siteLogo.finished .shape {
+  fill-opacity: 1;
+}
+
+#vinesTest {
+  background: lightgray;
+  stroke: #D076FF;
+}
+
 /* FORMS */
 /* hide honey pots when js can't */
 .no-js .js-validate-hp {
