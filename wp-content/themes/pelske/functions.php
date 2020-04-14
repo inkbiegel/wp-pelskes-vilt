@@ -80,12 +80,12 @@ function pelske_scripts() {
 
 	// Enqueue styles
 	wp_enqueue_style( 'normalize', get_template_directory_uri() . '/css/normalize.css' );
-	wp_enqueue_style( 'pelske-style', get_stylesheet_uri() );
-
-	wp_enqueue_script( 'modernizr', get_template_directory_uri() . '/js/vendor/modernizr-3.6.0.min.js', array(), null, true );
+	wp_enqueue_style( 'fonts', 'https://fonts.googleapis.com/css?family=Delius|Nunito', null );
+	wp_enqueue_style( 'pelske-style', get_stylesheet_uri(), array( 'normalize', 'fonts' ) );
 
 	// Get version number WP jQuery, then deregister so we can register the probably cached version from google
 	$version = $GLOBALS['wp_scripts']->registered['jquery']->ver;
+	$version = str_replace( '-wp', '', $version );
 	wp_deregister_script( 'jquery' );
 
   wp_enqueue_script(
@@ -102,7 +102,8 @@ function pelske_scripts() {
 
 	// Load general script files
 	wp_enqueue_script( 'pelske-plugins', get_template_directory_uri() . '/js/plugins.js', array(), '20182525', true );
-	wp_enqueue_script( 'pelske-main', get_template_directory_uri() . '/js/main.js', array( 'jquery', 'pelske-plugins' ), '20182525', true );
+	wp_enqueue_script( 'vivus', '//cdn.jsdelivr.net/npm/vivus@latest/dist/vivus.min.js', array(), null, true );
+	wp_enqueue_script( 'pelske-main', get_template_directory_uri() . '/js/main.js', array( 'jquery', 'pelske-plugins', 'vivus' ), '20182525', true );
 
 	// Load page specific script files
 	if( is_page_template( 'contact-form.php' ) || is_page_template( 'guestbook.php' ) ){

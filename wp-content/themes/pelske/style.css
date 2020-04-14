@@ -12,7 +12,6 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
 # Base styles
-# Typography
 # Structure
 # Navigation
 # Components
@@ -25,29 +24,63 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 /*--------------------------------------------------------------
 # Base Styles
 --------------------------------------------------------------*/
+html, body {
+  height: 100%;
+}
 html {
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 1em;
   line-height: 1.4;
-  color: #222;
+  color: #0a5977;
 }
 *, *:before, *:after {
-  /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
   box-sizing: inherit;
 }
 body {
-  background: #fff;
-  /* Fallback for when there is no custom background color defined. */
+  display: flex;
+  flex-direction: column;
+  max-width: 80em;
+  margin: 0 auto;
+  background: #fffdee;
+}
+h1, h2, h3, h4 {
+  font-family: 'Delius', serif;
+}
+h1 {
+  margin: 0 0 0.75em;
+  font-size: 2.5em;
+  font-weight: normal;
+  color: #a471ce;
+}
+p {
+  margin: 0 0 1.5rem;
+}
+a {
+  color: #d25ef1;
+  text-decoration: none;
+  transition: all 0.1s ease-out;
+}
+a:visited {
+  color: #a506a2;
+}
+a:hover, a:focus, a:active {
+  color: #d426d0;
+  text-decoration: underline;
+}
+a:hover, a:active {
+  outline: 0;
 }
 audio, canvas, iframe, img, svg, video {
   vertical-align: middle;
 }
-textarea {
-  resize: vertical;
+svg {
+  width: 100%;
+  height: 100%;
 }
 ul, ol {
   margin: 0 0 1.5em 3em;
+  padding: 0;
 }
 ul {
   list-style: disc;
@@ -73,7 +106,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   padding: 0.6em 1em 0.4em;
   font-size: 0.75rem;
   line-height: 1;
-  color: rgba(0, 0, 0, 0.8);
+  color: inherit;
   border: 1px solid;
   border-color: #ccc #ccc #bbb;
   border-radius: 3px;
@@ -82,7 +115,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
 button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover {
   border-color: #ccc #bbb #aaa;
 }
-button:active, button:focus, input[type="button"]:active, input[type="button"]:focus, input[type="reset"]:active, input[type="reset"]:focus, input[type="submit"]:active, input[type="submit"]:focus {
+input[type="button"]:active, input[type="button"]:focus, input[type="reset"]:active, input[type="reset"]:focus, input[type="submit"]:active, input[type="submit"]:focus {
   border-color: #aaa #bbb #bbb;
 }
 input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="number"], input[type="tel"], input[type="range"], input[type="date"], input[type="month"], input[type="week"], input[type="time"], input[type="datetime"], input[type="datetime-local"], input[type="color"], textarea {
@@ -99,6 +132,7 @@ select {
 }
 textarea {
   width: 100%;
+  resize: vertical;
 }
 .invalid, input.invalid {
   border-color: #f00;
@@ -114,72 +148,233 @@ textarea {
   background: #b3d4fc;
   text-shadow: none;
 }
-
-/*--------------------------------------------------------------
-# Typography
---------------------------------------------------------------*/
-p {
-  margin-bottom: 1.5rem;
-}
-a {
-  color: royalblue;
-}
-a:visited {
-  color: purple;
-}
-a:hover, a:focus, a:active {
-  color: midnightblue;
-}
-a:focus {
-  outline: thin dotted;
-}
-a:hover, a:active {
-  outline: 0;
+*:focus {
+  outline: 1px solid rgba(212,38,208,0.5);
 }
 
 /*--------------------------------------------------------------
 # Structure
 --------------------------------------------------------------*/
-.site-wrapper {
-  max-width: 80em;
-  margin: 0 auto;
-  padding: 0 0.5em;
+.site-header {
+  padding: 2em 1em 1em;
+  text-align: center;
+}
+.site-main {
+  padding: 1em 1em 2.5em;
+  flex: 1 0 auto;
+}
+.site-footer {
+  flex-shrink: 0;
+  padding: 3em 2em;
+  background: #a471ce;
 }
 
 /*--------------------------------------------------------------
 # Navigation
 --------------------------------------------------------------*/
-.main-navigation ul {
+.main-navigation > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  padding: 3em 1em;
+  background: #fff;
+}
+.main-navigation > div {
+  transform: translate3d(-100%,0,0);
+  transition: all 0.25s ease-out;
+}
+.main-navigation.toggled > div {
+  transform: translate3d(0,0,0);
+}
+.menu-toggle {
+  position: absolute;
+  top: 0.5em;
+  left: 1em;
+  z-index: 5;
+  display: block;
+  padding: 1em 0.5em 1em 2.5em;
+  background: none;
+  border: none;
+  border-radius: 0.25em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  color: rgba(10,89,119,1);
+  transition: color 0.25s ease-out;
+}
+.menu-toggle:active {
+  color: #053648;
+}
+.icon-burger {
+  top: 0.75em;
+  left: 0.125em;
+  margin: 0.6em 0;
+}
+.icon-burger,
+.icon-burger::before,
+.icon-burger::after {
+  position: absolute;
+  display: block;
+  height: 3px;
+  width: 21px;
+  background: rgba(212,38,208,1);
+  border-radius: 1px;
+  transition: all 0.2s ease-out;
+}
+.icon-burger::before {
+  top: -0.6em;
+}
+.icon-burger::before,
+.icon-burger::after {
+  content: '';
+  left: 0;
+}
+.icon-burger::after {
+  bottom: -0.6em;
+}
+.toggled .menu-toggle {
+  color: rgba(10,89,119,0);
+}
+.toggled .icon-burger::before {
+  top: 0;
+}
+.toggled .icon-burger::after {
+  bottom: 0;
+}
+.toggled .icon-burger {
+  background: rgba(212,38,208,0);
+}
+.toggled .icon-burger::before {
+  animation: rotateClockwise 0.2s ease-out 0.2s forwards;
+}
+.toggled .icon-burger::after {
+  animation: rotateCounterClockwise 0.2s ease-out 0.2s forwards;
+}
+@keyframes rotateClockwise {
+  to {
+    transform: rotate3d(0,0,1,45deg);
+  }
+}
+@keyframes rotateCounterClockwise {
+  to {
+    transform: rotate3d(0,0,1,-45deg);
+  }
+}
+
+.nav-menu,
+.sub-menu {
+  margin: 0;
+}
+.menu-item {
+  margin: 0.75em 0 0;
+  list-style: none;
+  letter-spacing: -1px;
+  font-weight: 600;
+  font-size: 1.375rem;
+}
+.menu-item:first-child,
+.sub-menu > .menu-item:first-child {
+  margin-top: 0;
+}
+.sub-menu {
+  margin-top: 0.5em;
+}
+.sub-menu > .menu-item {
+  margin-top: 0.5rem;
+}
+.lang-item {
+  font-size: 1.2rem;
+  margin-top: 1.5em;
+}
+.menu-item > a {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+.menu-item > a::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 3px;
+  width: 100%;
+  transform: scaleX(0.1);
+  opacity: 0;
+  background: #a471ce;
+  transition: transform 0.2s ease-out, opacity 0.1s 0.15s;
+}
+.menu-item > a:hover,
+.current-menu-item > a {
+  color: #d426d0;
+}
+.menu-item > a:hover::after {
+  opacity: 1;
+  transform: scaleX(1);
+  transition: opacity 0.1s, transform 0.2s ease-out 0.05s;
+}
+.menu-item-has-children > a:hover,
+.current-menu-item > a:hover {
+  cursor: default;
+}
+.current-menu-item > a::after,
+.menu-item-has-children > a::after {
   display: none;
 }
-.menu-toggle, .main-navigation.toggled ul {
-  display: block;
-}
 .menu-item-has-children > a:hover {
-  cursor: default;
+  color: inherit;
 }
 
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
-#siteLogo {
-  display: block;
-  height: 20em;
-  width: 20em;
+.site-logo {
+  display: inline-block;
+  height: 12.5em;
+  width: 12.5em;
+  max-width: 100%;
 }
-#siteLogo path {
+.site-logo path {
   stroke: url(#Gradient);
 }
-#siteLogo .vines {
+.site-logo #circle {
+  stroke: #a471ce;
+}
+.site-logo .vines {
   stroke: #0e2879;
 }
-#siteLogo .shape {
+.site-logo .shape {
   fill: #D076FF;
   fill-opacity: 0;
   transition: fill-opacity 1s 2.7s;
 }
-#siteLogo.finished .shape {
+.site-logo.finished .shape {
   fill-opacity: 1;
+}
+
+.icon-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.icon-list-item {
+  display: inline-block;
+  margin: 0 0 0 2em;
+}
+.icon-list-item:first-child {
+  margin-left: 0;
+}
+.icon-svg {
+  overflow: hidden;
+  display: inline-block;
+}
+.icon-social {
+  height: 2.5em;
+  width: 2.5em;
+  fill: #fff;
 }
 
 #vinesTest {
@@ -203,6 +398,9 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 # Helper classes
 --------------------------------------------------------------*/
+.txt-center {
+  text-align: center;
+}
 /* Text meant only for screen readers. */
 .screen-reader-text {
   position: absolute;
@@ -244,12 +442,23 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 # Media queries
 --------------------------------------------------------------*/
+@media only screen and (min-width: 20em) {
+  html {
+    font-size: calc(1em + (1.5 - 1) * ((100vw - 20em) / (80 - 20)));
+  }
+
+}
 @media only screen and (min-width: 35em) {
   .menu-toggle {
     display: none;
   }
   .main-navigation ul {
     display: block;
+  }
+}
+@media only screen and (min-width: 80em) {
+  html {
+    font-size: 1.5em;
   }
 }
 

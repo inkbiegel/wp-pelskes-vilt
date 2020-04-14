@@ -26,11 +26,11 @@
 	</script>
 </head>
 <body <?php body_class(); ?>>
-	<div class="site-wrapper">
-		<a class="skip-link screen-reader-text focusable" href="#main"><?php esc_html_e( 'Skip to content', 'pelske' ); ?></a>
-		<header id="masthead" class="site-header">
+	<?php get_template_part( 'template-parts/symbol-defs.svg' ); ?>
+	<a class="skip-link screen-reader-text focusable" href="#main"><?php esc_html_e( 'Skip to content', 'pelske' ); ?></a>
+	<header id="masthead" class="site-header">
 			<nav id="site-nav" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'pelske' ); ?></button>
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'pelske' ); ?><span class="icon-burger"></span></button>
 				<?php
 					wp_nav_menu( array(
 						'theme_location' => 'menu-1',
@@ -38,4 +38,5 @@
 					) );
 				?>
 			</nav>
+			<a href="/" class="site-logo" id="siteLogo"></a>
 		</header>

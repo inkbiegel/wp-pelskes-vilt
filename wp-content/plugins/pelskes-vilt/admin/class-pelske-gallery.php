@@ -53,8 +53,8 @@ class Pelske_Gallery_Admin {
 		$columns = array(
 			'cb' => '<input type="checkbox" />',
 			'featured_image' => 'Foto',
+			'img_detail' => 'Detail',
 			'img_category' => 'Categorie',
-			'img_color' => 'Kleur',
 			'date' => 'Date'
 		);
 		return $columns;
@@ -71,15 +71,15 @@ class Pelske_Gallery_Admin {
 		switch ( $column ) {
 
 			case 'featured_image':
-				echo wp_get_attachment_image( get_field( 'gallery_img', $post_id ), 'medium' );
+				echo wp_get_attachment_image( get_field( 'gallery_img_full', $post_id ), 'medium' );
+				break;
+
+			case 'img_detail':
+				echo wp_get_attachment_image( get_field( 'gallery_img_detail', $post_id ), 'medium' );
 				break;
 
 			case 'img_category':
 				echo $this->get_post_terms_list_by_id( $post_id, 'gallery_img_cat' );
-				break;
-
-			case 'img_color':
-				echo get_field( 'gallery_img_color', $post_id )['label'];
 				break;
 
 		}
