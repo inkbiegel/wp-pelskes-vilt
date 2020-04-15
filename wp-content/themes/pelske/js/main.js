@@ -6,7 +6,7 @@
 		if( $('#siteLogo').length > 0 ) {
 			var siteLogo = new Vivus('siteLogo', {
 												type: 'scenario',
-												file: '/wp-pelskes-vilt/whitesheepweresheared/wp-content/themes/pelske/img/logo-pelskes-vilt_vines.svg',
+												file: 'wp-content/themes/pelske/img/logo-pelskes-vilt_circle.svg',
 												animTimingFunction: Vivus.EASE,
 												duration: 200,
 												onReady: function(siteLogo) {
