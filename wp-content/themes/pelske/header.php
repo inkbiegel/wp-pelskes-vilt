@@ -39,5 +39,4 @@
 				?>
 			</nav>
 			<a href="/" class="site-logo" id="siteLogo"></a>
-			<p>TEST</p>
 		</header>
