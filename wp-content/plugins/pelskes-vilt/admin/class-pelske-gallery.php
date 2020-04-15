@@ -71,11 +71,11 @@ class Pelske_Gallery_Admin {
 		switch ( $column ) {
 
 			case 'featured_image':
-				echo wp_get_attachment_image( get_field( 'gallery_img_full', $post_id ), 'medium' );
+				echo wp_get_attachment_image( get_field( 'gallery_img_large', $post_id ), 'medium' );
 				break;
 
 			case 'img_detail':
-				echo wp_get_attachment_image( get_field( 'gallery_img_detail', $post_id ), 'medium' );
+				echo wp_get_attachment_image( get_field( 'gallery_img_small', $post_id ), 'thumbnail' );
 				break;
 
 			case 'img_category':
