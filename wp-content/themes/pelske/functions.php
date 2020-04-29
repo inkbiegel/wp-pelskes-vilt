@@ -101,9 +101,13 @@ function pelske_scripts() {
 	}
 
 	// Load general script files
+	$theme_dir = get_template_directory_uri();
 	wp_enqueue_script( 'pelske-plugins', get_template_directory_uri() . '/js/plugins.js', array(), '20182525', true );
 	wp_enqueue_script( 'vivus', '//cdn.jsdelivr.net/npm/vivus@latest/dist/vivus.min.js', array(), null, true );
-	wp_enqueue_script( 'pelske-main', get_template_directory_uri() . '/js/main.js', array( 'jquery', 'pelske-plugins', 'vivus' ), '20182525', true );
+	wp_register_script( 'pelske-main', get_template_directory_uri() . '/js/main.js', array( 'jquery', 'pelske-plugins', 'vivus' ), '20182525', true );
+	wp_localize_script( 'pelske-main', '$php_var_theme_dir', $theme_dir );
+	wp_enqueue_script( 'pelske-main' );
+
 
 	// Load page specific script files
 	if( is_page_template( 'contact-form.php' ) || is_page_template( 'guestbook.php' ) ){

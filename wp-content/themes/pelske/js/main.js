@@ -3,10 +3,12 @@
 
 	$(document).ready(function() {
 
+		$('html').removeClass('no-js').addClass('js');
+
 		if( $('#siteLogo').length > 0 ) {
 			var siteLogo = new Vivus('siteLogo', {
 												type: 'scenario',
-												file: 'wp-content/themes/pelske/img/logo-pelskes-vilt_circle.svg',
+												file: $php_var_theme_dir + '/img/logo-pelskes-vilt_circle.svg',
 												animTimingFunction: Vivus.EASE,
 												duration: 200,
 												onReady: function(siteLogo) {
