@@ -20,10 +20,11 @@ function pelske_custom_header_setup() {
 	add_theme_support( 'custom-header', apply_filters( 'pelske_custom_header_args', array(
 		'default-image'          => '',
 		'default-text-color'     => '000000',
-		'width'                  => 1000,
-		'height'                 => 250,
-		'flex-height'            => true
-		// 'wp-head-callback'       => 'pelske_header_style',
+		'width'                  => 1476,
+		'height'                 => 300,
+		'flex-height'            => true,
+		'flex-width'            => true,
+		'header-text'            => false,
 	) ) );
 }
 add_action( 'after_setup_theme', 'pelske_custom_header_setup' );

@@ -102,9 +102,9 @@ function pelske_scripts() {
 
 	// Load general script files
 	$theme_dir = get_template_directory_uri();
-	wp_enqueue_script( 'pelske-plugins', get_template_directory_uri() . '/js/plugins.js', array(), '20182525', true );
-	wp_enqueue_script( 'vivus', '//cdn.jsdelivr.net/npm/vivus@latest/dist/vivus.min.js', array(), null, true );
-	wp_register_script( 'pelske-main', get_template_directory_uri() . '/js/main.js', array( 'jquery', 'pelske-plugins', 'vivus' ), '20182525', true );
+	wp_enqueue_script( 'pelske-plugins', $theme_dir . '/js/plugins.js', array(), '20182525', true );
+	wp_enqueue_script( 'animejs', $theme_dir . '/js/vendor/anime.min.js', array(), null, true );
+	wp_register_script( 'pelske-main', $theme_dir . '/js/main.js', array( 'jquery', 'pelske-plugins', 'animejs' ), '20182525', true );
 	wp_localize_script( 'pelske-main', '$php_var_theme_dir', $theme_dir );
 	wp_enqueue_script( 'pelske-main' );
 
@@ -140,6 +140,19 @@ add_action( 'wp_enqueue_scripts', 'pelske_scripts' );
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
+
+/**
+ * Add site logo to main navigation
+ */
+function plsk_add_logo_to_nav( $items, $args ) {
+	if( $args->theme_location == 'menu-1' ){
+		error_log( $items );
+		$items  = str_replace( '<li id="menu-item-183"', '<li class="menu-item menu-item-logo"><a href="/" class="site-logo"></a></li><li id="menu-item-183"', $items );
+		error_log( $items );
+	}
+	return $items;
+}
+add_filter('wp_nav_menu_items', 'plsk_add_logo_to_nav', 10, 2);
 
 /**
  * Custom template tags for this theme.

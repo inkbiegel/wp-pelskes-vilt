@@ -160,6 +160,9 @@ textarea {
   padding: 2em 1em 1em;
   text-align: center;
 }
+.site-header-img {
+  display: none;
+}
 .site-main {
   padding: 1em 1em 2.5em;
   flex: 1 0 auto;
@@ -374,7 +377,7 @@ textarea {
 .site-logo .shape {
   fill: #D076FF;
   fill-opacity: 0;
-  transition: fill-opacity 1s 2.7s;
+  transition: fill-opacity 0.1s;
 }
 .site-logo.finished .shape {
   fill-opacity: 1;
@@ -401,14 +404,6 @@ textarea {
   width: 2.5em;
   fill: #fff;
   transition: fill 0.15s ease-out;
-}
-.icon-social:hover {
-  fill:
-}
-
-#vinesTest {
-  background: lightgray;
-  stroke: #D076FF;
 }
 
 /* FORMS */
@@ -478,11 +473,88 @@ textarea {
 
 }
 @media only screen and (min-width: 35em) {
+  .site-header-img {
+    display: block;
+    object-fit: cover;
+  }
+  .site-header {
+    padding: 0 0 1em;
+  }
+  .site-logo {
+    position: relative;
+    height: 10em;
+    width: 10em;
+  }
+  .site-logo {
+    transform: translateY(-5em);
+  }
+  .site-main {
+    transform: translateY(-5em);
+  }
+  .site-logo::before {
+    display: block;
+    content: '';
+    position: absolute;
+    top: -0.25em; right: -0.25em; bottom: -0.25em; left: -0.25em;
+    z-index: 1;
+    border-radius: 5.5em;
+  }
+  .site-logo > svg {
+    position: relative;
+    z-index: 5;
+  }
+  .menu-toggle,
+  .site-logo::before {
+    background: #fffdee;
+  }
+  .menu-toggle {
+    padding: 0.75em 0.5em 0.75em 2.5em;
+  }
+  .icon-burger {
+    left: 0.5em;
+    top: 0.5em;
+  }
+}
+@media only screen and (min-width: 50em) {
+  .main-navigation {
+    transform: translateY(-10em);
+  }
   .menu-toggle {
     display: none;
   }
-  .main-navigation ul {
-    display: block;
+  .main-navigation > div {
+    position: static;
+    padding: 0.5em 1em;
+    transform: none;
+    transition: none;
+    background: none;
+  }
+  .nav-menu {
+    display: flex;
+  }
+  .sub-menu {
+    display: none;
+  }
+  .menu-item {
+    font-size: 1rem;
+    margin: 0 0.75em 0 0;
+  }
+  .menu-item:last-child {
+    margin-right: 0;
+  }
+  .menu-item-183 {
+    margin-left: auto;
+  }
+  .menu-item-has-children > a,
+  .menu-item-has-children > a:hover {
+    color: inherit;
+  }
+  .menu-item-has-children > a::before,
+  .menu-item-has-children > a::after {
+    display: none;
+  }
+  .site-main {
+    transform: translateY(-7em);
   }
 }
 @media only screen and (min-width: 80em) {

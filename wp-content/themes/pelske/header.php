@@ -29,14 +29,15 @@
 	<?php get_template_part( 'template-parts/symbol-defs.svg' ); ?>
 	<a class="skip-link screen-reader-text focusable" href="#main"><?php esc_html_e( 'Skip to content', 'pelske' ); ?></a>
 	<header id="masthead" class="site-header">
-			<nav id="site-nav" class="main-navigation">
+		<img class="site-header-img" src="<?php header_image(); ?>" alt="">
+		<a href="/" class="site-logo"><?php get_template_part( 'template-parts/logo-pelskes-vilt_circle.svg' ); ?></a>
+		<nav id="site-nav" class="main-navigation">
 			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'pelske' ); ?><span class="icon-burger"></span></button>
-				<?php
-					wp_nav_menu( array(
-						'theme_location' => 'menu-1',
-						'menu_id'        => 'primary-menu',
-					) );
-				?>
-			</nav>
-			<a href="/" class="site-logo" id="siteLogo"></a>
-		</header>
+			<?php
+				wp_nav_menu( array(
+					'theme_location' => 'menu-1',
+					'menu_id'        => 'primary-menu',
+				) );
+			?>
+		</nav>
+	</header>
