@@ -44,6 +44,12 @@ body {
   margin: 0 auto;
   background: #fffdee;
 }
+.has-overlay {
+  position: fixed;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+}
 h1, h2, h3, h4 {
   font-family: 'Delius', serif;
   line-height: 1;
@@ -354,7 +360,9 @@ textarea {
 .current-menu-item > a:hover {
   cursor: default;
 }
-
+.menu-item-logo {
+  display: none;
+}
 
 /*--------------------------------------------------------------
 # Components
@@ -364,9 +372,6 @@ textarea {
   height: 12.5em;
   width: 12.5em;
   max-width: 100%;
-}
-.site-logo path {
-  stroke: url(#Gradient);
 }
 .site-logo #circle {
   stroke: #a471ce;
@@ -379,8 +384,53 @@ textarea {
   fill-opacity: 0;
   transition: fill-opacity 0.1s;
 }
+.site-header .site-logo .shape,
 .site-logo.finished .shape {
   fill-opacity: 1;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+}
+.has-overlay .overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overlay > .site-logo {
+  position: relative;
+  z-index: 5;
+  width: 75vw;
+  height: auto;
+  max-width: 15em;
+  transform-origin: top center;
+}
+.overlay > .site-logo::before {
+  display: none;
+}
+.overlay-grid {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(5rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+}
+.overlay-grid-item {
+  position: relative;
+  background: #f0e3fa;
+}
+.overlay-grid-item::before {
+  content: '';
+  display: block;
+  padding-bottom: 100%;
 }
 
 .icon-list {
@@ -468,7 +518,7 @@ textarea {
 --------------------------------------------------------------*/
 @media only screen and (min-width: 20em) {
   html {
-    font-size: calc(1em + (1.5 - 1) * ((100vw - 20em) / (80 - 20)));
+    font-size: calc(1em + (1.375 - 1) * ((100vw - 20em) / (80 - 20)));
   }
 
 }
@@ -486,10 +536,7 @@ textarea {
     width: 10em;
   }
   .site-logo {
-    transform: translateY(-5em);
-  }
-  .site-main {
-    transform: translateY(-5em);
+    margin-top: -5em;
   }
   .site-logo::before {
     display: block;
@@ -516,10 +563,11 @@ textarea {
   }
 }
 @media only screen and (min-width: 50em) {
-  .main-navigation {
-    transform: translateY(-10em);
-  }
-  .menu-toggle {
+  .menu-toggle,
+  .site-header > .site-logo,
+  .sub-menu,
+  .menu-item-has-children > a::before,
+  .menu-item-has-children > a::after {
     display: none;
   }
   .main-navigation > div {
@@ -531,9 +579,6 @@ textarea {
   }
   .nav-menu {
     display: flex;
-  }
-  .sub-menu {
-    display: none;
   }
   .menu-item {
     font-size: 1rem;
@@ -549,17 +594,13 @@ textarea {
   .menu-item-has-children > a:hover {
     color: inherit;
   }
-  .menu-item-has-children > a::before,
-  .menu-item-has-children > a::after {
-    display: none;
-  }
-  .site-main {
-    transform: translateY(-7em);
+  .menu-item-logo {
+    display: block;
   }
 }
 @media only screen and (min-width: 80em) {
   html {
-    font-size: 1.5em;
+    font-size: 1.375em;
   }
 }
 
