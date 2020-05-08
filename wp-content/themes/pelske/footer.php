@@ -38,8 +38,10 @@
 			</li>
 		</ul>
 	</footer>
-
-<?php wp_footer(); ?>
-
+	<div class="overlay" id="overlay">
+		<div class="site-logo"><?php get_template_part( 'template-parts/logo-pelskes-vilt_circle.svg' ); ?></div>
+		<div class="overlay-grid"></div>
+	</div>
+	<?php wp_footer(); ?>
 </body>
 </html>
