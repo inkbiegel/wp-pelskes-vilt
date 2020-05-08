@@ -144,15 +144,41 @@ require get_template_directory() . '/inc/custom-header.php';
 /**
  * Add site logo to main navigation
  */
-function plsk_add_logo_to_nav( $items, $args ) {
-	if( $args->theme_location == 'menu-1' ){
-		error_log( $items );
-		$items  = str_replace( '<li id="menu-item-183"', '<li class="menu-item menu-item-logo"><a href="/" class="site-logo"></a></li><li id="menu-item-183"', $items );
-		error_log( $items );
+function plsk_add_logo_to_nav($items, $args) {
+	if($args->theme_location == 'menu-1'){
+		// Write svg to buffer so dynamic gradient can be set
+		ob_start();
+		include('template-parts/logo-pelskes-vilt_circle.svg.php');
+		$getContent = ob_get_contents();
+		ob_end_clean();
+		// Insert li with logo after the third closing li
+		$needle = '</li>';
+		$insert_text = '<li class="menu-item menu-item-logo"><a href="/" class="site-logo">' . $getContent . '</a></li>';
+		$insert_pos = strposOffset($needle, $items, 3) + strlen($needle);
+		$items = substr_replace($items, $insert_text, $insert_pos, 0);
 	}
 	return $items;
 }
 add_filter('wp_nav_menu_items', 'plsk_add_logo_to_nav', 10, 2);
+
+/**
+ * Get position of nth occurance of needle in haystack
+ */
+function strposOffset($needle, $haystack, $offset) {
+	$arr = explode($needle, $haystack);
+	switch( $offset )	{
+		case $offset == 0:
+		return false;
+		break;
+
+		case $offset > max(array_keys($arr)):
+		return false;
+		break;
+
+		default:
+		return strlen( implode($needle, array_slice($arr, 0, $offset)));
+	}
+}
 
 /**
  * Custom template tags for this theme.
