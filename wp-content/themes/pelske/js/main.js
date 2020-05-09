@@ -62,16 +62,21 @@
 			document.querySelector('#overlay > .overlay-grid').appendChild(c);
 		}
 
-		hide() {
+		hide(siteLogoOffset) {
 			switch (this.callerID) {
 				case 'preloader':
+					let rowNumber = Math.round(siteLogoOffset.top/this.gridItemHeight);
+					let colNumber = Math.round(this.nrOfCols/2);
+					let fromIndex = rowNumber * this.nrOfCols + colNumber;
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 0,
-						delay: anime.stagger(150, {grid: [this.nrOfCols, this.nrOfRows], from: 'center'}),
+						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: fromIndex }),
 						complete: function(anim){
 							// Reenable page scroll
 							$('body').removeClass('has-overlay');
+							// Remove site logo
+							$('#overlay .site-logo').remove();
 						}
 					})
 					break;
@@ -123,7 +128,9 @@
 			delay: 400,
 			translateY: -(overlayLogoOffset.top - siteLogoOffset.top),
 			scale: siteLogoSize / overlayLogoSize,
-			complete: function(anim){ preloader.hide(); }
+			complete: function(anim){
+				preloader.hide(siteLogoOffset);
+			}
 		});
 	}
 
