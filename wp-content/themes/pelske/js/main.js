@@ -12,6 +12,8 @@
 		// 	$('.overlay > .site-logo').remove();
 		// };
 
+		navHandler();
+
 	});
 
 	function showPreloader(){
@@ -33,23 +35,63 @@
 		init() {
 			// Disable page scroll
 			$('body').addClass('has-overlay');
-			// Append a single grid-item to get its dimensions
-			$('#overlay .overlay-grid').css('visibility','hidden').append('<div class="overlay-grid-item"></div>');
+			// Check if there's already a populated grid e.g. from preloader
+			this.gridIsPopulated = $('#overlay .overlay-grid-item').length <= 0 ? false : true;
+			if(!this.gridIsPopulated) {
+				// Append a single grid-item to get its dimensions
+				$('#overlay .overlay-grid').css('visibility','hidden').append('<div class="overlay-grid-item"></div>');
+				// Store measurements
+				this.setVariables();
+				$('#overlay .overlay-grid').empty().css('visibility','visible');
+				// Populate grid
+				this.populateGrid();
+			} else {
+				// Store measurements
+				this.setVariables();
+			}
+		}
+
+		setVariables() {
 			this.firstCell = $('#overlay .overlay-grid-item').first();
 			this.gridItemHeight = this.firstCell.height();
 			this.gridItemWidth = this.firstCell.width();
+			// Determine nr of squares needed to fill screen
 			this.nrOfCols = Math.ceil(window.innerWidth/this.gridItemWidth);
 			this.nrOfRows = Math.ceil(window.innerHeight/this.gridItemHeight) + 1;
 			this.nrOfItems = this.nrOfCols * this.nrOfRows;
-			$('#overlay .overlay-grid').empty().css('visibility','visible');
 		}
 
 		show() {
-			// Check if there's already a populated grid
-			if($('#overlay .overlay-grid-item').length <= 0) {
-				this.populateGrid();
+			switch(this.callerID){
+				// The preloader does not need to animate the grid in
+				case 'preloader':
+					if(this.callerID === 'preloader'){
+						$('#overlay .overlay-grid-item').css('opacity','1');
+						$('#site-nav > .menu-toggle').addClass('hidden');
+					}
+					break;
+				// If not preloader anime stagger opacity of grid items
+				case 'mainNav':
+					anime({
+						targets: '#overlay .overlay-grid-item',
+						opacity: 1,
+						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: 'first' }),
+						begin: function(anim){
+							$('#site-nav > .menu-toggle').addClass('toggled');
+						},
+						update: function(anim){
+							if(Math.round(anim.progress) === 70){
+								// Toggle nav into position and fade it in with transition in CSS
+								const siteNav = $('#site-nav');
+								siteNav.addClass('toggled');
+								siteNav.children('.menu-toggle').attr('aria-expanded', 'true');
+								siteNav.children('#primary-menu').attr( 'aria-expanded', 'true' );
+							}
+						}
+					});
+					break;
 			}
-			// If not preloader anime stagger opacity of grid items
+
 		}
 
 		populateGrid() {
@@ -72,16 +114,42 @@
 						targets: '#overlay .overlay-grid-item',
 						opacity: 0,
 						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: fromIndex }),
-						complete: function(anim){
-							// Reenable page scroll
-							$('body').removeClass('has-overlay');
-							// Remove site logo
-							$('#overlay .site-logo').remove();
+						update: function(anim){
+							if(Math.round(anim.progress) === 70){
+								// Reenable page scroll
+								$('body').removeClass('has-overlay');
+								$('#site-nav > .menu-toggle.hidden').removeClass('hidden');
+								// Remove site logo
+								$('#overlay .site-logo').remove();
+							}
+						}
+					})
+					break;
+
+				case 'mainNav':
+					anime({
+						targets: '#overlay .overlay-grid-item',
+						opacity: 0,
+						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: 'last' }),
+						begin: function(anim){
+							const siteNav = $('#site-nav');
+							// Toggle nav into position and fade it in with transition in CSS
+							siteNav.removeClass('toggled');
+							siteNav.children('.menu-toggle').attr('aria-expanded', 'false');
+							siteNav.children('#primary-menu').attr( 'aria-expanded', 'false' );
+						},
+						update: function(anim){
+							if(Math.round(anim.progress) === 70){
+								$('#site-nav > .menu-toggle').removeClass('toggled');
+								// Reenable page scroll
+								$('body').removeClass('has-overlay');
+							}
 						}
 					})
 					break;
 
 				default:
+
 					break;
 			}
 		}
@@ -133,5 +201,109 @@
 			}
 		});
 	}
+
+	/**
+ * Handles toggling the navigation menu for small screens and enables TAB key
+ * navigation support for dropdown menus.
+ */
+	function navHandler() {
+		var container, button, menu, links, i, len;
+
+		container = document.getElementById( 'site-nav' );
+		if ( ! container ) {
+			return;
+		}
+
+		button = container.getElementsByTagName( 'button' )[0];
+		if ( 'undefined' === typeof button ) {
+			return;
+		}
+
+		menu = container.getElementsByTagName( 'ul' )[0];
+
+		// Hide menu toggle button if menu is empty and return early.
+		if ( 'undefined' === typeof menu ) {
+			button.style.display = 'none';
+			return;
+		}
+
+		menu.setAttribute( 'aria-expanded', 'false' );
+		if ( -1 === menu.className.indexOf( 'nav-menu' ) ) {
+			menu.className += ' nav-menu';
+		}
+
+		let navOverlay = new Overlay('mainNav');
+
+		button.onclick = function() {
+			if ( -1 !== container.className.indexOf( 'toggled' ) ) {
+				navOverlay.hide();
+			} else {
+				navOverlay.init();
+				navOverlay.show();
+			}
+		};
+
+		// Get all the link elements within the menu.
+		links    = menu.getElementsByTagName( 'a' );
+
+		// Each time a menu link is focused or blurred, toggle focus.
+		for ( i = 0, len = links.length; i < len; i++ ) {
+			links[i].addEventListener( 'focus', toggleFocus, true );
+			links[i].addEventListener( 'blur', toggleFocus, true );
+		}
+
+		/**
+		 * Sets or removes .focus class on an element.
+		 */
+		function toggleFocus() {
+			var self = this;
+
+			// Move up through the ancestors of the current link until we hit .nav-menu.
+			while ( -1 === self.className.indexOf( 'nav-menu' ) ) {
+
+				// On li elements toggle the class .focus.
+				if ( 'li' === self.tagName.toLowerCase() ) {
+					if ( -1 !== self.className.indexOf( 'focus' ) ) {
+						self.className = self.className.replace( ' focus', '' );
+					} else {
+						self.className += ' focus';
+					}
+				}
+
+				self = self.parentElement;
+			}
+		}
+
+		/**
+		 * Toggles `focus` class to allow submenu access on tablets.
+		 */
+		( function( container ) {
+			var touchStartFn, i,
+				parentLink = container.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a' );
+
+			if ( 'ontouchstart' in window ) {
+				touchStartFn = function( e ) {
+					var menuItem = this.parentNode, i;
+
+					if ( ! menuItem.classList.contains( 'focus' ) ) {
+						e.preventDefault();
+						for ( i = 0; i < menuItem.parentNode.children.length; ++i ) {
+							if ( menuItem === menuItem.parentNode.children[i] ) {
+								continue;
+							}
+							menuItem.parentNode.children[i].classList.remove( 'focus' );
+						}
+						menuItem.classList.add( 'focus' );
+					} else {
+						menuItem.classList.remove( 'focus' );
+					}
+				};
+
+				for ( i = 0; i < parentLink.length; ++i ) {
+					parentLink[i].addEventListener( 'touchstart', touchStartFn, false );
+				}
+			}
+		}( container ) );
+};
 
 })( jQuery );
