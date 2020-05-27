@@ -169,11 +169,12 @@ textarea {
 .site-main {
   padding: 1em 1em 2.5em;
   flex: 1 0 auto;
+  max-width: 60em;
 }
 .site-footer {
   flex-shrink: 0;
   padding: 3em 2em;
-  background: #a471ce;
+  background: linear-gradient(#D700B9, 10%, #D076FF);
 }
 
 /*--------------------------------------------------------------
@@ -527,6 +528,7 @@ textarea {
   .site-header-img {
     display: block;
     object-fit: cover;
+    min-width: 100%;
   }
   .site-header {
     padding: 0 0 1em;
@@ -566,10 +568,13 @@ textarea {
 @media only screen and (min-width: 50em) {
   .menu-toggle,
   .site-header > .site-logo,
-  .sub-menu,
   .menu-item-has-children > a::before,
   .menu-item-has-children > a::after {
     display: none;
+  }
+  .main-navigation {
+    max-width: 45em;
+    margin: 0 auto;
   }
   .main-navigation > div {
     position: static;
@@ -580,16 +585,16 @@ textarea {
     opacity: 1;
   }
   .nav-menu {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr auto 1fr 1fr 1fr;
-    /* display: flex;
+    display: flex;
     flex-flow: row nowrap;
-    justify-content: space-between; */
+    justify-content: center;
   }
   .menu-item {
     font-size: 1rem;
     margin: 0;
-    /* flex-basis: 11%; */
+    padding: 0 0.5em;
+    flex-basis: 12%;
+    text-align: center;
   }
   .menu-item-has-children > a,
   .menu-item-has-children > a:hover {
@@ -597,7 +602,48 @@ textarea {
   }
   .menu-item-logo {
     display: block;
-    /* flex-basis: 33%; */
+    padding: 0 1em;
+    flex-basis: 28%;
+  }
+  .menu-item-logo > .site-logo {
+    width: 100%;
+    height: auto;
+  }
+  .menu-item-has-children {
+    position: relative;
+  }
+  .menu-item-has-children > .sub-menu {
+    position: absolute;
+    top: 1.125em;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .sub-menu {
+    opacity: 0;
+  }
+  .sub-menu > .menu-item {
+    margin-top: 0.1em;
+    padding: 0;
+    opacity: 0;
+    transform: translateY(-0.25em);
+    transition: all 0.2s ease-out;
+  }
+  .sub-menu > .menu-item:last-child {
+    transition-delay: 0.1s;
+  }
+  .sub-menu > .menu-item > a {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+  .sub-menu > .menu-item > a::after {
+    height: 2px;
+  }
+  .menu-item-has-children:hover > .sub-menu,
+  .menu-item-has-children:hover > .sub-menu > .menu-item {
+    opacity: 1;
+  }
+  .menu-item-has-children:hover > .sub-menu > .menu-item {
+    transform: translateY(0);
   }
 }
 @media only screen and (min-width: 80em) {
