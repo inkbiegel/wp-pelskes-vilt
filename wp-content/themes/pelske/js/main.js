@@ -88,7 +88,7 @@
 							$('#site-nav > .menu-toggle').addClass('toggled');
 						},
 						update: function(anim){
-							if(Math.round(anim.progress) === 70){
+							if(Math.round(anim.progress) === 50){
 								// Toggle nav into position and fade it in with transition in CSS
 								const siteNav = $('#site-nav');
 								siteNav.addClass('toggled');
@@ -111,9 +111,27 @@
 							}
 						}
 					});
+					this.setupButtons();
 					break;
 			}
 
+		}
+
+		setupButtons() {
+			let overlay = this;
+			$('#overlay .icon-anim-border').on('mouseenter', function(e){
+				let that = this;
+				anime({
+					targets: that.querySelector('.border'),
+					strokeDashoffset: [anime.setDashoffset, 0],
+					easing: 'easeInOutCirc',
+					duration: 500,
+				});
+			});
+			$('#overlayBtnClose').on('click', function(e) {
+				e.preventDefault();
+				overlay.hide();
+			});
 		}
 
 		populateGrid() {
@@ -171,10 +189,11 @@
 					break;
 
 				case 'gallery':
+					let lastCellFirstRowIndex = this.nrOfCols - 1;
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 0,
-						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: 'center' }),
+						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: lastCellFirstRowIndex }),
 						begin: function(anim){
 							$('#overlay').removeClass('complete');
 						},
@@ -360,16 +379,25 @@ function galleryHandler() {
 	$('#gallery').on('click', '.grid-list-link', function(event){
 		event.preventDefault();
 		const imgUrl = $(this).attr('href');
+		const pageUrl = window.location.href;
 		const galleryImg = $('<img class="gallery-img-full" src="' + imgUrl + '" />');
+		const btnPinterest =
+			'<a class="icon-svg icon-social icon-anim-border" id="btnPinGalleryImg" href="https://www.pinterest.com/pin/create/button/?url=' + encodeURI(pageUrl) + '&media=' + imgUrl + '&description=Pelskes%Vilt" target="_blank">'
+				+ '<svg role="img" title="Pin on Pinterest" aria-labelled-by="btnPinterestTitle" viewBox="0 0 48 48">'
+					+ '<title id="btnPinterestTitle">Pin on Pinterest</title>'
+					+ '<use xlink:href="#icon-pinterest"></use>'
+					+ '<circle class="border" fill="none" stroke-miterlimit="10" cx="24" cy="24" r="22.4" transform="rotate(-180 24 24)"/>'
+				+ '</svg>'
+			+ '</a>';
 		const clickOffset = $(this).offset();
-		// insert full image into overlay
-		$('#overlay').prepend( galleryImg );
+		// insert full image and pinterest button into overlay
+		$('#overlay').prepend(galleryImg, btnPinterest);
 		// get click pos on grid for starting pos stagger animation
 		galleryOverlay.getClickPosOnGrid(clickOffset);
 		// show overlay
 		galleryOverlay.show();
-		// show buttons: close, pinterest
 	})
+
 }
 
 function footerLinkAnimations(){
