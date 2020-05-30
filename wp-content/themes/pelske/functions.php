@@ -110,6 +110,12 @@ function pelske_scripts() {
 
 
 	// Load page specific script files
+	if( is_page_template( 'gallery.php' ) ){
+		wp_enqueue_script( 'pinterest', '//assets.pinterest.com/js/pinit.js', array(), false, false );
+		wp_script_add_data( 'pinterest', 'defer', true );
+		wp_script_add_data( 'pinterest', 'async', true );
+	}
+
 	if( is_page_template( 'contact-form.php' ) || is_page_template( 'guestbook.php' ) ){
 
 		$localize_data = array(

@@ -382,7 +382,7 @@ function galleryHandler() {
 		const pageUrl = window.location.href;
 		const galleryImg = $('<img class="gallery-img-full" src="' + imgUrl + '" />');
 		const btnPinterest =
-			'<a class="icon-svg icon-social icon-anim-border" id="btnPinGalleryImg" href="https://www.pinterest.com/pin/create/button/?url=' + encodeURI(pageUrl) + '&media=' + imgUrl + '&description=Pelskes%Vilt" target="_blank">'
+			'<a class="icon-svg icon-social icon-anim-border" id="btnPinGalleryImg" data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/?url=' + pageUrl + '&media=' + imgUrl + '&description=Pelskes%20Vilt" target="_social">'
 				+ '<svg role="img" title="Pin on Pinterest" aria-labelled-by="btnPinterestTitle" viewBox="0 0 48 48">'
 					+ '<title id="btnPinterestTitle">Pin on Pinterest</title>'
 					+ '<use xlink:href="#icon-pinterest"></use>'
