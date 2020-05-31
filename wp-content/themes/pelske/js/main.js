@@ -409,7 +409,7 @@ function footerLinkAnimations(){
 			targets: border,
 			strokeDashoffset: [anime.setDashoffset, 0],
 			easing: 'easeInOutCirc',
-			duration: 1000,
+			duration: 500,
 		});
 	})
 }

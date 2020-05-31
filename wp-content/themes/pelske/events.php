@@ -9,8 +9,8 @@ get_header();
 ?>
 
 	<main id="main" class="site-main">
-
 		<?php
+			the_title('<h1 class="entry-title">','</h1>');
 
 			$args = [
 		    'post_type'      => 'pelske_event',
@@ -28,7 +28,7 @@ get_header();
 			$events = get_posts( $args );
 
 			if ( $events ) :
-		    echo '<ol class="event-list">';
+		    echo '<ol class="event-list grid-list card-list">';
 		    foreach ( $events as $post ) :
 					get_template_part( 'template-parts/content', 'events' );
 				endforeach;
