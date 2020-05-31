@@ -41,6 +41,7 @@
 					</figure>
 				</div>
 				<div class="event-back card-back">
+					<p class="event-name"><?php the_title('<strong>', '</strong>') ?></p>
 					<p class="event-location">
 						<?php
 							echo esc_html( $location );
