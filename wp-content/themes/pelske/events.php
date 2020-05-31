@@ -34,6 +34,8 @@ get_header();
 				endforeach;
 				echo '</ol>';
 				wp_reset_postdata();
+			else :
+				echo 'Er zijn momenteel geen geplande evenementen.';
 			endif;
 
 		?>
