@@ -18,28 +18,26 @@
 	<li class="event-list-item grid-list-item card-list-item">
 		<article class="event card">
 			<div class="card-body">
-				<div class="event-front card-front">
-					<figure class="event-figure">
-						<figcaption>
-							<?php
-								esc_html( the_title( '<h2 class="event-title card-title">', '</h2>' ) );
-								$dates = get_post_meta( $post_id, 'event-dates', true );
-								$last_date = get_post_meta( $post_id, 'last-date', true );
-							?>
-							<div class="event-dates card-subtitle">
-								<time class="event-time" datetime="<?php echo $dates[0]; ?>"><?php echo strtolower(date( 'j M', strtotime($dates[0]) )); ?></time>
-								<?php if( $dates[0] !== $last_date ) : ?>
-								- <time class="event-time" datetime="<?php echo $last_date; ?>"><?php echo strtolower(date( 'j M', strtotime($last_date) )); ?></time>
-								<?php endif; ?>
-							</div>
-						</figcaption>
+				<figure class="event-figure event-front card-front">
+					<figcaption>
 						<?php
-						$image = get_field('event_flyer');
-						if ( $image ) :
-							echo wp_get_attachment_image( $image, 'medium', '', ['class'=>'event-img card-img'] );
-						endif; ?>
-					</figure>
-				</div>
+							esc_html( the_title( '<h2 class="event-title card-title">', '</h2>' ) );
+							$dates = get_post_meta( $post_id, 'event-dates', true );
+							$last_date = get_post_meta( $post_id, 'last-date', true );
+						?>
+						<div class="event-dates card-subtitle">
+							<time class="event-time" datetime="<?php echo $dates[0]; ?>"><?php echo strtolower(date( 'j M', strtotime($dates[0]) )); ?></time>
+							<?php if( $dates[0] !== $last_date ) : ?>
+							- <time class="event-time" datetime="<?php echo $last_date; ?>"><?php echo strtolower(date( 'j M', strtotime($last_date) )); ?></time>
+							<?php endif; ?>
+						</div>
+					</figcaption>
+					<?php
+					$image = get_field('event_flyer');
+					if ( $image ) :
+						echo wp_get_attachment_image( $image, 'medium', '', ['class'=>'event-img card-img'] );
+					endif; ?>
+				</figure>
 				<div class="event-back card-back">
 					<p class="event-name"><?php the_title('<strong>', '</strong>') ?></p>
 					<p class="event-location">
