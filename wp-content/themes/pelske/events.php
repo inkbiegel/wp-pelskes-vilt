@@ -35,7 +35,7 @@ get_header();
 				echo '</ol>';
 				wp_reset_postdata();
 			else :
-				echo 'Er zijn momenteel geen geplande evenementen.';
+				_e('There are no planned events at the moment.', 'pelske');
 			endif;
 
 		?>

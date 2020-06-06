@@ -29,20 +29,20 @@ get_header();
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 		<form action="" method="POST" class="gallery-filters" id="galleryFilters">
 			<fieldset>
-				<legend>Toon:</legend>
+				<legend><?php _e('Show', 'pelske'); ?>:</legend>
 				<ol class="list-inline">
 					<li class="list-inline-item">
 						<input type="checkbox" name="galleryFilterAll" id="galleryFilterAll" checked>
-						<label for="galleryFilterAll">Alles</label>
+						<label for="galleryFilterAll"><?php _e('Everything', 'pelske'); ?></label>
 					</li>
 					<?php
 						$categories = get_all_gallery_img_cats();
 						foreach($categories as $category) {
-							$label = ucfirst( $category->name );
+							$cat_name = ucfirst( $category->name );
 					?>
 					<li class="list-inline-item">
-						<input type="checkbox" name="galleryFilter<?php echo $label; ?>" id="galleryFilter<?php echo $label; ?>">
-						<label for="galleryFilter<?php echo $label; ?>"><?php echo $label; ?></label>
+						<input type="checkbox" name="galleryFilter<?php echo $cat_name; ?>" id="galleryFilter<?php echo $cat_name; ?>">
+						<label for="galleryFilter<?php echo $cat_name; ?>"><?php echo $cat_name; ?></label>
 					</li>
 					<?php } ?>
 				</ol>

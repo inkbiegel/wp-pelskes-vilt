@@ -24,18 +24,18 @@
 
 		$newDay = '<li>' +
 								'<fieldset>' +
-								 	'<legend>Day ' + (iDayCount + 1) + '</legend>' +
+								 	'<legend>Dag ' + (iDayCount + 1) + '</legend>' +
 							 		'<ol>' +
 								 		'<li>' +
-									 		'<label for="event-day-' + iDayCount + '-date">Date</label>' +
+									 		'<label for="event-day-' + iDayCount + '-date">Datum</label>' +
 											'<input type="date" name="event-dates[' + iDayCount + ']" id="event-day-' + iDayCount + '-date">' +
 									 	'</li>' +
 										'<li>' +
-											'<label for="event-day-' + iDayCount + '-time-start">Start Time</label>' +
+											'<label for="event-day-' + iDayCount + '-time-start">Start Tijd</label>' +
 											'<input type="time" name="event-start-times[' + iDayCount + ']" id="event-day-' + iDayCount + '-time-start" step="600" pattern="[0-9]{2}:[0-9]{2}">' +
 										'</li>' +
 										'<li>' +
-											'<label for="event-day-' + iDayCount + '-time-end">End Time</label>' +
+											'<label for="event-day-' + iDayCount + '-time-end">Eind Tijd</label>' +
 											'<input type="time" name="event-end-times[' + iDayCount + ']" id="event-day-' + iDayCount + '-time-end" step="600" pattern="[0-9]{2}:[0-9]{2}">' +
 										'</li>' +
 									'</ol>' +

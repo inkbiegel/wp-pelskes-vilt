@@ -99,7 +99,7 @@ get_header();
 					<li class="form-list-item">
 						<label for="gb-msg"><?php _e( 'Message', 'pelske' ) ?>*</label>
 						<textarea name="gb-msg" id="gb-msg" required><?php if( $editing ) echo esc_textarea( $_POST['gb-msg'] ); ?></textarea>
-						<p class="disclaimer"><small>This form is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</small></p>
+						<p class="disclaimer"><small><?php printf( __('This form is protected by reCAPTCHA and the Google <a href="%1$s">Privacy Policy</a> and <a href="%2$s">Terms of Service</a> apply.', 'pelske'), 'https://policies.google.com/privacy', 'https://policies.google.com/terms' ); ?></small></p>
 					</li>
 					<li class="form-list-item">
 						<input type="text" name="address" class="js-validate-hp" tabindex="-1" autocomplete="nope">
@@ -115,7 +115,7 @@ get_header();
 
 			$args = [
 		    'post_type'      => 'pelske_gb_entry',
-		    'posts_per_page' => -1,
+		    'posts_per_page' => 10,
 		    'orderby'			   => 'date',
 		    'order'					 => 'DESC',
 			];

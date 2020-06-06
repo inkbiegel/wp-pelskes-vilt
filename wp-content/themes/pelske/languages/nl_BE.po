@@ -4,15 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: _s 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2018-07-12 15:35+0200\n"
-"PO-Revision-Date: 2018-07-12 15:36+0200\n"
+"POT-Creation-Date: 2020-06-06 16:04+0200\n"
+"PO-Revision-Date: 2020-06-06 16:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_BE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.8\n"
+"X-Generator: Poedit 2.3.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e;_x;_ex;_n;_nx;_n_noop;_nx_noop;"
 "translate_nooped_plural;number_format_i18n;date_i18n;esc_html__;esc_html_x;"
@@ -37,7 +37,7 @@ msgstr "%1$s commentaar op &ldquo;%2$s&rdquo;"
 
 #: contact-form.php:11 guestbook.php:12
 msgid "Human verification incorrect."
-msgstr "Test van menselijkheid gefaald."
+msgstr "Menselijke verificatie onjuist."
 
 #: contact-form.php:12 guestbook.php:13
 msgid "Please supply all information."
@@ -80,9 +80,39 @@ msgstr "De domeinnaam van het e-mailadres is onjuist (het deel achter de @)."
 msgid "Message"
 msgstr "Bericht"
 
-#: contact-form.php:100 guestbook.php:105
+#: contact-form.php:97 guestbook.php:102
+#, php-format
+msgid ""
+"This form is protected by reCAPTCHA and the Google <a href=\"%1$s\">Privacy "
+"Policy</a> and <a href=\"%2$s\">Terms of Service</a> apply."
+msgstr ""
+"Dit formulier is beveiligd met reCAPTCHA en Googles <a href=\"%1$s"
+"\">Privacybeleid</a> en <a href=\"%2$s\">Gebruiksvoorwaarden</a> zijn van "
+"toepassing."
+
+#: contact-form.php:101 guestbook.php:106
 msgid "Submit"
 msgstr "Verzenden"
+
+#: events.php:38
+msgid "There are no planned events at the moment."
+msgstr "Er staan momenteel geen evenementen op de agenda."
+
+#: footer.php:18
+msgid "Follow me on Facebook"
+msgstr "Volg mij op Facebook"
+
+#: footer.php:27
+msgid "Follow me on Instagram"
+msgstr "Volg mij op Instagram"
+
+#: footer.php:36
+msgid "Follow me on Pinterest"
+msgstr "Volg mij op Pinterest"
+
+#: footer.php:47
+msgid "Close"
+msgstr "Sluiten"
 
 #: functions.php:32
 msgid "Primary"
@@ -96,29 +126,35 @@ msgstr "Zijbalk"
 msgid "Add widgets here."
 msgstr "Voeg hier widgets toe."
 
-#: functions.php:111
+#: functions.php:122
 msgid "Please fill out this field."
 msgstr "Gelieve dit veld in te vullen."
 
-#: functions.php:112
+#: functions.php:123
 msgid "Please use the correct input type."
 msgstr "Gelieve het juiste soort data in te vullen."
 
-#: functions.php:113
+#: functions.php:124
 msgid "Please enter an email address."
 msgstr "Gelieve een e-mailadres in te vullen."
 
-#: functions.php:114
+#: functions.php:125
 msgid "Please match the requested format."
 msgstr "Gelieve het gevraagde formaat te hanteren."
 
-#: functions.php:115
+#: functions.php:126
 msgid "The value you entered for this field is invalid."
 msgstr "De waarde die je voor dit veld hebt ingevuld, is ongeldig."
 
+#: gallery.php:32
+msgid "Show"
+msgstr "Toon"
+
+#: gallery.php:36
+msgid "Everything"
+msgstr "Alles"
+
 #: guestbook.php:11
-#, fuzzy
-#| msgid "Sorry, your nonce did not verify. Please try again"
 msgid "Sorry, your nonce did not verify. Please try again."
 msgstr "Sorry, jouw nonce is ongeldig. Gelieve opnieuw te proberen."
 
@@ -138,6 +174,10 @@ msgstr "Gastenboek bericht van %1$s uit %2$s."
 #: guestbook.php:96
 msgid "Location"
 msgstr "Plaats"
+
+#: guestbook.php:134
+msgid "Be the first to leave a comment!"
+msgstr "Laat als eerste een bericht achter!"
 
 #: inc/template-tags.php:29
 #, php-format
@@ -174,9 +214,9 @@ msgstr ""
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "Bewerk <span class=\"screen-reader-text\">%s</span>"
 
-#: template-parts/content-guestbook-entry.php:22
-msgid "m/d/Y"
-msgstr "d/m/'y"
+#: template-parts/content-guestbook-entry.php:24
+msgid "ago"
+msgstr "geleden"
 
 #: template-parts/content-none.php:24
 #, php-format
@@ -193,6 +233,9 @@ msgstr "Lees verder<span class=\"screen-reader-text\"> \"%s\"</span>"
 #: template-parts/content.php:50
 msgid "Pages:"
 msgstr "Pagina&rsquo;s:"
+
+#~ msgid "m/d/Y"
+#~ msgstr "d/m/'y"
 
 #~ msgid "Oops! That page can&rsquo;t be found."
 #~ msgstr "Oeps! Die pagina kan niet gevonden worden."
