@@ -88,21 +88,22 @@ get_header();
 			<?php echo $response; ?>
 			<form id="guestbook-form" class="js-validate" action="<?php echo the_permalink(); ?>" method="post" accept-charset="utf-8">
 				<ol class="form-list">
-					<li>
-						<label for="gb-name"><?php _e( 'Name', 'pelske' ) ?> *</label>
+					<li class="form-list-item">
+						<label for="gb-name"><?php _e( 'Name', 'pelske' ) ?>*</label>
 						<input type="text" name="gb-name" id="gb-name" value="<?php if( $editing ) echo esc_attr( $_POST['gb-name'] ); ?>" required>
 					</li>
-					<li>
-						<label for="gb-location"><?php _e( 'Location', 'pelske' ) ?> *</label>
+					<li class="form-list-item">
+						<label for="gb-location"><?php _e( 'Location', 'pelske' ) ?>*</label>
 						<input type="text" name="gb-location" id="gb-location" value="<?php if( $editing ) echo esc_attr( $_POST['gb-location'] ); ?>" required>
 					</li>
-					<li>
-						<label for="gb-msg"><?php _e( 'Message', 'pelske' ) ?> *</label>
+					<li class="form-list-item">
+						<label for="gb-msg"><?php _e( 'Message', 'pelske' ) ?>*</label>
 						<textarea name="gb-msg" id="gb-msg" required><?php if( $editing ) echo esc_textarea( $_POST['gb-msg'] ); ?></textarea>
+						<p class="disclaimer"><small>This form is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</small></p>
 					</li>
-					<li>
+					<li class="form-list-item">
 						<input type="text" name="address" class="js-validate-hp" tabindex="-1" autocomplete="nope">
-						<input type="submit" name="gb-submit" value="<?php _e( 'Submit', 'pelske' ) ?>">
+						<input class="anim-gradient-flash" type="submit" name="gb-submit" value="<?php _e( 'Submit', 'pelske' ) ?>">
 					</li>
 				</ol>
 				<div class="g-recaptcha" data-size="invisible" data-sitekey="6Lcc-2AUAAAAAG9dl0_KBPYKacjmQMOVZKLKe_lM" data-callback="gbEntrySubmitCallback" data-badge="inline"></div>
@@ -129,6 +130,8 @@ get_header();
 				};
 				echo '</ol>';
 				wp_reset_postdata();
+			else:
+				echo '<p>' . __('Be the first to leave a comment!', 'pelske') . '</p>';
 			endif;
 
 		 ?>

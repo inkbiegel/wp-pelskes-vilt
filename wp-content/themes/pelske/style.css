@@ -60,6 +60,9 @@ h1 {
 p {
   margin: 0 0 1.5rem;
 }
+p:last-child {
+  margin-bottom: 0;
+}
 a {
   color: #d25ef1;
   text-decoration: none;
@@ -802,6 +805,9 @@ small {
 }
 .gb-entry-list-item:last-child {
   margin-bottom: 0;
+}
+.gb-entry {
+  padding: 1em;
 }
 .gb-entry-header {
   margin: 0 0 1em;

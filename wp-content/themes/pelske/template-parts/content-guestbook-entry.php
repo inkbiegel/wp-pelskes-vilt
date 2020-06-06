@@ -11,19 +11,17 @@
 	$gb_name = get_post_meta( $post_id, 'gb_author', true );
 	$gb_location = get_post_meta( $post_id, 'gb_location', true );
 	$comment = get_comments( array(
-		'number' => 1,
+		'number' => -1,
 		'post_id' => $post_id
 	) );
-
 ?>
-
-
 	<li class="gb-entry-list-item">
 		<article class="gb-entry">
 			<header class="gb-entry-header">
 				<p>
-					<strong><?php echo esc_html( $gb_name ); ?></strong>, <?php echo esc_html( $gb_location ); ?>
-					<span class="gb-entry-date"><?php the_time('G:i'); ?> | <?php the_time( __( 'm/d/Y', 'pelske' ) ); ?></span>
+					<strong class="gb-entry-name"><?php echo esc_html( $gb_name ); ?></strong>
+					<span class="gb-entry-location"><?php echo esc_html( $gb_location ); ?>,</span>
+					<span class="gb-entry-date"><?php echo esc_html( human_time_diff( get_the_time('U'), current_time('timestamp') ) ) . ' ' . __( 'ago', 'pelske' ); ?></span>
 				</p>
 			</header>
 			<div class="gb-entry-msg">
