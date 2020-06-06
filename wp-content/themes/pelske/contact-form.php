@@ -83,21 +83,22 @@ get_header();
 		<?php echo $response; ?>
 		<form id="contact-form" class="js-validate" action="<?php echo the_permalink(); ?>" method="post" accept-charset="utf-8">
 			<ol class="form-list">
-				<li>
-					<label for="contact_name"><?php _e( 'Name', 'pelske' ) ?> *</label>
+				<li class="form-list-item">
+					<label for="contact_name"><?php _e( 'Name', 'pelske' ) ?>*</label>
 					<input type="text" name="contact_name" id="contact_name" value="<?php if( $editing ) echo esc_attr( $_POST['contact_name'] ); ?>" required>
 				</li>
-				<li>
-					<label for="contact_email"><?php _e( 'Email address', 'pelske' ) ?> *</label>
+				<li class="form-list-item">
+					<label for="contact_email"><?php _e( 'Email address', 'pelske' ) ?>*</label>
 					<input type="email" name="contact_email" id="contact_email" value="<?php if( $editing ) echo esc_attr( $_POST['contact_email'] ); ?>" pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$" title="<?php _e( 'The domain portion of the email address is invalid (the portion after the @).', 'pelske' ) ?>" required>
 				</li>
-				<li>
-					<label for="contact_msg"><?php _e( 'Message', 'pelske' ) ?> *</label>
+				<li class="form-list-item">
+					<label for="contact_msg"><?php _e( 'Message', 'pelske' ) ?>*</label>
 					<textarea name="contact_msg" id="contact_msg" required><?php if( $editing ) echo esc_textarea( $_POST['contact_msg'] ); ?></textarea>
+					<p class="disclaimer"><small>This form is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</small></p>
 				</li>
-				<li>
+				<li class="form-list-item">
 					<input type="text" name="address" class="js-validate-hp" tabindex="-1" autocomplete="nope">
-					<input type="submit" name="contact_submit" value="<?php _e( 'Submit', 'pelske' ) ?>">
+					<input class="anim-gradient-flash" type="submit" name="contact_submit" value="<?php _e( 'Submit', 'pelske' ) ?>">
 				</li>
 			</ol>
 			<div class="g-recaptcha" data-size="invisible" data-sitekey="6Lcc-2AUAAAAAG9dl0_KBPYKacjmQMOVZKLKe_lM" data-callback="contactSubmitCallback" data-badge="inline"></div>

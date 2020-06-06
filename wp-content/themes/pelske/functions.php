@@ -168,6 +168,17 @@ function plsk_add_logo_to_nav($items, $args) {
 add_filter('wp_nav_menu_items', 'plsk_add_logo_to_nav', 10, 2);
 
 /**
+ * Add class to menu anchors
+*/
+function plsk_add_atts_to_menu_links( $atts, $item, $args ) {
+	if( $args->theme_location == 'menu-1' ) {
+		$atts['class'] = 'menu-link';
+	}
+	return $atts;
+}
+add_filter( 'nav_menu_link_attributes', 'plsk_add_atts_to_menu_links', 10, 3 );
+
+/**
  * Get position of nth occurance of needle in haystack
  */
 function strposOffset($needle, $haystack, $offset) {

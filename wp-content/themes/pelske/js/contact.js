@@ -125,6 +125,8 @@ function gbEntrySubmitCallback( token ){
 
 	  // Validate the input on blur
 	  form.addEventListener('blur', function(event){
+			// ignore recaptcha policy links
+			if( event.target.tagName === 'A' ) { return; };
 
 	  	// Validate the field
 	  	var error = hasError(event.target);
