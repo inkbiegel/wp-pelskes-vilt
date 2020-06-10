@@ -152,8 +152,8 @@ function pelske_form_generate_response( $type, $message ){
 
   global $response;
 
-  if ($type == 'success') $response = "<div class='success'>{$message}</div>";
-  else $response = "<div class='error'>{$message}</div>";
+  if ($type == 'success') $response = "<p class='success'>{$message}</p>";
+  else $response = "<p class='error'>{$message}</p>";
 
 }
 
