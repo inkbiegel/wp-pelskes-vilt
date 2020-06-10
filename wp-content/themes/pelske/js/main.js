@@ -16,6 +16,9 @@
 		if( $('#gallery').length > 0 ) {
 			galleryHandler();
 		}
+		if( $('#guestbook-form').length > 0 ) {
+			btnShowForm();
+		}
 		footerLinkAnimations();
 
 	});
@@ -398,6 +401,21 @@ function galleryHandler() {
 		galleryOverlay.show();
 	})
 
+}
+
+function btnShowForm(){
+	let elements = $('#guestbook-form-wrapper, #guestbook-form');
+	let isToggled = false;
+	$('#btnShowForm').on('click', function(e){
+		e.preventDefault();
+		if(isToggled){
+			elements.removeClass('toggled');
+			isToggled = false;
+		} else {
+			elements.addClass('toggled');
+			isToggled = true;
+		}
+	})
 }
 
 function footerLinkAnimations(){

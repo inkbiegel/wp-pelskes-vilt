@@ -82,10 +82,15 @@ get_header();
 ?>
 
 	<main id="main" class="site-main">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-		<div id="guestbook-form-wrapper">
+		<?php
+			the_title( '<h1 class="entry-title">', '</h1>' );
+			$content = apply_filters('the_content', $post->post_content);
+			echo $content;
+		?>
+		<button id="btnShowForm" class="anim-gradient-flash"><?php _e( 'Sign guestbook', 'pelske' ); ?></button>
+		<div id="guestbook-form-wrapper" class="slide-down">
 			<?php echo $response; ?>
-			<form id="guestbook-form" class="js-validate" action="<?php echo the_permalink(); ?>" method="post" accept-charset="utf-8">
+			<form id="guestbook-form" class="js-validate slide-down-content" action="<?php echo the_permalink(); ?>" method="post" accept-charset="utf-8">
 				<ol class="form-list">
 					<li class="form-list-item">
 						<label for="gb-name"><?php _e( 'Name', 'pelske' ) ?>*</label>

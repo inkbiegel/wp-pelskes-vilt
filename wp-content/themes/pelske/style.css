@@ -141,7 +141,7 @@ textarea:focus {
   color: inherit;
   background: #f0e3fa;
 }
-.button,
+button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
@@ -150,15 +150,17 @@ input[type="submit"] {
   padding: 0.4em 0.8em;
   font-weight: 600;
   line-height: 1;
+  background: none;
   border: 3px solid #d426d0;
+  border-radius: 5px;
   color: #d426d0;
   letter-spacing: 0.025em;
   cursor: pointer;
   transition: all 0.15s ease-in;
 }
 
-.button:hover,
-.button:focus,
+button:hover,
+button:focus,
 input[type="button"]:hover,
 input[type="button"]:focus,
 input[type="reset"]:hover,
@@ -168,7 +170,7 @@ input[type="submit"]:focus {
   color: #fff;
 }
 
-.button:active,
+button:active,
 input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
@@ -192,7 +194,7 @@ label {
 .error-message {
   color: #e11e1e;
   font-size: 0.9em;
-  margin: 0.25em 0 0 0;
+  margin: 0.25em 0 0.5em 0;
 }
 small {
   font-size: 0.625em;
@@ -374,7 +376,7 @@ small {
   transform: scale3d(0.1, 0, 0);
   opacity: 0;
   background: #a471ce;
-  transition: transform 0.2s 0.1s ease-out, opacity 0.1s 0.15s;
+  transition: transform 0.2s ease-out 0.1s, opacity 0.1s ease-out 0.15s;
 }
 .menu-link:hover,
 .menu-link:focus,
@@ -903,13 +905,31 @@ small {
   100%{background-position:100% 50%}
 }
 
+.slide-down {
+  height: 0;
+  transform: scaleY(0);
+  transition: transform 0.2s ease-in-out 0.15s;
+}
+.slide-down.toggled {
+  height: auto;
+  transform: scaleY(1);
+  transition: transform 0.2s ease-in-out;
+}
+.slide-down-content {
+  opacity: 0;
+  transition: opacity 0.05s ease-in;
+}
+.slide-down-content.toggled {
+  opacity: 1;
+  transition: opacity 0.15s ease-in 0.2s;
+}
+
 .browserupgrade {
   margin: 0.2rem 0;
   padding: 0.2rem 0;
   color: #000;
   background: #ccc;
 }
-
 
 /*--------------------------------------------------------------
 # Helper classes
@@ -959,6 +979,10 @@ small {
 --------------------------------------------------------------*/
 .page-template-events {
   overflow-x: hidden;
+}
+#guestbook-form-wrapper,
+.gb-entry-list {
+  margin-top: 2em;
 }
 
 /*--------------------------------------------------------------
