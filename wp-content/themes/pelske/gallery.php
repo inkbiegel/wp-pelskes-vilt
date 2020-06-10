@@ -55,17 +55,7 @@ get_header();
 		<?php
 			foreach( $gallery_imgs as $post ):
 				setup_postdata( $post );
-				$full_img = wp_get_attachment_image_src( get_field('gallery_img_large'), 'full' );
-		?>
-			<li class="grid-list-item gallery-item">
-				<a class="grid-list-link gallery-link" href="<?php echo $full_img[0]; ?>">
-					<?php
-						$image = get_field('gallery_img_small');
-						echo wp_get_attachment_image( $image, 'medium', false, array( 'class' => 'grid-list-img gallery-img-small' ) );
-					?>
-				</a>
-			</li>
-		<?php
+				get_template_part( 'template-parts/gallery-item' );
 			endforeach;
 		?>
 		</ul>

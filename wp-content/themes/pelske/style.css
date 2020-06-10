@@ -908,7 +908,7 @@ small {
 .slide-down {
   height: 0;
   transform: scaleY(0);
-  transition: transform 0.2s ease-in-out 0.15s;
+  transition: transform 0.2s ease-in-out 0.05s;
 }
 .slide-down.toggled {
   height: auto;
@@ -917,7 +917,7 @@ small {
 }
 .slide-down-content {
   opacity: 0;
-  transition: opacity 0.05s ease-in;
+  transition: opacity 0.05s;
 }
 .slide-down-content.toggled {
   opacity: 1;
@@ -1109,6 +1109,7 @@ small {
   .sub-menu .menu-link {
     font-size: 0.9rem;
     font-weight: 400;
+    white-space: nowrap;
   }
   .sub-menu .menu-link::after {
     height: 2px;
