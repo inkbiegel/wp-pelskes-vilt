@@ -1,12 +1,11 @@
 <?php
 /**
  * Template Name: Contact - Guestbook
- *
+*
  * @package Pelske
  */
 
 $response = '';
-
 // Response messages
 $invalid_nonce    = __( 'Sorry, your nonce did not verify. Please try again.', 'pelske' );
 $not_human        = __( 'Human verification incorrect.', 'pelske' );
@@ -112,28 +111,29 @@ get_header();
 		</div>
 
 		<?php
+			$paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
+			$args = array(
+				'post_type'				=> 'pelske_gb_entry',
+				'posts_per_page'	=> 5,
+				'paged'						=> $paged,
+			);
+			$gb_entries = new WP_Query( $args );
 
-			$args = [
-		    'post_type'      => 'pelske_gb_entry',
-		    'posts_per_page' => 10,
-		    'orderby'			   => 'date',
-		    'order'					 => 'DESC',
-			];
-
-			$gb_entries = get_posts( $args );
-
-			if ( $gb_entries ) :
+			if ( $gb_entries->have_posts() ) {
 		    echo '<ol class="gb-entry-list">';
-		    foreach ( $gb_entries as $post ) {
-		    	setup_postdata($post);
+		    while ( $gb_entries->have_posts() ) {
+		    	$gb_entries->the_post();
 					get_template_part( 'template-parts/content', 'guestbook-entry' );
 				};
 				echo '</ol>';
+				echo '<nav class="pagination">';
+				previous_posts_link( __( 'Newer Entries', 'pelske') );
+				next_posts_link( __('Older Entries', 'pelske'), $gb_entries->max_num_pages );
+    		echo '</nav>';
 				wp_reset_postdata();
-			else:
+			} else {
 				echo '<p>' . __('Be the first to leave a comment!', 'pelske') . '</p>';
-			endif;
-
+			};
 		 ?>
 
 	</main>
