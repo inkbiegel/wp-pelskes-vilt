@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: _s 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2020-06-06 16:04+0200\n"
-"PO-Revision-Date: 2020-06-06 16:09+0200\n"
+"POT-Creation-Date: 2020-06-11 13:16+0200\n"
+"PO-Revision-Date: 2020-06-11 13:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_BE\n"
@@ -35,11 +35,11 @@ msgstr "&Eacute;&eacute;en commentaar op &ldquo;%1$s&rdquo;"
 msgid "%1$s thought on &ldquo;%2$s&rdquo;"
 msgstr "%1$s commentaar op &ldquo;%2$s&rdquo;"
 
-#: contact-form.php:11 guestbook.php:12
+#: contact-form.php:11 guestbook.php:11
 msgid "Human verification incorrect."
 msgstr "Menselijke verificatie onjuist."
 
-#: contact-form.php:12 guestbook.php:13
+#: contact-form.php:12 guestbook.php:12
 msgid "Please supply all information."
 msgstr "Gelieve alle velden in te vullen."
 
@@ -57,13 +57,13 @@ msgstr "Bedankt! Jouw bericht is verzonden."
 
 #: contact-form.php:28
 msgid "Someone sent a message from "
-msgstr "Iemand heeft een bericht gestuurd via"
+msgstr "Iemand heeft een bericht gestuurd via "
 
-#: contact-form.php:39 guestbook.php:33
+#: contact-form.php:39 guestbook.php:32
 msgid "No bots please!"
 msgstr "Geen bots a.u.b.!"
 
-#: contact-form.php:87 guestbook.php:92
+#: contact-form.php:87 guestbook.php:96
 msgid "Name"
 msgstr "Naam"
 
@@ -76,11 +76,11 @@ msgid ""
 "The domain portion of the email address is invalid (the portion after the @)."
 msgstr "De domeinnaam van het e-mailadres is onjuist (het deel achter de @)."
 
-#: contact-form.php:95 guestbook.php:100
+#: contact-form.php:95 guestbook.php:104
 msgid "Message"
 msgstr "Bericht"
 
-#: contact-form.php:97 guestbook.php:102
+#: contact-form.php:97 guestbook.php:106
 #, php-format
 msgid ""
 "This form is protected by reCAPTCHA and the Google <a href=\"%1$s\">Privacy "
@@ -90,7 +90,7 @@ msgstr ""
 "\">Privacybeleid</a> en <a href=\"%2$s\">Gebruiksvoorwaarden</a> zijn van "
 "toepassing."
 
-#: contact-form.php:101 guestbook.php:106
+#: contact-form.php:101 guestbook.php:110
 msgid "Submit"
 msgstr "Verzenden"
 
@@ -154,30 +154,50 @@ msgstr "Toon"
 msgid "Everything"
 msgstr "Alles"
 
-#: guestbook.php:11
+#: guestbook.php:10
 msgid "Sorry, your nonce did not verify. Please try again."
 msgstr "Sorry, jouw nonce is ongeldig. Gelieve opnieuw te proberen."
 
-#: guestbook.php:14
+#: guestbook.php:13
 msgid "Thanks! Your entry was added to the Guestbook."
 msgstr "Bedankt! Jouw bericht is toegevoegd aan het Gastenboek."
 
-#: guestbook.php:15
+#: guestbook.php:14
 msgid "Something went wrong with your entry. Please try again."
 msgstr "Er is iets misgelopen met jouw bericht. Gelieve opnieuw te proberen."
 
-#: guestbook.php:55
+#: guestbook.php:54
 #, php-format
 msgid "Guestbook entry of %1$s from %2$s."
 msgstr "Gastenboek bericht van %1$s uit %2$s."
 
-#: guestbook.php:96
+#: guestbook.php:90
+msgid "Sign guestbook"
+msgstr "Teken gastenboek"
+
+#: guestbook.php:100
 msgid "Location"
 msgstr "Plaats"
 
-#: guestbook.php:134
+#: guestbook.php:135
+msgid "Newer Entries"
+msgstr "Nieuwere berichten"
+
+#: guestbook.php:136
+msgid "Older Entries"
+msgstr "Oudere berichten"
+
+#: guestbook.php:140
 msgid "Be the first to leave a comment!"
 msgstr "Laat als eerste een bericht achter!"
+
+#: home.php:36
+msgid "News"
+msgstr "Nieuws"
+
+#: home.php:53
+msgid "Latest work"
+msgstr "Laatste werk"
 
 #: inc/template-tags.php:29
 #, php-format
@@ -233,6 +253,10 @@ msgstr "Lees verder<span class=\"screen-reader-text\"> \"%s\"</span>"
 #: template-parts/content.php:50
 msgid "Pages:"
 msgstr "Pagina&rsquo;s:"
+
+#: template-parts/gallery-item.php:3
+msgid "/en/gallery"
+msgstr "/nl/gallerij"
 
 #~ msgid "m/d/Y"
 #~ msgstr "d/m/'y"
