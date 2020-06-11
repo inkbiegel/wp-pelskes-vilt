@@ -86,7 +86,7 @@
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 1,
-						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: 'first' }),
+						delay: anime.stagger(70, {grid: [this.nrOfCols, this.nrOfRows], from: 'first' }),
 						begin: function(anim){
 							$('#site-nav > .menu-toggle').addClass('toggled');
 						},
@@ -173,7 +173,7 @@
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 0,
-						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: 'last' }),
+						delay: anime.stagger(70, {grid: [this.nrOfCols, this.nrOfRows], from: 'last' }),
 						begin: function(anim){
 							const siteNav = $('#site-nav');
 							// Toggle nav into position and fade it in with transition in CSS
@@ -182,7 +182,7 @@
 							siteNav.children('#primary-menu').attr( 'aria-expanded', 'false' );
 						},
 						update: function(anim){
-							if(Math.round(anim.progress) === 70){
+							if(Math.round(anim.progress) === 50){
 								$('#site-nav > .menu-toggle').removeClass('toggled');
 								// Reenable page scroll
 								$('body').removeClass('has-overlay');
