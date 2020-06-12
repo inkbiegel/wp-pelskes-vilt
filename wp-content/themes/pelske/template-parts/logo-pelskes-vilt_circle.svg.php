@@ -2,7 +2,7 @@
 	// Make the gradient unique so we can use this svg multiple times on the same page
 	$unique_id = rand(1,9999);
 ?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 406 406">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 406 406" width="203" height="203" class="logo-svg" opacity="0">
   <defs>
 		<radialGradient id="Gradient-<?php echo $unique_id; ?>"	cx="50%" cy="50%" r="50%" fx="50%" fy="50%" gradientUnits="userSpaceOnUse">
 			<stop offset="0%" stop-color="#D700B9"/>
