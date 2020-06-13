@@ -159,7 +159,7 @@ function plsk_add_logo_to_nav($items, $args) {
 		ob_end_clean();
 		// Insert li with logo after the third closing li
 		$needle = '</li>';
-		$insert_text = '<li class="menu-item menu-item-logo"><a href="/" class="site-logo">' . $getContent . '</a></li>';
+		$insert_text = '<li class="menu-item menu-item-logo"><a href="' . get_home_url() . '" class="site-logo">' . $getContent . '</a></li>';
 		$insert_pos = strposOffset($needle, $items, 3) + strlen($needle);
 		$items = substr_replace($items, $insert_text, $insert_pos, 0);
 	}
