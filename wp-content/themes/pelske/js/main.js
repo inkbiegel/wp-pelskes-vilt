@@ -1,11 +1,13 @@
 (function( $ ) {
 	'use strict';
 
+	let preloader,
+			hasSeenPreloader = sessionStorage.getItem('preloaded') ? true : false;
+
 	$(document).ready(function(){
 
 		$('html').removeClass('no-js').addClass('js');
 
-		let hasSeenPreloader = sessionStorage.getItem('preloaded') ? true : false;
 		if(!hasSeenPreloader) {
 			showPreloader();
 		} else {
@@ -17,7 +19,7 @@
 			galleryHandler();
 		}
 		if( $('#guestbook-form').length > 0 ) {
-			btnShowForm();
+			formToggler();
 		}
 		footerLinkAnimations();
 
@@ -25,7 +27,7 @@
 
 	function showPreloader(){
 		// Show overlay
-		let preloader = new Overlay('preloader');
+		preloader = new Overlay('preloader');
 		preloader.init();
 		preloader.show();
 		// Animate Logo
@@ -37,27 +39,42 @@
 	class Overlay {
 		constructor(callerID) {
 			this.callerID = callerID;
+			this.gridIsPopulated = $('#overlay .overlay-grid-item').length <= 0 ? false : true;
+			this.overlayIsUp = false;
+			this.gridItemHeight = 0;
+			this.gridItemWidth = 0;
+			this.nrOfCols = 0;
+			this.nrOfRows = 0;
+			this.nrOfItems = 0;
 		}
 
 		init() {
-			// Disable page scroll
+			this.measureGrid();
+			if( !this.gridIsPopulated ) {
+				this.populateGrid();
+			}
+			// Reenable scrollbars if overlay is not yet visible
+			if(this.callerID !== 'preloader') {
+				$('body').removeClass('has-overlay');
+			}
+			this.resizeHandler();
+		}
+
+		measureGrid() {
+			// Disable page scroll and show overlay to get measurement (visiblity is hidden)
 			$('body').addClass('has-overlay');
 			// Check if there's already a populated grid e.g. from preloader
-			this.gridIsPopulated = $('#overlay .overlay-grid-item').length <= 0 ? false : true;
-			if(!this.gridIsPopulated) {
+			if( !this.gridIsPopulated ) {
 				// Append a single grid-item to get its dimensions
 				$('#overlay .overlay-grid').css('visibility','hidden').append('<div class="overlay-grid-item"></div>');
 				// Store measurements
 				this.setVariables();
 				$('#overlay .overlay-grid').empty().css('visibility','visible');
-				// Populate grid
-				this.populateGrid();
 			} else {
 				// Store measurements
 				this.setVariables();
 			}
-			// Reenable scrollbars if overlay is not yet visible
-			if(this.callerID === 'gallery') {
+			if( !this.overlayIsUp ) {
 				$('body').removeClass('has-overlay');
 			}
 		}
@@ -68,11 +85,24 @@
 			this.gridItemWidth = this.firstCell.width();
 			// Determine nr of squares needed to fill screen
 			this.nrOfCols = Math.ceil(window.innerWidth/this.gridItemWidth);
-			this.nrOfRows = Math.ceil(window.innerHeight/this.gridItemHeight) + 1;
+			this.nrOfRows = Math.ceil(window.innerHeight/this.gridItemHeight);
 			this.nrOfItems = this.nrOfCols * this.nrOfRows;
 		}
 
+		populateGrid() {
+			$('#overlay > .overlay-grid').empty();
+			let c = document.createDocumentFragment();
+			for (let i=0; i<this.nrOfItems; i++) {
+				let e = document.createElement('div');
+				e.className = 'overlay-grid-item';
+				c.appendChild(e);
+			}
+			document.querySelector('#overlay > .overlay-grid').appendChild(c);
+			this.gridIsPopulated = true;
+		}
+
 		show() {
+			$('body').addClass('has-overlay');
 			switch(this.callerID){
 				// The preloader does not need to animate the grid in
 				case 'preloader':
@@ -83,6 +113,7 @@
 					break;
 				// If not preloader anime stagger opacity of grid items
 				case 'mainNav':
+					$('#overlay').addClass('overlay__nav');
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 1,
@@ -102,12 +133,11 @@
 					});
 					break;
 				case 'gallery':
-					$('body').addClass('has-overlay');
 					$('#overlay').addClass('overlay__gallery');
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 1,
-						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: this.clickPosOnGrid }),
+						delay: anime.stagger(90, {grid: [this.nrOfCols, this.nrOfRows], from: this.clickPosOnGrid }),
 						update: function(anim) {
 							if(Math.round(anim.progress) === 50) {
 								$('#overlay').addClass('complete');
@@ -117,7 +147,7 @@
 					this.setupButtons();
 					break;
 			}
-
+			this.overlayIsUp = true;
 		}
 
 		setupButtons() {
@@ -137,17 +167,7 @@
 			});
 		}
 
-		populateGrid() {
-			let c = document.createDocumentFragment();
-			for (let i=0; i<this.nrOfItems; i++) {
-				let e = document.createElement('div');
-				e.className = 'overlay-grid-item';
-				c.appendChild(e);
-			}
-			document.querySelector('#overlay > .overlay-grid').appendChild(c);
-		}
-
-		hide(siteLogoOffset) {
+		hide(siteLogoOffset, immediate) {
 			switch (this.callerID) {
 				case 'preloader':
 					let rowNumber = Math.round(siteLogoOffset.top/this.gridItemHeight);
@@ -165,30 +185,49 @@
 								// Remove site logo
 								$('#overlay .site-logo').remove();
 							}
+						},
+						complete: function(){
+							// destroy instance as we won't be showing it anymore this session
+							preloader = null;
 						}
 					})
 					break;
 
 				case 'mainNav':
-					anime({
-						targets: '#overlay .overlay-grid-item',
-						opacity: 0,
-						delay: anime.stagger(70, {grid: [this.nrOfCols, this.nrOfRows], from: 'last' }),
-						begin: function(anim){
-							const siteNav = $('#site-nav');
-							// Toggle nav into position and fade it in with transition in CSS
-							siteNav.removeClass('toggled');
-							siteNav.children('.menu-toggle').attr('aria-expanded', 'false');
-							siteNav.children('#primary-menu').attr( 'aria-expanded', 'false' );
-						},
-						update: function(anim){
-							if(Math.round(anim.progress) === 50){
-								$('#site-nav > .menu-toggle').removeClass('toggled');
-								// Reenable page scroll
-								$('body').removeClass('has-overlay');
+					if(!immediate) {
+						anime({
+							targets: '#overlay .overlay-grid-item',
+							opacity: 0,
+							delay: anime.stagger(70, {grid: [this.nrOfCols, this.nrOfRows], from: 'last' }),
+							begin: function(anim){
+								const siteNav = $('#site-nav');
+								// Toggle nav into position and fade it in with transition in CSS
+								siteNav.removeClass('toggled');
+								siteNav.children('.menu-toggle').attr('aria-expanded', 'false');
+								siteNav.children('#primary-menu').attr( 'aria-expanded', 'false' );
+							},
+							update: function(anim){
+								if(Math.round(anim.progress) === 50){
+									$('#site-nav > .menu-toggle').removeClass('toggled');
+									// Reenable page scroll
+									$('body').removeClass('has-overlay');
+								}
+							},
+							complete: function(){
+								$('#overlay').removeClass('overlay__nav');
 							}
-						}
-					})
+						})
+					} else {
+						const siteNav = $('#site-nav');
+						// Toggle nav into position and fade it in with transition in CSS
+						siteNav.removeClass('toggled');
+						siteNav.children('.menu-toggle').attr('aria-expanded', 'false');
+						siteNav.children('#primary-menu').attr( 'aria-expanded', 'false' );
+						$('#site-nav > .menu-toggle').removeClass('toggled');
+						$('body').removeClass('has-overlay');
+						$('#overlay').removeClass('overlay__nav');
+						$('#overlay .overlay-grid-item').css('opacity', '0');
+					}
 					break;
 
 				case 'gallery':
@@ -196,7 +235,7 @@
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 0,
-						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: lastCellFirstRowIndex }),
+						delay: anime.stagger(70, {grid: [this.nrOfCols, this.nrOfRows], from: lastCellFirstRowIndex }),
 						begin: function(anim){
 							$('#overlay').removeClass('complete');
 						},
@@ -214,12 +253,45 @@
 					})
 					break;
 			}
+			this.overlayIsUp = false;
 		}
 
 		getClickPosOnGrid(clickOffset){
 			const gridPosX = Math.round(clickOffset.left / this.gridItemWidth);
 			const gridPosY = Math.round(clickOffset.top / this.gridItemHeight);
 			this.clickPosOnGrid = (this.nrOfCols * gridPosY) + gridPosX + 1;
+		}
+
+		resizeHandler(){
+			let that = this;
+			// only fires at start of resize
+			let maskGrid = debounce(function() {
+				if(that.overlayIsUp) {
+					// add class .mask to overlay to match the bg to the squares
+					$('#overlay').addClass('mask');
+				}
+			}, 250, true);
+			window.addEventListener('resize', maskGrid);
+
+			// only fires at end of resize
+			let resizeGrid = debounce(function() {
+				// measure grid
+				that.measureGrid();
+				// repopulate
+				that.populateGrid();
+				if(that.overlayIsUp) {
+					if(that.callerID === 'mainNav') {
+						if(window.innerWidth >= 800) {
+							that.hide(null, true);
+						}
+					}
+					$('#overlay .overlay-grid-item').css('opacity','1');
+					$('#overlay').removeClass('mask');
+				}
+			}, 250, false);
+
+			window.addEventListener('resize', resizeGrid);
+
 		}
 
 	}
@@ -302,12 +374,12 @@
 		}
 
 		let navOverlay = new Overlay('mainNav');
+		navOverlay.init();
 
 		button.onclick = function() {
 			if ( -1 !== container.className.indexOf( 'toggled' ) ) {
 				navOverlay.hide();
 			} else {
-				navOverlay.init();
 				navOverlay.show();
 			}
 		};
@@ -403,7 +475,7 @@ function galleryHandler() {
 
 }
 
-function btnShowForm(){
+function formToggler(){
 	let elements = $('#guestbook-form-wrapper, #guestbook-form');
 	let isToggled = false;
 	$('#btnShowForm').on('click', function(e){
