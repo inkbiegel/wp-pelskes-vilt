@@ -75,7 +75,7 @@ add_action('widgets_init', 'plsk_widgets_init');
 /**
  * Add critical css as inline <style> in head, mostly to hide initial page load for preloader
  */
-add_action('wp_head', 'plsk_critical_css', 100);
+add_action('wp_head', 'plsk_critical_css', 3);
 function plsk_critical_css() {
 	echo "<style>
 	 	.overlay.on-load {
