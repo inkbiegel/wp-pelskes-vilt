@@ -77,7 +77,11 @@ add_action('widgets_init', 'plsk_widgets_init');
  */
 add_action('wp_head', 'plsk_critical_css', 3);
 function plsk_critical_css() {
-	echo "<style>
+	echo
+	"<script>
+		document.querySelector('#overlay').classList.add('on-load');
+	</script>
+	<style>
 	 	.overlay.on-load {
 			display: flex;
 		}

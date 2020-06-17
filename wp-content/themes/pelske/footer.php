@@ -41,7 +41,7 @@
 			</li>
 		</ul>
 	</footer>
-	<div class="overlay on-load" id="overlay">
+	<div class="overlay" id="overlay">
 		<button class="icon-svg icon-anim-border btn-close" id="overlayBtnClose">
 			<svg role="img" title="Close" aria-labelled-by="btnCloseTitle" viewBox="0 0 48 48">
 				<title id="btnCloseTitle"><?php _e('Close', 'pelske'); ?></title>

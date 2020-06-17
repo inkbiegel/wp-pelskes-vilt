@@ -358,7 +358,7 @@ small {
   }
 }
 
-.nav-menu,
+.menu,
 .sub-menu {
   margin: 0;
 }
@@ -500,6 +500,9 @@ small {
 .overlay.on-load {
   background: #f0e3fa;
 } */
+.no-js #overlay {
+  display: none;
+}
 .overlay__gallery {
   z-index: 75;
 }
@@ -960,7 +963,8 @@ small {
   transform: scaleY(0);
   transition: transform 0.2s ease-in-out 0.05s;
 }
-.slide-down.toggled {
+.slide-down.toggled,
+.no-js .slide-down {
   height: auto;
   transform: scaleY(1);
   transition: transform 0.2s ease-in-out;
@@ -969,7 +973,8 @@ small {
   opacity: 0;
   transition: opacity 0.05s;
 }
-.slide-down-content.toggled {
+.slide-down-content.toggled,
+.no-js .slide-down-content {
   opacity: 1;
   transition: opacity 0.15s ease-in 0.2s;
 }
@@ -1142,7 +1147,7 @@ small {
     background: none;
     opacity: 1;
   }
-  .nav-menu {
+  .menu {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
