@@ -11,9 +11,9 @@
 // CUR_LANG = pll_current_language();
 
 
-if ( ! function_exists('pelske_setup') ) :
+if ( ! function_exists('plsk_setup') ) :
 
-	function pelske_setup() {
+	function plsk_setup() {
 
 		// Necessary for Yoast SEO to manage the page titles
 		add_theme_support('title-tag');
@@ -37,7 +37,7 @@ if ( ! function_exists('pelske_setup') ) :
 
 	}
 endif;
-add_action( 'after_setup_theme', 'pelske_setup' );
+add_action( 'after_setup_theme', 'plsk_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -46,20 +46,20 @@ add_action( 'after_setup_theme', 'pelske_setup' );
  *
  * @global int $content_width
  */
-function pelske_content_width() {
+function plsk_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'pelske_content_width', 1280 );
+	$GLOBALS['content_width'] = apply_filters( 'plsk_content_width', 1280 );
 }
-add_action( 'after_setup_theme', 'pelske_content_width', 0 );
+add_action( 'after_setup_theme', 'plsk_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function pelske_widgets_init() {
+function plsk_widgets_init() {
 	register_sidebar( array(
 		'name'          => esc_html__('Sidebar', 'pelske'),
 		'id'            => 'sidebar-1',
@@ -70,8 +70,34 @@ function pelske_widgets_init() {
 		'after_title'   => '</h2>',
 	));
 }
-add_action('widgets_init', 'pelske_widgets_init');
+add_action('widgets_init', 'plsk_widgets_init');
 
+/**
+ * Add critical css as inline <style> in head, mostly to hide initial page load for preloader
+ */
+add_action('wp_head', 'plsk_critical_css', 100);
+function plsk_critical_css() {
+	echo "<style>
+	 	.overlay.on-load {
+			display: flex;
+		}
+		.overlay.on-load > .site-logo {
+			display: none;
+		}
+		.overlay {
+			display: none;
+			position: fixed;
+			top: 0; left: 0;
+			width: 100vw;
+			height: 100vh;
+			z-index: 50;
+		}
+		.overlay.mask,
+		.overlay.on-load {
+			background: #f0e3fa;
+		}
+		</style>";
+}
 
 /**
  * Enqueue scripts and styles.

@@ -7,6 +7,7 @@
 	$(document).ready(function(){
 
 		$('html').removeClass('no-js').addClass('js');
+		$('#overlay').removeClass('on-load');
 
 		if(!hasSeenPreloader) {
 			showPreloader();
@@ -53,15 +54,11 @@
 			if( !this.gridIsPopulated ) {
 				this.populateGrid();
 			}
-			// Reenable scrollbars if overlay is not yet visible
-			if(this.callerID !== 'preloader') {
-				$('body').removeClass('has-overlay');
-			}
 			this.resizeHandler();
 		}
 
 		measureGrid() {
-			// Disable page scroll and show overlay to get measurement (visiblity is hidden)
+			// Disable page scroll and show overlay to get measurement (visibility is hidden)
 			$('body').addClass('has-overlay');
 			// Check if there's already a populated grid e.g. from preloader
 			if( !this.gridIsPopulated ) {
@@ -74,7 +71,8 @@
 				// Store measurements
 				this.setVariables();
 			}
-			if( !this.overlayIsUp ) {
+			// Reenable scrollbars if overlay is not yet visible
+			if( this.callerID !== 'preloader' && !$('#overlay').hasClass('overlay__preloader') && !this.overlayIsUp ) {
 				$('body').removeClass('has-overlay');
 			}
 		}
@@ -106,6 +104,7 @@
 			switch(this.callerID){
 				// The preloader does not need to animate the grid in
 				case 'preloader':
+					$('#overlay').addClass('overlay__preloader');
 					if(this.callerID === 'preloader'){
 						$('#overlay .overlay-grid-item').css('opacity','1');
 						$('#site-nav > .menu-toggle').addClass('hidden');
@@ -188,6 +187,7 @@
 						},
 						complete: function(){
 							// destroy instance as we won't be showing it anymore this session
+							$('#overlay').removeClass('overlay__preloader');
 							preloader = null;
 						}
 					})
@@ -280,10 +280,8 @@
 				// repopulate
 				that.populateGrid();
 				if(that.overlayIsUp) {
-					if(that.callerID === 'mainNav') {
-						if(window.innerWidth >= 800) {
-							that.hide(null, true);
-						}
+					if(that.callerID === 'mainNav' && window.innerWidth >= 800) {
+						that.hide(null, true);
 					}
 					$('#overlay .overlay-grid-item').css('opacity','1');
 					$('#overlay').removeClass('mask');
@@ -330,12 +328,15 @@
 		const siteLogo = $('.site-header .site-logo:visible');
 		const siteLogoOffset = siteLogo.offset();
 		const siteLogoSize = siteLogo.height();
+		// Get potential scrollbar width
+		const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
 		// Animate overlay logo to site logo position and size
 		anime({
 			targets: '#overlay .site-logo',
 			duration: 500,
 			delay: 400,
 			translateY: -(overlayLogoOffset.top - siteLogoOffset.top),
+			translateX: -(scrollBarWidth/2),
 			scale: siteLogoSize / overlayLogoSize,
 			complete: function(anim){
 				preloader.hide(siteLogoOffset);

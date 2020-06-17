@@ -45,7 +45,7 @@ body {
   background: #fffdee;
 }
 .has-overlay {
-  overflow: hidden;
+  overflow-y: scroll;
 }
 h1, h2 {
   font-family: 'Delius', serif;
@@ -481,6 +481,13 @@ small {
   fill-opacity: 1;
 }
 
+/* THIS IS INLINED IN HEAD
+.overlay.on-load {
+  display: flex;
+}
+.overlay.on-load > .site-logo {
+  display: none;
+}
 .overlay {
   display: none;
   position: fixed;
@@ -489,9 +496,10 @@ small {
   height: 100vh;
   z-index: 50;
 }
-.overlay.mask {
+.overlay.mask,
+.overlay.on-load {
   background: #f0e3fa;
-}
+} */
 .overlay__gallery {
   z-index: 75;
 }
