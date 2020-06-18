@@ -7,12 +7,12 @@
 	$(document).ready(function(){
 
 		$('html').removeClass('no-js').addClass('js');
-		$('#overlay').removeClass('on-load');
 
 		if(!hasSeenPreloader) {
 			showPreloader();
 		} else {
-			$('.overlay > .site-logo').remove();
+			$('#overlay').removeClass('on-load');
+			$('#overlay > .site-logo').remove();
 		};
 
 		navHandler();
@@ -104,6 +104,7 @@
 			switch(this.callerID){
 				// The preloader does not need to animate the grid in
 				case 'preloader':
+					$('#overlay').removeClass('on-load');
 					$('#overlay').addClass('overlay__preloader');
 					if(this.callerID === 'preloader'){
 						$('#overlay .overlay-grid-item').css('opacity','1');

@@ -78,10 +78,9 @@ add_action('widgets_init', 'plsk_widgets_init');
 add_action('wp_head', 'plsk_critical_css', 3);
 function plsk_critical_css() {
 	echo
-	"<script>
-		document.querySelector('#overlay').classList.add('on-load');
-	</script>
-	<style>
+	'<style>
+		html, body { height: 100% }
+		.site-header, .site-main, .site-footer { visibility: hidden; opacity:0; }
 	 	.overlay.on-load {
 			display: flex;
 		}
@@ -100,7 +99,18 @@ function plsk_critical_css() {
 		.overlay.on-load {
 			background: #f0e3fa;
 		}
-		</style>";
+		</style>';
+}
+
+/**
+ * Show site content only after page fully loads
+ */
+add_action('wp_footer', 'plsk_show_content', 100);
+function plsk_show_content() {
+	echo
+		'<style>
+			.site-header, .site-main, .site-footer { visibility: visible; opacity: 1; }
+		</style>';
 }
 
 /**

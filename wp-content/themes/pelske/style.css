@@ -24,9 +24,10 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 /*--------------------------------------------------------------
 # Base Styles
 --------------------------------------------------------------*/
+/* THIS IS INLINED IN HEAD
 html, body {
   height: 100%;
-}
+} */
 html {
   box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
@@ -499,7 +500,7 @@ small {
 .overlay.mask,
 .overlay.on-load {
   background: #f0e3fa;
-} */
+}*/
 .no-js #overlay {
   display: none;
 }
