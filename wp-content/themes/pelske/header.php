@@ -22,7 +22,7 @@
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
 	  gtag('js', new Date());
-	  gtag('config', 'UA-9535157-2');
+	  gtag('config', 'UA-9535157-2', { 'anonymize_ip': true });
 	</script>
 </head>
 <body <?php body_class(); ?>>
