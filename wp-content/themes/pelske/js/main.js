@@ -27,6 +27,8 @@
 	});
 
 	function showPreloader(){
+		// Make sure we are at top of page
+		window.scrollTo(0,0);
 		// Show overlay
 		preloader = new Overlay('preloader');
 		preloader.init();
@@ -398,8 +400,8 @@
 		function toggleFocus() {
 			var self = this;
 
-			// Move up through the ancestors of the current link until we hit .nav-menu.
-			while ( -1 === self.className.indexOf( 'nav-menu' ) ) {
+			// Move up through the ancestors of the current link until we hit .menu.
+			while ( -1 === self.className.indexOf( 'menu' )  ) {
 
 				// On li elements toggle the class .focus.
 				if ( 'li' === self.tagName.toLowerCase() ) {
@@ -475,18 +477,27 @@ function galleryHandler() {
 }
 
 function formToggler(){
+	let button = $('#btnShowForm');
 	let elements = $('#guestbook-form-wrapper, #guestbook-form');
 	let isToggled = false;
-	$('#btnShowForm').on('click', function(e){
+	const lang = $('html').attr('lang').substr(0,2);
+	const defaultText = button.text();
+	button.on('click', function(e){
 		e.preventDefault();
 		if(isToggled){
 			elements.removeClass('toggled');
 			isToggled = false;
+			$(this).text(defaultText);
 		} else {
 			elements.addClass('toggled');
 			isToggled = true;
+			if(lang === 'nl') {
+				$(this).text('Verberg formulier');
+			} else {
+				$(this).text('Hide form');
+			}
 		}
-	})
+	});
 }
 
 function footerLinkAnimations(){

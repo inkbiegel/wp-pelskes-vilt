@@ -29,7 +29,12 @@
 			</div>
 			<?php if( ! empty( $comment ) ) : ?>
 			<div class="gb-entry-comment">
-				<?php echo $comment[0]->comment_content; ?>
+				<div class="bubble">
+					<?php echo $comment[0]->comment_content; ?>
+				</div>
+				<div class="avatar">
+					<?php echo wp_get_attachment_image( 1072, 'thumbnail', false, array( 'class' => 'avatar-img' )); ?>
+				</div>
 			</div>
 			<?php endif; ?>
 		</article>

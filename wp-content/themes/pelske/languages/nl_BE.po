@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: _s 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/tags/_s\n"
-"POT-Creation-Date: 2020-06-11 13:16+0200\n"
-"PO-Revision-Date: 2020-06-11 13:18+0200\n"
+"POT-Creation-Date: 2020-06-26 11:20+0200\n"
+"PO-Revision-Date: 2020-06-26 11:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl_BE\n"
@@ -114,6 +114,10 @@ msgstr "Volg mij op Pinterest"
 msgid "Close"
 msgstr "Sluiten"
 
+#: front-page.php:28
+msgid "More about Els"
+msgstr "Meer over Els"
+
 #: functions.php:32
 msgid "Primary"
 msgstr "Hoofd"
@@ -126,23 +130,23 @@ msgstr "Zijbalk"
 msgid "Add widgets here."
 msgstr "Voeg hier widgets toe."
 
-#: functions.php:122
+#: functions.php:162
 msgid "Please fill out this field."
 msgstr "Gelieve dit veld in te vullen."
 
-#: functions.php:123
+#: functions.php:163
 msgid "Please use the correct input type."
 msgstr "Gelieve het juiste soort data in te vullen."
 
-#: functions.php:124
+#: functions.php:164
 msgid "Please enter an email address."
 msgstr "Gelieve een e-mailadres in te vullen."
 
-#: functions.php:125
+#: functions.php:165
 msgid "Please match the requested format."
 msgstr "Gelieve het gevraagde formaat te hanteren."
 
-#: functions.php:126
+#: functions.php:166
 msgid "The value you entered for this field is invalid."
 msgstr "De waarde die je voor dit veld hebt ingevuld, is ongeldig."
 
@@ -172,8 +176,8 @@ msgid "Guestbook entry of %1$s from %2$s."
 msgstr "Gastenboek bericht van %1$s uit %2$s."
 
 #: guestbook.php:90
-msgid "Sign guestbook"
-msgstr "Teken gastenboek"
+msgid "Leave a message!"
+msgstr "Laat een berichtje achter!"
 
 #: guestbook.php:100
 msgid "Location"
@@ -190,14 +194,6 @@ msgstr "Oudere berichten"
 #: guestbook.php:140
 msgid "Be the first to leave a comment!"
 msgstr "Laat als eerste een bericht achter!"
-
-#: home.php:36
-msgid "News"
-msgstr "Nieuws"
-
-#: home.php:53
-msgid "Latest work"
-msgstr "Laatste werk"
 
 #: inc/template-tags.php:29
 #, php-format
@@ -254,9 +250,17 @@ msgstr "Lees verder<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgid "Pages:"
 msgstr "Pagina&rsquo;s:"
 
-#: template-parts/gallery-item.php:3
-msgid "/en/gallery"
-msgstr "/nl/gallerij"
+#~ msgid "Sign guestbook"
+#~ msgstr "Teken gastenboek"
+
+#~ msgid "News"
+#~ msgstr "Nieuws"
+
+#~ msgid "Latest work"
+#~ msgstr "Laatste werk"
+
+#~ msgid "/en/gallery"
+#~ msgstr "/nl/gallerij"
 
 #~ msgid "m/d/Y"
 #~ msgstr "d/m/'y"

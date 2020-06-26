@@ -87,7 +87,7 @@ get_header();
 			$content = apply_filters('the_content', $post->post_content);
 			echo $content;
 		?>
-		<button id="btnShowForm" class="button anim-gradient-flash"><?php _e( 'Sign guestbook', 'pelske' ); ?></button>
+		<button id="btnShowForm" class="button anim-gradient-flash"><?php _e( 'Leave a message!', 'pelske' ); ?></button>
 		<div id="guestbook-form-wrapper" class="slide-down">
 			<?php echo $response; ?>
 			<form id="guestbook-form" class="js-validate slide-down-content" action="<?php echo the_permalink(); ?>" method="post" accept-charset="utf-8">

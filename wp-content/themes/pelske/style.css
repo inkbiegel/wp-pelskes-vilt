@@ -66,19 +66,9 @@ h1 {
   font-size: 2em;
 }
 h2 {
-  position: relative;
   display: inline-block;
   margin: 0 0 1em;
   font-size: 1.5em;
-}
-h2::after {
-  content: '';
-  display: block;
-  height: 2px;
-  position: absolute;
-  bottom: -0.125em; left: -0.35em;
-  background: linear-gradient(to right, #D700B9, 10%, #D076FF);
-  width: 1em;
 }
 h3 {
   margin: 0 0 0.75em;
@@ -756,6 +746,49 @@ small {
   right: 0; bottom: 0;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 2em 0 0;
+}
+.pagination > a {
+  padding: 0.25em 0.5em;
+}
+
+.bubble {
+  position: relative;
+  padding: 0.75em;
+  background: #f0e3fa;
+  border-radius: 5px;
+}
+.bubble::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 2.5em;
+  width: 0;
+  height: 0;
+  border: 16px solid transparent;
+  border-top-color: #f0e3fa;
+  border-bottom: 0;
+  border-right: 0;
+  margin-left: -8px;
+  margin-bottom: -16px;
+}
+.avatar {
+  display: inline-block;
+  position: relative;
+  padding: 0.2em;
+  height: 5em;
+  width: 5em;
+  background: radial-gradient(#D700B9,#D076FF);
+}
+.avatar,
+.avatar-img {
+  border-radius: 2.5em;
+  overflow: hidden;
+}
+
 .gallery-filters {
   padding: 0 0.25em 0.25em;
   margin: 0 0 1em;
@@ -869,16 +902,34 @@ small {
 
 .gb-entry-list {
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 45em;
 }
 .gb-entry-list-item {
-  margin: 0 0 2em;
+  position: relative;
+  margin: 0 0 5em;
+}
+.gb-entry-list-item::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -3.25em;
+  height: 1.5em;
+  width: 100%;
+  background: url(img/logo-pelske-plat.svg) no-repeat center bottom;
+  background-size: contain;
 }
 .gb-entry-list-item:last-child {
   margin-bottom: 0;
 }
+.gb-entry-list-item:last-child::after {
+  display: none;
+}
 .gb-entry {
-  padding: 1em;
+  padding: 1.5em 1em;
+  border-radius: 5px;
+  background: #fff;
 }
 .gb-entry-header {
   margin: 0 0 1em;
@@ -895,24 +946,21 @@ small {
   margin-right: auto;
   font-size: 1.4em;
   font-family: 'Delius', serif;
+  font-weight: 400;
   color: #a471ce;
 }
 .gb-entry-location {
   margin: 0 0.25em 0 0;
 }
-
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin: 2em 0 0;
+.gb-entry-comment {
+  margin: 1em 0 0;
+  text-align: right;
 }
-.pagination > a {
-  padding: 0.25em 0.5em;
+.gb-entry-comment > .bubble {
+  text-align: left;
 }
-
-.category-nieuws > .entry-header > .wp-post-image,
-.category-news > .entry-header > .wp-post-image {
-  margin: 0 0 1em;
+.gb-entry-comment > .avatar {
+  margin-top: 1.5em;
 }
 
 /* FORMS */
@@ -1140,6 +1188,18 @@ small {
 .gb-entry-list {
   margin-top: 2em;
 }
+.page-template-guestbook > .site-main {
+  padding-left: 0;
+  padding-right: 0;
+}
+.page-template-guestbook h1,
+.page-template-guestbook .slide-down {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.page-template-guestbook > .site-main > .button {
+  margin-left: 1rem;
+}
 
 /*--------------------------------------------------------------
 # Media queries
@@ -1154,6 +1214,9 @@ small {
   .overlay__gallery .icon-social {
     bottom: 1em;
     left: 1em;
+  }
+  .bubble {
+    padding: 1.5em;
   }
 }
 @media only screen and (min-width: 35em) { /* 560px */
@@ -1301,10 +1364,23 @@ small {
     transform: translateY(0);
   }
 
-  .site-main {
+  .site-main,
+  .page-template-guestbook > .site-main {
     padding-left: 2em;
     padding-right: 2em;
   }
+  .page-template-guestbook h1,
+  .page-template-guestbook .slide-down {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .page-template-guestbook > .site-main > .button {
+    margin-left: 0;
+  }
+  .gb-entry {
+    padding: 2em;
+
+
 }
 @media only screen and (min-width: 64em) { /* 1024px */
   .menu-item {
