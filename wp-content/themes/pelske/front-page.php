@@ -25,7 +25,7 @@ $field_intro_txt = ( pll_current_language() === 'nl' ) ? 'intro_text_NL' : 'intr
 		<div class="home-img home-img__small home-img__intro"><?php echo wp_get_attachment_image( get_field('intro_img'), 'medium', false ); ?></div>
 		<div class="home-intro-txt">
 			<?php echo get_field($field_intro_txt); ?>
-			<a href="<?php get_permalink( get_page_by_path( 'pelske' ) ); ?>" class="button anim-gradient-flash"><?php _e( 'More about Pelske', 'pelske' ); ?></a>
+			<a href="<?php get_permalink( get_page_by_path( 'pelske' ) ); ?>" class="button anim-gradient-flash"><?php _e( 'More about Els', 'pelske' ); ?></a>
 		</div>
 		<?php
 			$nr_img_s = 6;
