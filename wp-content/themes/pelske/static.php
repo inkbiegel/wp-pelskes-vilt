@@ -9,7 +9,7 @@ get_header();
 ?>
 	<main id="main" class="site-main">
 		<?php
-		 the_title('<h1>','</h1>');
+		 the_title('<h1><span>','</span></h1>');
 		 the_content();
 		?>
 	</main>

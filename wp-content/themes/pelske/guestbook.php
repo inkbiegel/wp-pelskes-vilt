@@ -83,7 +83,7 @@ get_header();
 
 	<main id="main" class="site-main">
 		<?php
-			the_title( '<h1 class="entry-title">', '</h1>' );
+			the_title( '<h1 class="entry-title"><span>', '</span></h1>' );
 			$content = apply_filters('the_content', $post->post_content);
 			echo $content;
 		?>

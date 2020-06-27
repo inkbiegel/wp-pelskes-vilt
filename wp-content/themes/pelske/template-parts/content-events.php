@@ -15,7 +15,7 @@
 ?>
 
 
-	<li class="event-list-item grid-list-item card-list-item">
+	<li class="event-list-item flex-list-item card-list-item">
 		<article class="event card">
 			<div class="card-body">
 				<figure class="event-figure event-front card-front">

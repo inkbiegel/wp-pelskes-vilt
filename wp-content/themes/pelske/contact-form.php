@@ -79,7 +79,7 @@ get_header();
 ?>
 
 	<main id="main" class="site-main">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<?php the_title( '<h1 class="entry-title"><span>', '</span></h1>' ); ?>
 		<?php echo $response; ?>
 		<form id="contact-form" class="js-validate" action="<?php echo the_permalink(); ?>" method="post" accept-charset="utf-8">
 			<ol class="form-list">
