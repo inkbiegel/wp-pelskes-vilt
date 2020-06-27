@@ -800,6 +800,28 @@ small {
   overflow: hidden;
 }
 
+.text-block {
+  margin: 0 0 3em;
+  text-align: center;
+}
+.text-block:last-child {
+  margin-bottom: 0;
+}
+.text-block-img-wrap {
+  height: 16em;
+  width: 100%;
+}
+.text-block-img {
+  height: 100%;
+  max-width: 100% !important; /* damn you Optimole.. */
+  object-fit: contain;
+  object-position: center;
+}
+.text-block-copy {
+  margin: 1.5em 0 0;
+  text-align: left;
+}
+
 /* .gallery-filters {
   padding: 0 0.25em 0.25em;
   margin: 0 0 1em;
@@ -1408,6 +1430,34 @@ small {
   }
   .gb-entry {
     padding: 2em;
+  }
+
+  .text-block {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .text-block-copy {
+    margin: 0 auto 0 0;
+    width: 70%;
+    order: 1;
+  }
+  .text-block-img-wrap {
+    margin-left: auto;
+    width: 25%;
+    order: 2;
+  }
+  .text-block:nth-child(2n+1) > .text-block-copy {
+    order: 2;
+    margin-right: 0;
+    margin-left: auto;
+    text-align: right;
+  }
+  .text-block:nth-child(2n+1) > .text-block-img-wrap {
+    order: 1;
+    margin-right: auto;
+    margin-left: 0;
   }
 
 }
