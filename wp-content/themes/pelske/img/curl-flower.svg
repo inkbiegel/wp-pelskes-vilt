@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 50">
+<path fill="none" stroke="#0a5977"  stroke-linecap="round" stroke-miterlimit="10" d="M83.5,11.5c-4,3,1,7-3,7C77.5,17.5,79.5,11.5,83.5,11.5
+		c7,0,11,8,8,13c-6.4,10.7-18,12-30,3c-17.1-12.8-44.9-18.7-61,6"/>
+<path fill="none" stroke="#0a5977"  stroke-linecap="round" stroke-miterlimit="10" d="M40.5,33.5c1-5,3-2,5-4c1.6-1.6,1-4-2-2c-5.3,3.6-3,11,3,11
+		c13,0,11-14,3-18"/>
+<g id="curl_3">
+	<path fill="none" stroke="#0a5977"  stroke-linecap="round" stroke-miterlimit="10" d="M96.5,20.4c-1.2,1.9-1.4,4,0.6,4.4c2.8,0.6,2.3-2.7,0.8-4.2"/>
+	<path fill="none" stroke="#0a5977"  stroke-linecap="round" stroke-miterlimit="10" d="M96.5,20.5c-1-1-2-3,1-4c2.1-0.7,2,3,0,4"/>
+	<path fill="none" stroke="#0a5977"  stroke-linecap="round" stroke-miterlimit="10" d="M92,23.5c4.5-5,12.5-4,15.5,5"/>
+</g>
+<g id="flower">
+	<circle fill="#d25ef1" stroke="#d25ef1"  stroke-linecap="round" stroke-miterlimit="10" cx="109.1" cy="30.1" r="1.5"/>
+	<g id="petal_1">
+		<path fill="none" stroke="#d25ef1"  stroke-linecap="round" stroke-miterlimit="10" d="M110.5,29.4c-0.3-2,7.8-7.4,8.9-1.5c1,5.9-8.7,2.5-8.7,2.5"/>
+	</g>
+	<g id="petal_2">
+		<path fill="none" stroke="#d25ef1"  stroke-linecap="round" stroke-miterlimit="10" d="M108.1,29.5c0.2-1-7.4-7.8-8.8-2c-1.3,5.9,8.6,3,8.6,3"/>
+	</g>
+	<g id="petal_3">
+		<path fill="none" stroke="#d25ef1"  stroke-linecap="round" stroke-miterlimit="10" d="M108.8,31c0.7,0.7,0.8,10.7-4.8,7.6c-5-2.7,2.6-8.6,3.7-7.8"/>
+	</g>
+	<g id="petal_4">
+		<path fill="none" stroke="#d25ef1"  stroke-linecap="round" stroke-miterlimit="10" d="M109.7,31.2c-0.6,0.8,2.9,10,6.9,5.8c4.1-4.3-6.2-6.6-6.2-6.6"/>
+	</g>
+	<g id="petal_5">
+		<path fill="none" stroke="#d25ef1"  stroke-linecap="round" stroke-miterlimit="10" d="M108.2,29.1c-1-1-2.6-10.9,2.8-8.7s-1.9,8.9-1.9,8.9"/>
+	</g>
+</g>
+</svg>
