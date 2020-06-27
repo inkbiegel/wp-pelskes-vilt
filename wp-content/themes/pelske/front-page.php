@@ -20,12 +20,12 @@ $field_intro_txt = ( pll_current_language() === 'nl' ) ? 'intro_text_NL' : 'intr
 	<main id="main" class="site-main">
 		<h1>
 			<span>Pelskes Vilt</span><br>
-			<span class="subtitle"><?php echo esc_html( get_field($field_subtitle) ); ?></span>
+			<span class="subtitle"><?php echo esc_html( get_field('subtitle') ); ?></span>
 		</h1>
 		<div class="home-img home-img__small home-img__intro"><?php echo wp_get_attachment_image( get_field('intro_img'), 'medium', false ); ?></div>
 		<div class="home-intro-txt">
 			<?php
-				$intro_text = get_field($field_intro_txt);
+				$intro_text = get_field('intro_text');
 				$intro_text = apply_filters('the_content', $intro_text);
 				echo $intro_text;
 			?>
