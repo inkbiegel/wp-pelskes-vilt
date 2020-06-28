@@ -87,7 +87,6 @@ add_filter('use_block_editor_for_post', '__return_false', 10);
 /***************************************************************************
  * GENERAL
  **************************************************************************/
-
 /**
  * Allows adding of async and/or defer attributes to script tags
  * src: https://gist.github.com/wpscholar/7b343ec2a8c52752dbc0
@@ -139,9 +138,24 @@ function pelske_permalinks($atts) {
 add_shortcode('permalink', 'pelske_permalinks');
 
 /***************************************************************************
+ * USER ROLE MANAGEMENT
+ **************************************************************************/
+register_activation_hook( __FILE__, 'pelskes_vilt_activate' );
+function pelskes_vilt_activate() {
+	$editor = get_role('editor');
+	$editor->add_cap('edit_theme_options');
+	$editor->add_cap('customize');
+	}
+register_deactivation_hook( __FILE__, 'pelskes_vilt_deactivate' );
+function pelskes_vilt_deactivate() {
+	$editor = get_role('editor');
+	$editor->remove_cap('edit_theme_options');
+	$editor->remove_cap('customize');
+}
+
+/***************************************************************************
  * FORMS
  **************************************************************************/
-
 /**
  * Generate validation/succes/error responses for forms
  *
@@ -264,7 +278,7 @@ function pelske_custom_post_type_gb_entry() {
 		'edit_item'          => __( 'Bewerk Gastenboek Bericht', 'pelske' ),
 		'new_item'           => __( 'Nieuw Gastenboek Bericht', 'pelske' ),
 		'view_item'          => __( 'Bekijk Gastenboek Bericht', 'pelske' ),
-		'menu_name'          => __( 'Gastenboek Berichten', 'pelske' ),
+		'menu_name'          => __( 'Gastenboek', 'pelske' ),
 	);
 
 	$args = array(
@@ -380,14 +394,47 @@ require_once PELSKE__PLUGIN_DIR . 'admin/class-pelske-gallery.php';
 // Initialize pelske_gallery metabox in the backend
 function run_pelske_gallery() {
 
-	// if( get_current_screen()->post_type === 'gallery_img' ) {
-
 		$pelske_gallery = new Pelske_Gallery_Admin( 'gallery_img' );
 		$pelske_gallery->initialize_hooks();
 
-	// }
-
 }
 add_action( 'admin_init', 'run_pelske_gallery' );
+
+
+/***************************************************************************
+ * ADMIN CUSTOMIZATION
+ **************************************************************************/
+/**
+ * Remove Admin menu items
+ */
+function remove_menu_items() {
+
+	global $user_ID;
+
+	remove_menu_page('edit.php'); // Posts
+	remove_menu_page('edit-comments.php'); // Comments
+
+	if( ! current_user_can('administrator') ) {
+		remove_menu_page('tools.php'); // Tools
+	}
+
+}
+add_action( 'admin_init', 'remove_menu_items' );
+
+ /**
+ * Add custom dashboard widgets.
+ */
+function add_dashboard_widgets() {
+	wp_add_dashboard_widget( 'editor_instructions', 'Instructies', 'editor_instructions_content' );
+}
+add_action( 'wp_dashboard_setup', 'add_dashboard_widgets' );
+
+/**
+* Output the contents of the dashboard widget
+*/
+function editor_instructions_content( $post, $callback_args ) {
+	include_once( PELSKE__PLUGIN_DIR . '/admin/views/editor-instructions.php' );
+}
+
 
 ?>

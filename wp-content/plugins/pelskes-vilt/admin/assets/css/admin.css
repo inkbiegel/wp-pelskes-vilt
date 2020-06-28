@@ -1,3 +1,9 @@
+dt {
+  font-weight: bold;
+}
+dd {
+  margin: 0;
+}
 .pelske-event-meta{
   font-size: 1.1rem;
 }
