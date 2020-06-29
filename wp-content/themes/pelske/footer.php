@@ -49,6 +49,41 @@
 				<circle class="border" fill="none" stroke-miterlimit="10" cx="24" cy="24" r="22.4" transform="rotate(-180 24 24)"/>
 			</svg>
 		</button>
+		<?php
+		if( is_page_template('gallery.php') ) :
+			$share_text = urlencode( __( 'Pelskes Vilt ~ Felt designs handmade with love','pelske') );
+			$page_url = 'https://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+		?>
+		<ul class="icon-list icon-list__vertical">
+			<li class="icon-list-item">
+				<a class="icon-svg icon-social icon-anim-border" id="btnSharePinterest" href="https://www.pinterest.com/pin/create/button/?url=<?php echo $page_url; ?>&media=IMGURL&description=<?php echo $share_text; ?>" target="_social">
+					<svg role="img" title="<?php _e('Pin on Pinterest', 'pelske'); ?>" aria-labelled-by="btnPinterestTitle" viewBox="0 0 48 48">
+						<title id="btnPinterestTitle"><?php _e('Pin on Pinterest', 'pelske'); ?></title>
+						<use xlink:href="#icon-pinterest"></use>
+						<circle class="border" fill="none" stroke-miterlimit="10" cx="24" cy="24" r="22.4" transform="rotate(-180 24 24)"/>
+					</svg>
+				</a>
+			</li>
+			<li class="icon-list-item">
+				<a class="icon-svg icon-social icon-anim-border" id="btnShareInstagram" href="https://www.instagram.com/?url=IMGURL" target="_social">
+					<svg role="img" title="<?php _e('Share on Instagram', 'pelske'); ?>" aria-labelled-by="btnInstagramTitle" viewBox="0 0 48 48">
+						<title id="btnInstagramTitle"><?php _e('Share on Instagram', 'pelske'); ?></title>
+						<use xlink:href="#icon-instagram"></use>
+						<circle class="border" fill="none" stroke-miterlimit="10" cx="24" cy="24" r="22.4" transform="rotate(-180 24 24)"/>
+					</svg>
+				</a>
+			</li>
+			<li class="icon-list-item">
+				<a class="icon-svg icon-social icon-anim-border" id="btnShareFacebook" href="https://www.facebook.com/sharer.php?u=<?php echo $page_url; ?>" target="_social">
+					<svg role="img" title="<?php _e('Share on Facebook', 'pelske'); ?>" aria-labelled-by="btnFacebookTitle" viewBox="0 0 48 48">
+						<title id="btnFacebookTitle"><?php _e('Share on Facebook', 'pelske'); ?></title>
+						<use xlink:href="#icon-facebook"></use>
+						<circle class="border" fill="none" stroke-miterlimit="10" cx="24" cy="24" r="22.4" transform="rotate(-180 24 24)"/>
+					</svg>
+				</a>
+			</li>
+		</ul>
+		<?php endif; ?>
 		<div class="site-logo"><?php get_template_part( 'template-parts/logo-pelskes-vilt_circle.svg' ); ?></div>
 		<div class="overlay-grid"></div>
 	</div>

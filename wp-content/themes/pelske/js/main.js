@@ -452,27 +452,32 @@ function galleryHandler() {
 	let galleryOverlay = new Overlay('gallery');
 	galleryOverlay.init();
 
+	const shareLinks = $('#overlay .icon-social');
+
 	$('#gallery').on('click', '.grid-list-link', function(event){
 		event.preventDefault();
 		const imgUrl = $(this).attr('href');
-		const pageUrl = window.location.href;
 		const galleryImg = $('<img class="gallery-img-full" src="' + imgUrl + '" />');
-		const btnPinterest =
-			'<a class="icon-svg icon-social icon-anim-border" id="btnPinGalleryImg" data-pin-do="buttonBookmark" href="https://www.pinterest.com/pin/create/button/?url=' + pageUrl + '&media=' + imgUrl + '&description=Pelskes%20Vilt" target="_social">'
-				+ '<svg role="img" title="Pin on Pinterest" aria-labelled-by="btnPinterestTitle" viewBox="0 0 48 48">'
-					+ '<title id="btnPinterestTitle">Pin on Pinterest</title>'
-					+ '<use xlink:href="#icon-pinterest"></use>'
-					+ '<circle class="border" fill="none" stroke-miterlimit="10" cx="24" cy="24" r="22.4" transform="rotate(-180 24 24)"/>'
-				+ '</svg>'
-			+ '</a>';
-		const clickOffset = $(this).offset();
-		// insert full image and pinterest button into overlay
-		$('#overlay').prepend(galleryImg, btnPinterest);
+		// insert full image into overlay
+		$('#overlay').prepend(galleryImg);
+		// Change share image
+		setGalleryShareImg(imgUrl);
 		// get click pos on grid for starting pos stagger animation
-		galleryOverlay.getClickPosOnGrid(clickOffset);
+		galleryOverlay.getClickPosOnGrid($(this).offset());
 		// show overlay
 		galleryOverlay.show();
 	})
+
+	function setGalleryShareImg(imgUrl) {
+		// get original url from optimole url
+		const endIndex = imgUrl.indexOf('http', 5);
+		const origImgUrl = imgUrl.substr(endIndex);
+
+		shareLinks.each(function(){
+			$(this).attr('href', $(this).attr('href').replace('IMGURL', origImgUrl));
+		});
+
+	}
 
 }
 
