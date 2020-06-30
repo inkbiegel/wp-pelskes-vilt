@@ -452,7 +452,7 @@ function galleryHandler() {
 	let galleryOverlay = new Overlay('gallery');
 	galleryOverlay.init();
 
-	const shareLinks = $('#overlay .icon-social');
+	const btnPinterest = $('#btnSharePinterest');
 
 	$('#gallery').on('click', '.grid-list-link', function(event){
 		event.preventDefault();
@@ -460,22 +460,26 @@ function galleryHandler() {
 		const galleryImg = $('<img class="gallery-img-full" src="' + imgUrl + '" />');
 		// insert full image into overlay
 		$('#overlay').prepend(galleryImg);
-		// Change share image
-		setGalleryShareImg(imgUrl);
 		// get click pos on grid for starting pos stagger animation
-		galleryOverlay.getClickPosOnGrid($(this).offset());
+		galleryOverlay.getClickPosOnGrid( { left: $(this).offset().left, top: event.clientY } );
 		// show overlay
 		galleryOverlay.show();
+		// Change share image
+		setGalleryShareImg(imgUrl);
 	})
 
 	function setGalleryShareImg(imgUrl) {
-		// get original url from optimole url
+		// get original image url from optimole url
 		const endIndex = imgUrl.indexOf('http', 5);
-		const origImgUrl = imgUrl.substr(endIndex);
+		const newImgUrl = imgUrl.substr(endIndex);
 
-		shareLinks.each(function(){
-			$(this).attr('href', $(this).attr('href').replace('IMGURL', origImgUrl));
-		});
+		// Set Pinterest share URL
+		const oldPinterestURL = btnPinterest.attr('href');
+		const substr = oldPinterestURL.substring( oldPinterestURL.indexOf('&media='), oldPinterestURL.indexOf('&description=') );
+		btnPinterest.attr('href', oldPinterestURL.replace(substr, '&media=' + newImgUrl));
+
+		// Change Facebook og:image meta tag
+		$('meta[property="og:image"]').attr('content', newImgUrl);
 
 	}
 
