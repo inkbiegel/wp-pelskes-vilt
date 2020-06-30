@@ -40,6 +40,14 @@
 				</a>
 			</li>
 		</ul>
+		<nav class="footer-nav">
+			<?php
+				wp_nav_menu( array(
+					'theme_location' => 'menu-2',
+					'menu_id'        => 'footer-menu',
+				) );
+			?>
+		</nav>
 	</footer>
 	<div class="overlay on-load" id="overlay">
 		<button class="icon-svg icon-anim-border btn-close" id="overlayBtnClose">
@@ -60,15 +68,6 @@
 					<svg role="img" title="<?php _e('Pin on Pinterest', 'pelske'); ?>" aria-labelled-by="btnPinterestTitle" viewBox="0 0 48 48">
 						<title id="btnPinterestTitle"><?php _e('Pin on Pinterest', 'pelske'); ?></title>
 						<use xlink:href="#icon-pinterest"></use>
-						<circle class="border" fill="none" stroke-miterlimit="10" cx="24" cy="24" r="22.4" transform="rotate(-180 24 24)"/>
-					</svg>
-				</a>
-			</li>
-			<li class="icon-list-item">
-				<a class="icon-svg icon-social icon-anim-border" id="btnShareInstagram" href="https://www.instagram.com/?url=IMGURL" target="_social">
-					<svg role="img" title="<?php _e('Share on Instagram', 'pelske'); ?>" aria-labelled-by="btnInstagramTitle" viewBox="0 0 48 48">
-						<title id="btnInstagramTitle"><?php _e('Share on Instagram', 'pelske'); ?></title>
-						<use xlink:href="#icon-instagram"></use>
 						<circle class="border" fill="none" stroke-miterlimit="10" cx="24" cy="24" r="22.4" transform="rotate(-180 24 24)"/>
 					</svg>
 				</a>

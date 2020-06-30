@@ -6,11 +6,6 @@
  *
  * @package Pelske
  */
-
-//set global variables
-// CUR_LANG = pll_current_language();
-
-
 if ( ! function_exists('plsk_setup') ) :
 
 	function plsk_setup() {
@@ -30,6 +25,7 @@ if ( ! function_exists('plsk_setup') ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'pelske' ),
+			'menu-2' => esc_html__( 'Footer', 'pelske' ),
 		) );
 
 		// Load text domain for translated strings
@@ -66,7 +62,8 @@ function plsk_critical_css() {
 	 	.overlay.on-load {
 			display: flex;
 		}
-		.overlay.on-load > .site-logo {
+		.overlay.on-load > .site-logo,
+		.overlay.on-load > .icon-list {
 			display: none;
 		}
 		.overlay {

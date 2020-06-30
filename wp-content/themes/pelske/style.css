@@ -236,7 +236,6 @@ small {
 --------------------------------------------------------------*/
 .site-header {
   padding: 2em 1em 1em;
-  text-align: center;
 }
 .site-header-img {
   display: none;
@@ -247,12 +246,28 @@ small {
   width: 100%;
   max-width: 60em;
   margin: 0 auto;
-  text-align: center;
 }
 .site-footer {
+  position: relative;
   flex-shrink: 0;
-  padding: 2em;
+  padding: 1.5em 2em 0.75em;
   background: linear-gradient(#D700B9, 10%, #D076FF);
+}
+.site-footer::before {
+  content: '';
+  display: inline-block;
+  width: 100%;
+  max-width: 11em;
+  height: 3em;
+  margin: 0 0 0.75em;
+  background: url(img/logo-pelske-plat.svg) no-repeat center;
+  background-size: contain;
+  filter: brightness(1.9) hue-rotate(40deg);
+}
+.site-header,
+.site-main,
+.site-footer {
+  text-align: center;
 }
 
 /*--------------------------------------------------------------
@@ -457,6 +472,25 @@ small {
   display: none;
 }
 
+.footer-nav {
+  margin: 1.5em auto 0;
+  max-width: 7em;
+}
+.footer-nav .menu-item {
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+  font-size: 0.75em;
+  font-weight: 400;
+}
+.footer-nav .menu-item:last-child {
+  margin-right: 0;
+}
+.footer-nav .menu-item > a,
+.footer-nav .menu-item > a:visited {
+  color: #f0e3fa;
+}
+
+
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
@@ -514,6 +548,9 @@ small {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.has-overlay .grid-list-item {
+  pointer-events: none;
 }
 .overlay > .site-logo {
   position: relative;
@@ -576,7 +613,7 @@ small {
 .icon-list__vertical .icon-list-item:first-child {
   margin-top: 0;
 }
-.overlay__gallery .icon-list__vertical {
+.overlay .icon-list__vertical {
   position: fixed;
   bottom: 0.25em;
   left: 0.5em;
@@ -609,13 +646,11 @@ small {
   transition-property: transform;
   transition-duration: .15s;
   transition-timing-function: ease-out;
-  transition-delay: 0.25s;
-}
-.overlay .icon-list-item:first-child .icon-social {
   transition-delay: 0s;
+  background: radial-gradient(white 0%, white 50%, transparent 50%, transparent 100%);
 }
 .overlay .icon-list-item:last-child .icon-social {
-  transition-delay: 0.5s;
+  transition-delay: 0.2s;
 }
 
 .overlay.complete .icon-social {
@@ -626,12 +661,6 @@ small {
   height: 2.5em;
   width: 2.5em;
 }
-.overlay .icon-social::before {
-  height: 2.65em;
-  width: 2.65em;
-  left: 0.175em;
-  top: 0.175em;
-}
 .btn-close {
   padding: 0;
   background: none;
@@ -639,14 +668,8 @@ small {
   stroke: #a471ce;
   cursor: pointer;
   stroke-width: 0.375em;
-}
-.overlay .icon-anim-border::before {
-  content: '';
-  display: block;
-  position: absolute;
-  z-index: 0;
   background: #fff;
-  border-radius: 1.5em;
+  border-radius: 1.25em;
 }
 .overlay .icon-anim-border > svg {
   position: relative;
@@ -1001,6 +1024,7 @@ small {
   padding: 1.5em 1em;
   border-radius: 5px;
   background: #fff;
+  text-align: left;
 }
 .gb-entry-header {
   margin: 0 0 1em;
@@ -1108,6 +1132,33 @@ small {
 .no-js .slide-down-content {
   opacity: 1;
   transition: opacity 0.15s ease-in 0.2s;
+}
+
+/* cookie banner */
+.has-overlay #cc-window {
+  opacity: 0;
+  transition: opacity 0.15s ease-in;
+}
+#cc-window {
+  display: block;
+  opacity: 1;
+}
+#cc-window .cmplz-categories-wrap,
+#cc-window .cc-compliance,
+#cc-window .cc-btn {
+  display: inline-block;
+}
+#cc-window .cc-message {
+  margin-right: 0;
+}
+#cc-window .cc-compliance {
+  margin-top: 0.75em;
+}
+#cc-window .cc-btn {
+  margin: 0 0.5em 0 0;
+}
+#cc-window .cc-btn+.cc-btn {
+  margin: 0.5em 0 0;
 }
 
 .browserupgrade {
@@ -1271,14 +1322,17 @@ small {
   padding-left: 1rem;
   padding-right: 1rem;
 }
-.page-template-guestbook > .site-main > .button {
-  margin-left: 1rem;
-}
 
 /* Info */
 .page-template-static > .site-main > p,
 .page-template-static > .site-main > ol {
   text-align: left;
+}
+
+/* Cookies */
+#cmplz-document {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*--------------------------------------------------------------
@@ -1292,6 +1346,9 @@ small {
 }
 @media only screen and (min-width: 30em) { /* 480px */
   .bubble {
+    padding: 1.5em;
+  }
+  .home-intro-txt {
     padding: 1.5em;
   }
 }
@@ -1446,6 +1503,10 @@ small {
     transform: translateY(0);
   }
 
+  .footer-nav .menu-item {
+    flex-basis: 50%;
+  }
+
   .site-main,
   .page-template-guestbook > .site-main {
     padding-left: 2em;
@@ -1519,6 +1580,17 @@ small {
   }
   .home-intro-txt {
     padding: 2em;
+  }
+
+  #cc-window {
+    display: flex;
+  }
+  #cc-window .cmplz-categories-wrap,
+  #cc-window .cc-compliance {
+    display: block;
+  }
+  #cc-window .cc-compliance {
+    margin-top: 0;
   }
 
 }
