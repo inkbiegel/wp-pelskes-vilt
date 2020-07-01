@@ -1498,7 +1498,7 @@ small {
     height: 2px;
   }
   .menu-item-has-children:hover > .sub-menu > .menu-item,
-  .menu-item-has-children.focus .menu-item {
+  .menu-item-has-children.focus > .sub-menu > .menu-item {
     opacity: 1;
     transform: translateY(0);
   }
