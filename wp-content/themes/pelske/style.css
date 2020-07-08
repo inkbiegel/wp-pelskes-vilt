@@ -1335,6 +1335,19 @@ small {
   margin-right: auto;
 }
 
+/* Default */
+.page-template-default .site-main > article {
+  max-width: 40em;
+  margin: 0 auto;
+}
+.page-template-default .entry-content {
+  text-align: left;
+}
+.page-template-default .entry-content h2 {
+  text-align: center;
+}
+
+
 /*--------------------------------------------------------------
 # Media queries
 --------------------------------------------------------------*/
