@@ -16,6 +16,14 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2bBMJvmO0w">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2bBMJvmO0w">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2bBMJvmO0w">
+	<link rel="manifest" href="/site.webmanifest?v=2bBMJvmO0w">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg?v=2bBMJvmO0w" color="#d074fe">
+	<link rel="shortcut icon" href="/favicon.ico?v=2bBMJvmO0w">
+	<meta name="msapplication-TileColor" content="#9f00a7">
+	<meta name="theme-color" content="#fffdee">
 	<?php wp_head(); ?>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-9535157-2"></script>
 	<script>
