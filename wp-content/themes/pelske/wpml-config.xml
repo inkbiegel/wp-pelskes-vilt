@@ -1,0 +1,24 @@
+<wpml-config>
+	<custom-fields>
+		<custom-field action="copy">block_1_img</custom-field>
+		<custom-field action="copy">block_2_img</custom-field>
+		<custom-field action="copy">block_3_img</custom-field>
+		<custom-field action="translate">block_1_text</custom-field>
+		<custom-field action="translate">block_2_text</custom-field>
+		<custom-field action="translate">block_3_text</custom-field>
+		<custom-field action="translate">subtitle</custom-field>
+		<custom-field action="translate">intro_text</custom-field>
+		<custom-field action="copy">intro_img</custom-field>
+		<custom-field action="copy">home_img_small_1</custom-field>
+		<custom-field action="copy">home_img_small_2</custom-field>
+		<custom-field action="copy">home_img_small_3</custom-field>
+		<custom-field action="copy">home_img_small_4</custom-field>
+		<custom-field action="copy">home_img_small_5</custom-field>
+		<custom-field action="copy">home_img_small_6</custom-field>
+		<custom-field action="copy">home_img_medium_1</custom-field>
+		<custom-field action="copy">home_img_medium_2</custom-field>
+		<custom-field action="copy">home_img_medium_3</custom-field>
+		<custom-field action="copy">home_img_medium_4</custom-field>
+		<custom-field action="copy">home_img_large</custom-field>
+	</custom-fields>
+</wpml-config>
