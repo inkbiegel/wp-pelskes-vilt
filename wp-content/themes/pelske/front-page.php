@@ -15,6 +15,7 @@
 get_header();
 $field_subtitle = ( pll_current_language() === 'nl' ) ? 'subtitle_NL' : 'subtitle_EN';
 $field_intro_txt = ( pll_current_language() === 'nl' ) ? 'intro_text_NL' : 'intro_text_EN';
+$info_slug = ( pll_current_language() === 'nl' ) ? 'nl/info' : 'about';
 ?>
 
 	<main id="main" class="site-main">
@@ -29,7 +30,7 @@ $field_intro_txt = ( pll_current_language() === 'nl' ) ? 'intro_text_NL' : 'intr
 				$intro_text = apply_filters('the_content', $intro_text);
 				echo $intro_text;
 			?>
-			<a href="<?php get_permalink( get_page_by_path( 'pelske' ) ); ?>" class="button anim-gradient-flash"><?php _e( 'More about Els', 'pelske' ); ?></a>
+			<a href="<?php echo 'https://' . $_SERVER['HTTP_HOST'] . '/' . $info_slug . '/els'; ?>" class="button anim-gradient-flash"><?php _e( 'More about Els', 'pelske' ); ?></a>
 		</div>
 		<?php
 			$nr_img_s = 6;
