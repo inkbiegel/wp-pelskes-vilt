@@ -181,7 +181,7 @@ function recaptcha_is_valid(){
 	if( empty( $_POST['g-recaptcha-response'] ) ) return false;
 
   $response = wp_remote_get( add_query_arg( array(
-    'secret'   => '6LdS32MUAAAAAKNutDa3O_8B6S3H-6gtlBnwADXc',
+    'secret'   => '',
     'response' => isset( $_POST['g-recaptcha-response'] ) ? $_POST['g-recaptcha-response'] : '',
     'remoteip' => isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR']
   ), 'https://www.google.com/recaptcha/api/siteverify' ) );
