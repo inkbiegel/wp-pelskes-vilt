@@ -943,9 +943,7 @@ small {
 }
 
 .event-list {
-  /* grid-template-columns: repeat(auto-fit, minmax(11em, 1fr)); */
   text-align: left;
-  /* align-items: center; */
 }
 .event-front {
   min-height: 100%;
@@ -1076,6 +1074,16 @@ small {
   height: 0;
   width: 0;
   overflow: hidden;
+}
+.cmplz-blocked-content-container.recaptcha-invisible,
+.cmplz-blocked-content-container.g-recaptcha {
+  width: auto;
+  overflow: visible;
+}
+#contact-form .cmplz-blocked-content-container.g-recaptcha .cmplz-blocked-content-notice {
+  width: 75%;
+  top: 50%;
+  max-width: none;
 }
 .grecaptcha-badge {
   visibility: hidden;

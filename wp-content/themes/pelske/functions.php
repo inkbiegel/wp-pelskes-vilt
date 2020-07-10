@@ -137,13 +137,13 @@ function pelske_scripts() {
 			'error_generic' => __( 'The value you entered for this field is invalid.', 'pelske' )
 		);
 
-		wp_register_script( 'contact', get_template_directory_uri() . '/js/contact.js', array( 'jquery' ), '', false );
+		wp_register_script( 'contact', get_template_directory_uri() . '/js/contact.js', array(), null, false );
 		wp_localize_script( 'contact', '$php_vars', $localize_data );
 		wp_enqueue_script( 'contact' );
 		wp_script_add_data( 'contact', 'defer', true );
 		wp_script_add_data( 'contact', 'async', true );
 
-		wp_enqueue_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js', array( 'contact' ), false, false );
+		wp_enqueue_script( 'recaptcha', 'https://www.google.com/recaptcha/api.js', array( 'contact' ), null, false );
 		wp_script_add_data( 'recaptcha', 'defer', true );
 		wp_script_add_data( 'recaptcha', 'async', true );
 
