@@ -117,10 +117,8 @@ li > ul, li > ol {
   margin-left: 1.5em;
 }
 img {
-  /* Make sure images are scaled correctly. */
   max-width: 100%;
   height: auto;
-  /* Adhere to container width. */
 }
 table {
   width: 100%;
@@ -575,7 +573,7 @@ small {
 }
 .overlay-grid-item {
   position: relative;
-  background: #f0e3fa;
+  background: #fff;
   opacity: 0;
 }
 .overlay-grid-item::before {
@@ -583,8 +581,9 @@ small {
   display: block;
   padding-bottom: 100%;
 }
-.overlay__gallery .overlay-grid-item {
-  background: #fff;
+.overlay__nav .overlay-grid-item,
+.overlay__preloader .overlay-grid-item {
+  background: #f0e3fa;
 }
 .overlay > .btn-close {
   position: fixed;
@@ -613,13 +612,6 @@ small {
 .icon-list__vertical .icon-list-item:first-child {
   margin-top: 0;
 }
-.overlay .icon-list__vertical {
-  position: fixed;
-  bottom: 0.25em;
-  left: 0.5em;
-  z-index: 5;
-  fill: #a471ce;
-}
 
 .icon-svg {
   overflow: hidden;
@@ -640,22 +632,19 @@ small {
   stroke: #fffdee;
 }
 .overlay .icon-social {
+  position: fixed;
+  bottom: 0.25em;
+  left: 0.5em;
+  z-index: 5;
   fill: #a471ce;
-  position: relative;
   transform: translateX(-4em);
-  transition-property: transform;
-  transition-duration: .15s;
-  transition-timing-function: ease-out;
-  transition-delay: 0s;
+  transition: transform .15s ease-out .15s;
   background: radial-gradient(white 0%, white 50%, transparent 50%, transparent 100%);
 }
-.overlay .icon-list-item:last-child .icon-social {
-  transition-delay: 0.2s;
-}
-
 .overlay.complete .icon-social {
   transform: translateX(0);
 }
+
 .btn-close,
 .overlay .icon-anim-border::before {
   height: 2.5em;
@@ -751,6 +740,9 @@ small {
   max-width: 14em;
   overflow: visible;
 }
+.card-list-item:last-child {
+  margin-bottom: 0;
+}
 .card {
   display: flex;
   perspective: 40rem;
@@ -759,10 +751,6 @@ small {
   transition: z-index;
   transition-delay: 0.3s;
   font-size: 0.75em;
-}
-.card,
-.card-body {
-  min-height: 100%;
 }
 .card-body {
   display: flex;
@@ -880,6 +868,20 @@ small {
   text-align: left;
 }
 
+.fancy-quote {
+  font-size: 2em;
+  color: #d426d0;
+  line-height: 0.5;
+  vertical-align: bottom;
+  display: inline-block;
+}
+.fancy-quote:first-child {
+  margin: 0 0.1em 0 0;
+}
+.fancy-quote:last-child {
+  margin: 0 0 0 0.1em;
+}
+
 /* .gallery-filters {
   padding: 0 0.25em 0.25em;
   margin: 0 0 1em;
@@ -902,7 +904,7 @@ small {
 .gallery-img-small {
   position: relative;
   z-index: 1;
-  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-in;
 }
 .gallery-img-small::after {
   content: '';
@@ -925,12 +927,9 @@ small {
   object-fit: contain;
 }
 
-.overlay > .icon-svg,
+.overlay > .btn-close,
 .overlay > .gallery-img-full {
   opacity: 0;
-}
-.overlay > .icon-svg {
-  transition: opacity 0.2s ease-in;
 }
 .overlay > .btn-close {
   transition: opacity 0.1s ease-out;
@@ -939,7 +938,7 @@ small {
   transition: opacity 0.4s ease-in;
 }
 .overlay.complete > .gallery-img-full,
-.overlay.complete > .icon-svg {
+.overlay.complete > .btn-close {
   opacity: 1;
 }
 
@@ -1250,13 +1249,25 @@ small {
 }
 .home-intro-txt {
   grid-area: intro-txt;
-  padding: 1em;
-  text-align: left;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 1em;
   background: #f0e3fa;
 }
-.home-intro-txt > p:last-of-type {
-  margin-bottom: 2.5em;
+.home-intro-txt > p {
+  line-height: 2;
 }
+.home-intro-txt > p,
+.home-intro-txt > blockquote {
+  margin: 0 0 2em;
+}
+.home-intro-txt > blockquote {
+  font-family: 'Delius', serif;
+  font-size: 1.2em;
+}
+
 .home-img > img {
   display: block;
   height: 100%;
@@ -1308,6 +1319,13 @@ small {
 .page-template-events {
   overflow-x: hidden;
 }
+/* Gallery */
+.page-template-gallery .site-main {
+  max-width: none;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* Guestbook */
 #guestbook-form-wrapper,
 .gb-entry-list {
@@ -1520,6 +1538,10 @@ small {
     flex-basis: 50%;
   }
 
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  }
+
   .site-main,
   .page-template-guestbook > .site-main {
     padding-left: 2em;
@@ -1614,6 +1636,9 @@ small {
   .card-list-item {
     width: 22%;
     margin: 1.5%;
+  }
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
   }
 }
 

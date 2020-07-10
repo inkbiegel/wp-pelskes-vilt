@@ -1,3 +1,17 @@
+function ready(callback){
+	// in case the document is already rendered
+	if (document.readyState!='loading') {
+		callback();
+	}	else {
+		document.addEventListener('DOMContentLoaded', callback);
+	}
+}
+
+ready(function(){
+	// Hide honey pots
+	document.querySelector('.js-validate-hp').style.display = 'none';
+});
+
 function contactSubmitCallback( token ){
 
 	document.getElementById('contact-form').submit();
@@ -10,11 +24,8 @@ function gbEntrySubmitCallback( token ){
 
 }
 
-(function( $ ) {
+(function() {
 	'use strict';
-
-	// Hide honey pots
-	$('.js-validate-hp').hide();
 
 	var invalidClassName = 'invalid';
 	var forms = document.querySelectorAll('.js-validate');
@@ -181,4 +192,4 @@ function gbEntrySubmitCallback( token ){
 
 	});
 
-})( jQuery );
+})();

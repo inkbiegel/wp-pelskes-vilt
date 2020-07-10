@@ -101,7 +101,7 @@ get_header();
 					<input class="anim-gradient-flash" type="submit" name="contact_submit" value="<?php _e( 'Submit', 'pelske' ) ?>">
 				</li>
 			</ol>
-			<div class="g-recaptcha" data-size="invisible" data-sitekey="6Lcc-2AUAAAAAG9dl0_KBPYKacjmQMOVZKLKe_lM" data-callback="contactSubmitCallback" data-badge="inline"></div>
+			<div class="g-recaptcha" data-size="invisible" data-sitekey="6LdS32MUAAAAAAtdxuRqQrAm28g4JkkDYy4uI8Ip" data-callback="contactSubmitCallback" data-badge="inline"></div>
 		</form>
 
 	</main>

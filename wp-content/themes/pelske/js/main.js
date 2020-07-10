@@ -85,7 +85,7 @@
 			this.gridItemWidth = this.firstCell.width();
 			// Determine nr of squares needed to fill screen
 			this.nrOfCols = Math.ceil(window.innerWidth/this.gridItemWidth);
-			this.nrOfRows = Math.ceil(window.innerHeight/this.gridItemHeight);
+			this.nrOfRows = Math.ceil(window.innerHeight/this.gridItemHeight) + 1;
 			this.nrOfItems = this.nrOfCols * this.nrOfRows;
 		}
 
@@ -102,6 +102,7 @@
 		}
 
 		show() {
+			if( this.overlayIsUp ) { return;  }
 			$('body').addClass('has-overlay');
 			switch(this.callerID){
 				// The preloader does not need to animate the grid in
@@ -212,12 +213,12 @@
 							update: function(anim){
 								if(Math.round(anim.progress) === 50){
 									$('#site-nav > .menu-toggle').removeClass('toggled');
-									// Reenable page scroll
-									$('body').removeClass('has-overlay');
 								}
 							},
 							complete: function(){
 								$('#overlay').removeClass('overlay__nav');
+								// Reenable page scroll
+								$('body').removeClass('has-overlay');
 							}
 						})
 					} else {
@@ -246,12 +247,12 @@
 							if(Math.round(anim.progress) === 70){
 								// Remove image from overlay
 								$('#overlay .gallery-img-full').remove();
-								// Reenable page scroll
-								$('body').removeClass('has-overlay');
 							}
 						},
 						complete: function(){
 							$('#overlay').removeClass('overlay__gallery');
+							// Reenable page scroll
+							$('body').removeClass('has-overlay');
 						}
 					})
 					break;
@@ -386,6 +387,10 @@
 		// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
 		button.addEventListener( 'click', function() {
 
+			if( $('body').hasClass('has-overlay') && button.getAttribute( 'aria-expanded' ) === 'false' ) {
+				return;
+			}
+
 			if ( button.getAttribute( 'aria-expanded' ) === 'true' ) {
 				button.setAttribute( 'aria-expanded', 'false' );
 				navOverlay.hide();
@@ -481,10 +486,6 @@ function galleryHandler() {
 		const oldPinterestURL = btnPinterest.attr('href');
 		const substr = oldPinterestURL.substring( oldPinterestURL.indexOf('&media='), oldPinterestURL.indexOf('&description=') );
 		btnPinterest.attr('href', oldPinterestURL.replace(substr, '&media=' + newImgUrl));
-
-		// Change Facebook og:image meta tag
-		$('meta[property="og:image"]').attr('content', newImgUrl);
-
 	}
 
 }

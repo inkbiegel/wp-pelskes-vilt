@@ -121,9 +121,9 @@ function pelske_scripts() {
 
 	// Load general script files
 	$theme_dir = get_template_directory_uri();
-	wp_enqueue_script( 'pelske-plugins', $theme_dir . '/js/plugins.js', array(), '20182525', true );
+	wp_enqueue_script( 'pelske-plugins', $theme_dir . '/js/plugins.js', array(), null, true );
 	wp_enqueue_script( 'animejs', $theme_dir . '/js/vendor/anime.min.js', array(), null, true );
-	wp_register_script( 'pelske-main', $theme_dir . '/js/main.js', array( 'jquery', 'pelske-plugins', 'animejs' ), '20182525', true );
+	wp_register_script( 'pelske-main', $theme_dir . '/js/main.js', array( 'jquery', 'pelske-plugins', 'animejs' ), null, true );
 	wp_localize_script( 'pelske-main', '$php_var_theme_dir', $theme_dir );
 	wp_enqueue_script( 'pelske-main' );
 
