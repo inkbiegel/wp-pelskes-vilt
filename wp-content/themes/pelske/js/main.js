@@ -120,12 +120,13 @@
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 1,
+						round: 1,
 						delay: anime.stagger(70, {grid: [this.nrOfCols, this.nrOfRows], from: 'first' }),
 						begin: function(anim){
 							$('#site-nav > .menu-toggle').addClass('toggled');
 						},
 						update: function(anim){
-							if(Math.round(anim.progress) === 50){
+							if(anim.currentTime / anim.duration > 0.5){
 								// Toggle nav into position and fade it in with transition in CSS
 								const siteNav = $('#site-nav');
 								siteNav.addClass('toggled');
@@ -140,9 +141,10 @@
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 1,
+						round: 1,
 						delay: anime.stagger(90, {grid: [this.nrOfCols, this.nrOfRows], from: this.clickPosOnGrid }),
 						update: function(anim) {
-							if(Math.round(anim.progress) === 50) {
+							if(anim.currentTime / anim.duration > 0.5) {
 								$('#overlay').addClass('complete');
 							}
 						}
@@ -179,9 +181,10 @@
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 0,
+						round: 1,
 						delay: anime.stagger(100, {grid: [this.nrOfCols, this.nrOfRows], from: fromIndex }),
 						update: function(anim){
-							if(Math.round(anim.progress) === 70){
+							if(anim.currentTime / anim.duration > 0.7){
 								// Reenable page scroll
 								$('body').removeClass('has-overlay');
 								$('#site-nav > .menu-toggle.hidden').removeClass('hidden');
@@ -202,6 +205,7 @@
 						anime({
 							targets: '#overlay .overlay-grid-item',
 							opacity: 0,
+							round: 1,
 							delay: anime.stagger(70, {grid: [this.nrOfCols, this.nrOfRows], from: 'last' }),
 							begin: function(anim){
 								const siteNav = $('#site-nav');
@@ -211,7 +215,7 @@
 								siteNav.children('#primary-menu').attr( 'aria-expanded', 'false' );
 							},
 							update: function(anim){
-								if(Math.round(anim.progress) === 50){
+								if(anim.currentTime / anim.duration > 0.5){
 									$('#site-nav > .menu-toggle').removeClass('toggled');
 								}
 							},
@@ -239,12 +243,13 @@
 					anime({
 						targets: '#overlay .overlay-grid-item',
 						opacity: 0,
+						round: 1,
 						delay: anime.stagger(70, {grid: [this.nrOfCols, this.nrOfRows], from: lastCellFirstRowIndex }),
 						begin: function(anim){
 							$('#overlay').removeClass('complete');
 						},
 						update: function(anim){
-							if(Math.round(anim.progress) === 70){
+							if(anim.currentTime / anim.duration > 0.7){
 								// Remove image from overlay
 								$('#overlay .gallery-img-full').remove();
 							}
